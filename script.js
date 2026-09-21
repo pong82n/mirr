@@ -1,5 +1,5 @@
 /**
- * MIRR Construction & Engineering - Interactive JavaScript Engine
+ * MIRR Construction & Engineering - Neumorphic Interactive Engine
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,23 +25,23 @@ function initNavigation() {
         mobileBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             const isOpened = !mobileMenu.classList.contains('hidden');
-            menuIcon.className = isOpened ? 'fa-solid fa-xmark text-2xl' : 'fa-solid fa-bars text-2xl';
+            menuIcon.className = isOpened ? 'fa-solid fa-xmark text-lg' : 'fa-solid fa-bars text-lg';
         });
 
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
-                menuIcon.className = 'fa-solid fa-bars text-2xl';
+                menuIcon.className = 'fa-solid fa-bars text-lg';
             });
         });
     }
 
-    // Navbar shrink / shadow on scroll
+    // Header subtle elevation on scroll
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            mainNav.classList.add('shadow-xl', 'bg-dark-900/98');
+        if (window.scrollY > 30) {
+            mainNav.classList.add('shadow-lg');
         } else {
-            mainNav.classList.remove('shadow-xl', 'bg-dark-900/98');
+            mainNav.classList.remove('shadow-lg');
         }
         updateActiveNavSection();
     });
@@ -52,7 +52,7 @@ function updateActiveNavSection() {
     const navLinks = document.querySelectorAll('.nav-link');
     let currentId = '';
 
-    const scrollY = window.pageYOffset + 200;
+    const scrollY = window.pageYOffset + 220;
     sections.forEach(section => {
         const top = section.offsetTop;
         const height = section.offsetHeight;
@@ -62,17 +62,18 @@ function updateActiveNavSection() {
     });
 
     navLinks.forEach(link => {
-        link.classList.remove('text-amber-400');
-        link.classList.add('text-slate-200');
         if (link.getAttribute('href') === `#${currentId}`) {
-            link.classList.add('text-amber-400');
-            link.classList.remove('text-slate-200');
+            link.classList.add('text-amber-600', 'active');
+            link.classList.remove('text-slate-700');
+        } else if (link.getAttribute('href').startsWith('#')) {
+            link.classList.remove('text-amber-600', 'active');
+            link.classList.add('text-slate-700');
         }
     });
 }
 
 /* -------------------------------------------------------------
- * 2. ANIMATED STAT COUNTERS
+ * 2. STAT COUNTERS
  * ------------------------------------------------------------- */
 function initCounters() {
     const counters = document.querySelectorAll('[data-counter]');
@@ -96,7 +97,6 @@ function initCounters() {
                 function update(currentTime) {
                     const elapsed = currentTime - startTime;
                     const progress = Math.min(elapsed / duration, 1);
-                    // easeOutQuart
                     const ease = 1 - Math.pow(1 - progress, 4);
                     const currentVal = (start + (target - start) * ease).toFixed(decimals);
 
@@ -113,18 +113,18 @@ function initCounters() {
     }
 
     window.addEventListener('scroll', runCounters);
-    runCounters(); // run initially if in view
+    runCounters();
 }
 
 /* -------------------------------------------------------------
- * 3. INTERACTIVE PROJECT COST ESTIMATOR
+ * 3. TACTILE NEUMORPHIC COST ESTIMATOR
  * ------------------------------------------------------------- */
 let estimatorState = {
-    baseRate: 210, // USD per sq ft
+    baseRate: 210,
     typeName: 'Commercial Office',
     area: 15000,
-    multiplier: 1.25, // Premium
-    addons: 75000 // LEED checked initially
+    multiplier: 1.25,
+    addons: 75000
 };
 
 function initEstimator() {
@@ -134,25 +134,26 @@ function initEstimator() {
     const qualityButtons = document.querySelectorAll('.quality-btn');
     const addonCheckboxes = document.querySelectorAll('.estimator-addon');
 
-    // Type selection
+    // Construction Type Selector
     typeButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             typeButtons.forEach(b => {
-                b.classList.remove('active', 'border-amber-500', 'bg-amber-500/15', 'text-white');
-                b.classList.add('border-slate-700', 'bg-slate-900/60', 'text-slate-300');
-                b.querySelector('i').classList.replace('text-amber-400', 'text-slate-400');
+                b.classList.remove('active');
+                const icon = b.querySelector('i');
+                if (icon) icon.className = icon.className.replace('text-amber-600', 'text-slate-500');
             });
-            btn.classList.add('active', 'border-amber-500', 'bg-amber-500/15', 'text-white');
-            btn.classList.remove('border-slate-700', 'bg-slate-900/60', 'text-slate-300');
-            btn.querySelector('i').classList.replace('text-slate-400', 'text-amber-400');
+            btn.classList.add('active');
+            const activeIcon = btn.querySelector('i');
+            if (activeIcon) activeIcon.className = activeIcon.className.replace('text-slate-500', 'text-amber-600');
 
             estimatorState.baseRate = parseFloat(btn.getAttribute('data-rate'));
-            estimatorState.typeName = btn.querySelector('span').innerText;
+            const nameEl = btn.querySelector('.font-bold');
+            if (nameEl) estimatorState.typeName = nameEl.innerText;
             recalculateEstimate();
         });
     });
 
-    // Area Slider
+    // Area Range Slider
     if (areaSlider && areaDisplay) {
         areaSlider.addEventListener('input', (e) => {
             const sqft = parseInt(e.target.value);
@@ -162,19 +163,23 @@ function initEstimator() {
         });
     }
 
-    // Quality Level
+    // Quality Spec Level
     qualityButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             qualityButtons.forEach(b => {
-                b.classList.remove('active', 'border-amber-500', 'bg-amber-500/15');
-                b.classList.add('border-slate-700', 'bg-slate-900/60');
-                const title = b.querySelector('.text-amber-400');
-                if (title) title.classList.replace('text-amber-400', 'text-white');
+                b.classList.remove('active');
+                const heading = b.querySelector('div');
+                if (heading) {
+                    heading.classList.remove('text-amber-600');
+                    heading.classList.add('text-slate-900');
+                }
             });
-            btn.classList.add('active', 'border-amber-500', 'bg-amber-500/15');
-            btn.classList.remove('border-slate-700', 'bg-slate-900/60');
-            const heading = btn.querySelector('div');
-            if (heading) heading.classList.add('text-amber-400');
+            btn.classList.add('active');
+            const activeHeading = btn.querySelector('div');
+            if (activeHeading) {
+                activeHeading.classList.remove('text-slate-900');
+                activeHeading.classList.add('text-amber-600');
+            }
 
             estimatorState.multiplier = parseFloat(btn.getAttribute('data-multiplier'));
             recalculateEstimate();
@@ -200,13 +205,11 @@ function recalculateEstimate() {
     const rawBuildCost = estimatorState.area * estimatorState.baseRate * estimatorState.multiplier;
     const total = Math.round(rawBuildCost + estimatorState.addons);
 
-    // Breakdown components
     const structural = Math.round(total * 0.45);
     const mep = Math.round(total * 0.25);
     const finishes = Math.round(total * 0.20);
     const softCosts = Math.round(total * 0.10);
 
-    // Duration timeline estimation based on area & complexity
     let monthsMin = Math.max(6, Math.round(Math.sqrt(estimatorState.area / 100)));
     let monthsMax = Math.round(monthsMin * 1.25);
     if (estimatorState.multiplier > 1.4) {
@@ -214,7 +217,6 @@ function recalculateEstimate() {
         monthsMax += 3;
     }
 
-    // Update UI elements
     const totalPriceDisplay = document.getElementById('total-price-display');
     const timelineDisplay = document.getElementById('timeline-display');
     const structDisplay = document.getElementById('breakdown-structural');
@@ -222,36 +224,28 @@ function recalculateEstimate() {
     const finishDisplay = document.getElementById('breakdown-finishes');
     const softDisplay = document.getElementById('breakdown-soft');
 
-    if (totalPriceDisplay) {
-        totalPriceDisplay.innerText = '$' + total.toLocaleString();
-    }
-    if (timelineDisplay) {
-        timelineDisplay.innerText = `${monthsMin} - ${monthsMax} Months`;
-    }
+    if (totalPriceDisplay) totalPriceDisplay.innerText = '$' + total.toLocaleString();
+    if (timelineDisplay) timelineDisplay.innerText = `${monthsMin} - ${monthsMax} Months`;
     if (structDisplay) structDisplay.innerText = '$' + structural.toLocaleString();
     if (mepDisplay) mepDisplay.innerText = '$' + mep.toLocaleString();
     if (finishDisplay) finishDisplay.innerText = '$' + finishes.toLocaleString();
     if (softDisplay) softDisplay.innerText = '$' + softCosts.toLocaleString();
 }
 
-// Transfer calculated values to RFP Contact Form
 window.transferEstimateToQuote = function() {
-    const sectorSelect = document.getElementById('contact-sector');
-    const budgetSelect = document.getElementById('contact-budget');
     const messageField = document.getElementById('contact-message');
     const totalPriceDisplay = document.getElementById('total-price-display');
 
     if (messageField && totalPriceDisplay) {
-        messageField.value = `[Generated Estimate: ${estimatorState.typeName} | ${estimatorState.area.toLocaleString()} sq.ft | Approx. Budget: ${totalPriceDisplay.innerText}]\n\nWe are looking to develop this project and require an engineering consultation and comprehensive schedule of values.`;
+        messageField.value = `[Generated Estimate: ${estimatorState.typeName} | ${estimatorState.area.toLocaleString()} sq.ft | Estimated Valuation: ${totalPriceDisplay.innerText}]\n\nWe require an engineering consultation, soil test coordination, and formal schedule of values for this project.`;
     }
 
-    // Scroll smoothly to contact section
     const contactSection = document.getElementById('contact');
     if (contactSection) {
         contactSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    showToast('Estimate Captured', 'Your parameters have been populated into the RFP proposal form below.');
+    showToast('Estimate Transferred', 'Your project estimate parameters have been locked into the proposal form below.');
 };
 
 /* -------------------------------------------------------------
@@ -264,11 +258,9 @@ function initPortfolioFilter() {
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             filterButtons.forEach(b => {
-                b.classList.remove('active', 'bg-dark-900', 'text-white');
-                b.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+                b.classList.remove('active', 'text-amber-600');
             });
-            btn.classList.add('active', 'bg-dark-900', 'text-white');
-            btn.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+            btn.classList.add('active', 'text-amber-600');
 
             const filterValue = btn.getAttribute('data-filter');
 
@@ -293,7 +285,7 @@ function initPortfolioFilter() {
 }
 
 /* -------------------------------------------------------------
- * 5. BEFORE / AFTER INTERACTIVE COMPARISON SLIDER
+ * 5. BEFORE / AFTER COMPARISON SLIDER
  * ------------------------------------------------------------- */
 function initBeforeAfterSlider() {
     const container = document.getElementById('ba-container');
@@ -328,7 +320,6 @@ function initBeforeAfterSlider() {
         handle.style.left = position + '%';
     }
 
-    // Mouse events
     container.addEventListener('mousedown', (e) => {
         isSliding = true;
         moveSlider(e);
@@ -343,7 +334,6 @@ function initBeforeAfterSlider() {
         isSliding = false;
     });
 
-    // Touch events for mobile phones and tablets
     container.addEventListener('touchstart', (e) => {
         isSliding = true;
         moveSlider(e);
@@ -360,30 +350,30 @@ function initBeforeAfterSlider() {
 }
 
 /* -------------------------------------------------------------
- * 6. SERVICE DETAILS MODAL
+ * 6. SERVICE DETAILS MODAL (NEUMORPHIC)
  * ------------------------------------------------------------- */
 const serviceData = {
     commercial: {
-        title: "Commercial High-Rise & Corporate Complexes",
+        title: "Commercial High-Rises & Corporate HQs",
         icon: "fa-city",
-        lead: "Engineering towering architectural statements with structural durability and LEED sustainability.",
+        lead: "Engineering towering architectural statements with structural longevity and LEED Platinum standards.",
         details: [
-            "Cast-in-place post-tensioned slabs and core-shear wall engineering.",
+            "Cast-in-place post-tensioned slabs and core shear wall engineering.",
             "Unitized structural silicone glazed (SSG) curtain wall installations.",
-            "Smart BMS with automated chilled water systems and dual-feed electrical redundancy.",
+            "Smart BMS with automated chilled water systems and dual-feed redundancy.",
             "Complete tenant-fitout turnkey capability for Fortune 500 tenants."
         ],
-        stats: "Over 8.2M sq.ft of Grade-A commercial space delivered to date."
+        stats: "Over 8.2M sq.ft of Grade-A commercial space delivered."
     },
     industrial: {
-        title: "Industrial Plants & Automated Logistics Hubs",
+        title: "Industrial Plants & Robotics Logistics Hubs",
         icon: "fa-industry",
-        lead: "Ultra-heavy capacity logistics distribution centers and advanced manufacturing plants.",
+        lead: "Ultra-heavy capacity fulfillment centers and automated manufacturing infrastructure.",
         details: [
             "FF/FL 50+ super-flat laser screed floor slabs suited for robotic AGV fleets.",
             "Clear span structural steel trusses up to 180 feet without interior columns.",
-            "Early Suppression Fast Response (ESFR) automated high-density fire sprinkler networks.",
-            "Heavy 3-phase high voltage transformer substations and battery storage bays."
+            "Early Suppression Fast Response (ESFR) automated fire safety networks.",
+            "Heavy 3-phase high voltage transformer substations and battery bays."
         ],
         stats: "Completed fulfillment centers for premier global logistics providers."
     },
@@ -394,13 +384,13 @@ const serviceData = {
         details: [
             "Post-tensioned cantilevered concrete roofs spanning over 60 feet.",
             "Floor-to-ceiling motorized thermal break glass facades.",
-            "Geothermal heating, smart microgrid battery storage, and acoustic isolation membranes.",
-            "Artisan millwork, Italian bookmatched travertine stone, and structural steel framing."
+            "Geothermal heating, smart microgrid battery storage, and acoustic isolation.",
+            "Artisan millwork, Italian bookmatched travertine stone, and steel framing."
         ],
         stats: "Winner of 7 Architectural MasterPrize design awards."
     },
     civil: {
-        title: "Civil Infrastructure & Heavy Earthwork",
+        title: "Civil Infrastructure & Highway Works",
         icon: "fa-bridge-water",
         lead: "Critical municipal transportation, stormwater management, and heavy foundation works.",
         details: [
@@ -412,26 +402,26 @@ const serviceData = {
         stats: "Fully bonded for state and federal DOT civil infrastructure contracts."
     },
     bim: {
-        title: "Pre-Construction & 4D/5D Building Information Modeling",
+        title: "Pre-Construction & 4D/5D BIM Modeling",
         icon: "fa-ruler-combined",
         lead: "Virtually constructing every millimeter of the building before breaking ground.",
         details: [
-            "Comprehensive federated clash detection between architectural, structural, and MEP trades.",
-            "4D time-sequenced site logistics animations for cranes and material laydown.",
+            "Comprehensive federated clash detection between structural and MEP trades.",
+            "4D time-sequenced site logistics animations for crane coordination.",
             "5D cost loaded models tied to dynamic bills of quantities (BOQ).",
             "LiDAR point-cloud scanning to verify as-built tolerances against BIM design."
         ],
         stats: "Reduces unexpected field change orders by an average of 92%."
     },
     retrofit: {
-        title: "Adaptive Reuse & Structural Seismic Retrofit",
+        title: "Adaptive Reuse & Seismic Retrofit",
         icon: "fa-screwdriver-wrench",
         lead: "Revitalizing historic structures to exceed modern seismic resilience codes.",
         details: [
-            "Carbon Fiber Reinforced Polymer (CFRP) composite wrapping on aging concrete columns.",
+            "Carbon Fiber Reinforced Polymer (CFRP) composite column wrapping.",
             "Steel moment frame additions and hydraulic viscous damper installations.",
             "Deep foundation micropile underpinning and pressure grouting.",
-            "Envelope weatherproofing, historic masonry repointing, and energy decarbonization."
+            "Envelope weatherproofing, historic masonry repointing, and decarbonization."
         ],
         stats: "Extends structural life expectancy by 50+ years with full code compliance."
     }
@@ -446,27 +436,27 @@ window.openServiceDetail = function(key) {
 
     content.innerHTML = `
         <div class="flex items-center gap-4 mb-4">
-            <div class="w-14 h-14 rounded-2xl bg-amber-500 text-dark-900 flex items-center justify-center text-2xl font-bold">
+            <div class="w-14 h-14 neu-inset flex items-center justify-center text-2xl text-amber-600">
                 <i class="fa-solid ${data.icon}"></i>
             </div>
             <div>
-                <h3 class="text-xl font-extrabold font-heading text-white leading-tight">${data.title}</h3>
-                <span class="text-xs text-amber-400 font-semibold tracking-wider uppercase">Engineering Discipline</span>
+                <h3 class="text-xl font-black font-heading text-slate-900 leading-tight">${data.title}</h3>
+                <span class="text-xs text-amber-700 font-bold uppercase tracking-wider">Engineering Discipline</span>
             </div>
         </div>
-        <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">${data.lead}</p>
-        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Key Technical Scope & Capabilities:</h4>
-        <ul class="space-y-2.5 text-xs text-slate-200 mb-6 bg-slate-800/80 p-4 rounded-xl border border-slate-700">
-            ${data.details.map(d => `<li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-amber-400 mt-0.5"></i><span>${d}</span></li>`).join('')}
+        <p class="text-slate-600 text-sm leading-relaxed mb-6">${data.lead}</p>
+        <h4 class="text-xs font-black uppercase tracking-wider text-slate-700 mb-3">Key Technical Scope & Capabilities:</h4>
+        <ul class="space-y-2.5 text-xs text-slate-700 mb-6 neu-inset p-4">
+            ${data.details.map(d => `<li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-amber-600 mt-0.5"></i><span>${d}</span></li>`).join('')}
         </ul>
-        <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-300 text-xs font-medium mb-6">
-            <i class="fa-solid fa-trophy mr-1.5"></i> ${data.stats}
+        <div class="p-3 neu-flat-sm text-amber-700 text-xs font-bold mb-6">
+            <i class="fa-solid fa-trophy mr-1.5 text-amber-600"></i> ${data.stats}
         </div>
         <div class="flex gap-3">
-            <a href="#contact" onclick="closeServiceModal()" class="flex-1 py-3 text-center bg-amber-500 hover:bg-amber-400 text-dark-900 font-bold uppercase text-xs tracking-wider rounded-xl transition-all">
+            <a href="#contact" onclick="closeServiceModal()" class="neu-btn-primary flex-1 py-3 text-center text-xs uppercase tracking-wider">
                 Inquire For This Service
             </a>
-            <button onclick="closeServiceModal()" class="px-5 py-3 rounded-xl border border-slate-700 hover:border-slate-500 text-slate-300 text-xs font-semibold">
+            <button onclick="closeServiceModal()" class="neu-btn px-5 py-3 text-slate-700 text-xs font-bold uppercase tracking-wider">
                 Close
             </button>
         </div>
@@ -491,7 +481,6 @@ window.openVideoModal = function() {
     const modal = document.getElementById('video-modal');
     const iframe = document.getElementById('video-iframe');
     if (modal && iframe) {
-        // Embed high-definition construction documentary / engineering showcase
         iframe.src = "https://www.youtube-nocookie.com/embed/zoxU4ZpndnU?autoplay=1&mute=0";
         modal.classList.remove('hidden');
         modal.classList.add('flex');
@@ -509,7 +498,7 @@ window.closeVideoModal = function() {
 };
 
 /* -------------------------------------------------------------
- * 8. FORM SUBMISSION & FEEDBACK TOASTS
+ * 8. FORM SUBMISSIONS & TOASTS
  * ------------------------------------------------------------- */
 function initForms() {
     const rfqForm = document.getElementById('hero-rfq-form');
@@ -519,7 +508,7 @@ function initForms() {
         rfqForm.addEventListener('submit', (e) => {
             e.preventDefault();
             rfqForm.reset();
-            showToast('RFQ Dispatched Successfully', 'Our executive engineering board has received your specifications.');
+            showToast('Tender Bid Dispatched', 'Our executive engineering board has received your specifications.');
         });
     }
 
@@ -567,7 +556,7 @@ function showToast(title, message) {
     }, 4500);
 }
 
-// Close modals when clicking outside
+// Close modals when clicking backdrop
 window.addEventListener('click', (e) => {
     const serviceModal = document.getElementById('service-modal');
     const videoModal = document.getElementById('video-modal');
@@ -575,7 +564,6 @@ window.addEventListener('click', (e) => {
     if (e.target === videoModal) closeVideoModal();
 });
 
-// Close modals with Escape key
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeServiceModal();

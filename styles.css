@@ -1,28 +1,259 @@
-/* Custom styling and effects for MIRR Construction Website */
+/* ==========================================================================
+   MIRR CONSTRUCTION - ARCHITECTURAL NEUMORPHISM (SOFT UI) DESIGN SYSTEM
+   ========================================================================== */
 
-/* Blueprint grid background */
-.bg-grid-pattern {
-    background-image: radial-gradient(rgba(245, 158, 11, 0.25) 1px, transparent 1px), radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 30px 30px;
-    background-position: 0 0, 15px 15px;
+:root {
+    --neu-bg: #e6edf5;
+    --neu-bg-subtle: #edf3fa;
+    --neu-surface: #e6edf5;
+    --neu-light: #ffffff;
+    --neu-dark: #b8c4d4;
+    --neu-darker: #9ba8ba;
+    
+    --neu-amber: #f59e0b;
+    --neu-amber-light: #fbbf24;
+    --neu-amber-dark: #d97706;
+    --neu-amber-glow: rgba(245, 158, 11, 0.35);
+    
+    --neu-text: #1e293b;
+    --neu-text-secondary: #475569;
+    --neu-text-muted: #64748b;
+    
+    /* Standard Neumorphic Shadows */
+    --shadow-flat: 8px 8px 18px var(--neu-dark), -8px -8px 18px var(--neu-light);
+    --shadow-flat-sm: 4px 4px 10px var(--neu-dark), -4px -4px 10px var(--neu-light);
+    --shadow-flat-lg: 14px 14px 28px var(--neu-dark), -14px -14px 28px var(--neu-light);
+    
+    --shadow-hover: 11px 11px 22px var(--neu-dark), -11px -11px 22px var(--neu-light);
+    
+    --shadow-inset: inset 5px 5px 10px var(--neu-dark), inset -5px -5px 10px var(--neu-light);
+    --shadow-inset-sm: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+    --shadow-inset-lg: inset 8px 8px 16px var(--neu-dark), inset -8px -8px 16px var(--neu-light);
+    
+    --shadow-amber: 6px 6px 16px rgba(217, 119, 6, 0.3), -6px -6px 16px var(--neu-light);
 }
 
-/* Subtle zoom effect for hero */
-@keyframes subtleZoom {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-    100% { transform: scale(1); }
+body {
+    background-color: var(--neu-bg);
+    color: var(--neu-text);
 }
 
-.animate-subtle-zoom {
-    animation: subtleZoom 25s ease-in-out infinite alternate;
+/* -------------------------------------------------------------
+ * NEUMORPHIC PRIMITIVES & UTILITY CLASSES
+ * ------------------------------------------------------------- */
+
+/* Flat extruded card */
+.neu-card {
+    background: var(--neu-bg);
+    box-shadow: var(--shadow-flat);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Before and After Image Slider */
+.neu-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.neu-card-static {
+    background: var(--neu-bg);
+    box-shadow: var(--shadow-flat);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Small extruded element (badges, icons, tags) */
+.neu-flat-sm {
+    background: var(--neu-bg);
+    box-shadow: var(--shadow-flat-sm);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Recessed / Sunken container */
+.neu-inset {
+    background: var(--neu-bg);
+    box-shadow: var(--shadow-inset);
+    border-radius: 20px;
+    border: 1px solid rgba(184, 196, 212, 0.2);
+}
+
+.neu-inset-sm {
+    background: var(--neu-bg);
+    box-shadow: var(--shadow-inset-sm);
+    border-radius: 12px;
+}
+
+/* Tactile Button (extruded, presses in when clicked) */
+.neu-btn {
+    background: var(--neu-bg);
+    color: var(--neu-text);
+    box-shadow: var(--shadow-flat-sm);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    font-weight: 700;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    user-select: none;
+}
+
+.neu-btn:hover {
+    box-shadow: 6px 6px 14px var(--neu-dark), -6px -6px 14px var(--neu-light);
+    color: var(--neu-amber-dark);
+}
+
+.neu-btn:active, .neu-btn.active {
+    box-shadow: var(--shadow-inset-sm) !important;
+    transform: translateY(1px);
+    color: var(--neu-amber-dark) !important;
+}
+
+/* Neumorphic Amber Action Button */
+.neu-btn-primary {
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    color: #0b1120 !important;
+    box-shadow: 6px 6px 16px var(--neu-dark), -6px -6px 16px var(--neu-light);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-weight: 800;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.neu-btn-primary:hover {
+    background: linear-gradient(135deg, #fcd34d, #f59e0b);
+    box-shadow: 8px 8px 20px var(--neu-dark), -8px -8px 20px var(--neu-light);
+    transform: translateY(-2px);
+}
+
+.neu-btn-primary:active {
+    box-shadow: inset 4px 4px 8px #92400e, inset -4px -4px 8px #fef3c7 !important;
+    transform: translateY(1px);
+}
+
+/* Inset Form Controls */
+.neu-input {
+    background: var(--neu-bg) !important;
+    box-shadow: var(--shadow-inset) !important;
+    border: 1px solid rgba(184, 196, 212, 0.3) !important;
+    border-radius: 14px !important;
+    color: var(--neu-text) !important;
+    transition: all 0.2s ease;
+}
+
+.neu-input::placeholder {
+    color: #94a3b8;
+}
+
+.neu-input:focus {
+    outline: none !important;
+    box-shadow: var(--shadow-inset), 0 0 0 2px var(--neu-amber) !important;
+}
+
+/* Tactile Neumorphic Pill / Badge */
+.neu-pill {
+    background: var(--neu-bg);
+    box-shadow: var(--shadow-flat-sm);
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Inset Pill Badge */
+.neu-pill-inset {
+    background: var(--neu-bg);
+    box-shadow: var(--shadow-inset-sm);
+    border-radius: 9999px;
+}
+
+/* Floating Neumorphic Toolbar / Header */
+.neu-nav {
+    background: rgba(230, 237, 245, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 25px -5px rgba(184, 196, 212, 0.5), 0 -2px 10px rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Neumorphic Checkbox */
+input[type="checkbox"].neu-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--neu-bg);
+    box-shadow: var(--shadow-inset-sm);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input[type="checkbox"].neu-checkbox:checked {
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    box-shadow: 2px 2px 5px var(--neu-dark);
+}
+
+input[type="checkbox"].neu-checkbox:checked::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 11px;
+    color: #0b1120;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Neumorphic Range Slider */
+input[type=range].neu-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 12px;
+    border-radius: 9999px;
+    background: var(--neu-bg);
+    box-shadow: var(--shadow-inset-sm);
+    outline: none;
+}
+
+input[type=range].neu-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #fcd34d, #f59e0b);
+    box-shadow: 4px 4px 8px var(--neu-dark), -4px -4px 8px var(--neu-light);
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    transition: transform 0.15s ease;
+}
+
+input[type=range].neu-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+input[type=range].neu-slider::-moz-range-thumb {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #fcd34d, #f59e0b);
+    box-shadow: 4px 4px 8px var(--neu-dark), -4px -4px 8px var(--neu-light);
+    cursor: pointer;
+    border: 2px solid #ffffff;
+}
+
+/* -------------------------------------------------------------
+ * BEFORE & AFTER SLIDER (NEUMORPHIC)
+ * ------------------------------------------------------------- */
 .ba-slider {
     position: relative;
     user-select: none;
     -webkit-user-select: none;
+    box-shadow: var(--shadow-flat-lg);
+    border: 4px solid var(--neu-bg);
 }
 
 .ba-before-wrap {
@@ -46,7 +277,11 @@
 
 .ba-handle {
     cursor: ew-resize;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.neu-slider-thumb {
+    box-shadow: 4px 4px 10px var(--neu-dark), -4px -4px 10px var(--neu-light);
 }
 
 /* Smooth custom scrollbars */
@@ -54,59 +289,28 @@
     width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #0b1120;
+    background: var(--neu-bg);
+    box-shadow: inset 2px 2px 5px var(--neu-dark);
 }
 ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #9ba8ba;
     border-radius: 5px;
+    border: 2px solid var(--neu-bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #f59e0b;
+    background: #d97706;
 }
 
-/* Interactive range slider styling */
-input[type=range] {
-    -webkit-appearance: none;
-    appearance: none;
+/* Subtle architectural grid pattern in neumorphic tone */
+.bg-neu-grid {
+    background-image: 
+        radial-gradient(rgba(184, 196, 212, 0.45) 1.5px, transparent 1.5px),
+        radial-gradient(rgba(255, 255, 255, 0.8) 1.5px, transparent 1.5px);
+    background-size: 32px 32px;
+    background-position: 0 0, 16px 16px;
 }
 
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #f59e0b;
-    cursor: pointer;
-    border: 3px solid #0b1120;
-    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
-    transition: transform 0.15s ease;
-}
-
-input[type=range]::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-}
-
-input[type=range]::-moz-range-thumb {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #f59e0b;
-    cursor: pointer;
-    border: 3px solid #0b1120;
-}
-
-/* Service card hover effects */
-.service-card {
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
-}
-
-/* Active navigation link highlight */
-.nav-link.active-section {
-    color: #f59e0b !important;
-}
-
-/* Print styling for quotes */
+/* Print styling */
 @media print {
     body {
         background: white !important;
@@ -115,16 +319,8 @@ input[type=range]::-moz-range-thumb {
     header, footer, #video-modal, #service-modal, #portfolio-filters, .ba-slider {
         display: none !important;
     }
-    #estimator {
-        background: white !important;
-        color: black !important;
-        padding: 0 !important;
-    }
-    #estimator * {
-        color: black !important;
-        border-color: #ccc !important;
-    }
-    #total-price-display {
-        color: #d97706 !important;
+    .neu-card, .neu-inset, .neu-btn {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
     }
 }
