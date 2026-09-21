@@ -120,11 +120,11 @@ function initCounters() {
  * 3. TACTILE NEUMORPHIC COST ESTIMATOR
  * ------------------------------------------------------------- */
 let estimatorState = {
-    baseRate: 210,
+    baseRate: 12000, // PHP ₱ per sq ft
     typeName: 'Commercial Office',
     area: 15000,
     multiplier: 1.25,
-    addons: 75000
+    addons: 4200000 // LEED checked initially (₱4.2M)
 };
 
 function initEstimator() {
@@ -224,12 +224,12 @@ function recalculateEstimate() {
     const finishDisplay = document.getElementById('breakdown-finishes');
     const softDisplay = document.getElementById('breakdown-soft');
 
-    if (totalPriceDisplay) totalPriceDisplay.innerText = '$' + total.toLocaleString();
+    if (totalPriceDisplay) totalPriceDisplay.innerText = '₱' + total.toLocaleString();
     if (timelineDisplay) timelineDisplay.innerText = `${monthsMin} - ${monthsMax} Months`;
-    if (structDisplay) structDisplay.innerText = '$' + structural.toLocaleString();
-    if (mepDisplay) mepDisplay.innerText = '$' + mep.toLocaleString();
-    if (finishDisplay) finishDisplay.innerText = '$' + finishes.toLocaleString();
-    if (softDisplay) softDisplay.innerText = '$' + softCosts.toLocaleString();
+    if (structDisplay) structDisplay.innerText = '₱' + structural.toLocaleString();
+    if (mepDisplay) mepDisplay.innerText = '₱' + mep.toLocaleString();
+    if (finishDisplay) finishDisplay.innerText = '₱' + finishes.toLocaleString();
+    if (softDisplay) softDisplay.innerText = '₱' + softCosts.toLocaleString();
 }
 
 window.transferEstimateToQuote = function() {

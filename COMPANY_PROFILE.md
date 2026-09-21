@@ -7,7 +7,7 @@
 
 **MIRR Construction & Engineering Corporation** (MIRR Build) is an internationally recognized Tier-1 general contractor, civil engineering firm, and pre-construction technology consultancy. Established in 1998, MIRR has built a reputation over nearly three decades for executing monumental, technically complex projects on schedule and within guaranteed maximum price (GMP) contracts.
 
-With a portfolio exceeding **\$3.2 Billion** in delivered assets across the commercial, industrial, civil infrastructure, and luxury residential sectors, MIRR pairs traditional structural engineering craftsmanship with pioneering 4D/5D Building Information Modeling (BIM), autonomous drone photogrammetry, and green low-carbon concrete technologies.
+With a portfolio exceeding **₱180 Billion** in delivered assets across the commercial, industrial, civil infrastructure, and luxury residential sectors, MIRR pairs traditional structural engineering craftsmanship with pioneering 4D/5D Building Information Modeling (BIM), autonomous drone photogrammetry, and green low-carbon concrete technologies.
 
 ---
 
@@ -21,8 +21,8 @@ With a portfolio exceeding **\$3.2 Billion** in delivered assets across the comm
 | **Licensure** | Class A Unlimited General Building Contractor & Heavy Civil Engineer |
 | **Corporate Headquarters** | 500 Grand Avenue, Suite 1200, Metropolis Center |
 | **Regional Operating Hubs** | Dallas (TX), Phoenix (AZ), Denver (CO), Miami (FL) |
-| **Single-Project Bonding Capacity** | \$250,000,000 USD |
-| **Aggregate Bonding Capacity** | \$500,000,000 USD |
+| **Single-Project Bonding Capacity** | ₱14,000,000,000 PHP (₱14 Billion) |
+| **Aggregate Bonding Capacity** | ₱28,000,000,000 PHP (₱28 Billion) |
 | **Total Projects Completed** | 350+ Major Turnkey Facilities |
 | **Workforce** | 1,200+ Engineers, Project Managers, Superintendents & Craftspeople |
 | **Safety Certification** | OSHA VPP Star Status (4.5M+ Zero Lost-Time Injury Hours) |
@@ -88,31 +88,31 @@ To be the world’s most trusted and technologically advanced engineering contra
 ### 1. Vertex Financial Tower (Dallas, TX)
 - **Sector:** Commercial Corporate High-Rise
 - **Scope:** 42 stories, 540,000 sq.ft, LEED Platinum
-- **Contract Valuation:** \$185,000,000
+- **Contract Valuation:** ₱10,500,000,000 PHP (₱10.5 Billion)
 - **Delivery:** Completed 3 weeks ahead of scheduled turnover.
 
 ### 2. Aeroflow Logistics MegaHub (Phoenix, AZ)
 - **Sector:** Industrial Robotics Fulfillment Center
 - **Scope:** 850,000 sq.ft, 42-foot clear heights, 96 dock doors, 1.2MW solar roof
-- **Contract Valuation:** \$98,000,000
+- **Contract Valuation:** ₱5,600,000,000 PHP (₱5.6 Billion)
 - **Delivery:** Zero lost-time safety incidents across 250,000 craft hours.
 
 ### 3. The Horizon Waterfront Estate (Miami, FL)
 - **Sector:** Bespoke Modernist Luxury Villa
 - **Scope:** 14,200 sq.ft, 18-meter cantilevered living slabs, infinity saltwater pool
-- **Contract Valuation:** \$22,000,000
+- **Contract Valuation:** ₱1,250,000,000 PHP (₱1.25 Billion)
 - **Accolade:** Awarded Regional Architectural MasterPrize.
 
 ### 4. Grand River Suspension Viaduct (Austin, TX)
 - **Sector:** Civil Transportation Infrastructure
 - **Scope:** 1.8-mile 6-lane multimodal viaduct with seismic dampers
-- **Contract Valuation:** \$142,000,000
+- **Contract Valuation:** ₱8,100,000,000 PHP (₱8.1 Billion)
 - **Authority:** State Department of Transportation.
 
 ### 5. Nexus Tech Innovation Campus (Denver, CO)
 - **Sector:** Sustainable Corporate Mass-Timber Campus
 - **Scope:** 310,000 sq.ft hybrid cross-laminated timber (CLT) & steel structure
-- **Contract Valuation:** \$115,000,000
+- **Contract Valuation:** ₱6,500,000,000 PHP (₱6.5 Billion)
 - **Sustainability:** Zero-carbon construction methodology.
 
 ---
