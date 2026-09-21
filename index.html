@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIRR Construction & Engineering | Premier General Contractors</title>
+    <meta name="description" content="MIRR Construction - Leading commercial, residential, and civil engineering general contractor. Precision engineering, sustainable construction, and turnkey project delivery.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            400: '#fbbf24',
+                            500: '#f59e0b', // Construction Amber / Gold
+                            600: '#d97706',
+                            700: '#b45309',
+                        },
+                        dark: {
+                            900: '#0b1120', // Midnight navy
+                            800: '#111827',
+                            700: '#1f2937',
+                            600: '#374151',
+                            500: '#4b5563',
+                        },
+                        steel: '#64748b',
+                        concrete: '#f8fafc',
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-amber-500 selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
+    <div class="bg-dark-900 border-b border-slate-800 text-xs text-slate-300 py-2.5 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6 flex-wrap justify-center md:justify-start">
+                <span class="inline-flex items-center gap-2 text-amber-400 font-semibold">
+                    <i class="fa-solid fa-shield-halved"></i> ISO 9001:2015 & OSHA Certified
+                </span>
+                <span class="hidden sm:inline text-slate-600">|</span>
+                <span class="flex items-center gap-2">
+                    <i class="fa-solid fa-location-dot text-amber-500"></i> Global HQ: 500 Grand Avenue, Suite 1200
+                </span>
+                <span class="hidden sm:inline text-slate-600">|</span>
+                <span class="flex items-center gap-2">
+                    <i class="fa-solid fa-clock text-amber-500"></i> Mon - Sat: 07:00 AM - 06:00 PM
+                </span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="tel:+18005550199" class="hover:text-amber-400 transition-colors font-medium flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-amber-500"></i> +1 (800) 555-0199
+                </a>
+                <span class="text-slate-600">|</span>
+                <div class="flex items-center gap-3">
+                    <a href="https://github.com/pong82n/mirr" target="_blank" title="GitHub Project" class="hover:text-amber-400 transition-colors text-sm">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="#" class="hover:text-amber-400 transition-colors text-sm"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="hover:text-amber-400 transition-colors text-sm"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION BAR -->
+    <header id="main-nav" class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 bg-gradient-to-tr from-amber-600 to-amber-400 rounded-lg flex items-center justify-center text-dark-900 font-extrabold text-2xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-trowel-bricks"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black font-heading tracking-wider text-white block leading-none">
+                            MIRR<span class="text-amber-400">BUILD</span>
+                        </span>
+                        <span class="text-[10px] tracking-widest uppercase font-semibold text-slate-400">Construction & Engineering</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-8 font-heading text-sm font-semibold tracking-wide">
+                    <a href="#home" class="nav-link text-amber-400 hover:text-amber-400 transition-colors">Home</a>
+                    <a href="#services" class="nav-link text-slate-200 hover:text-amber-400 transition-colors">Services</a>
+                    <a href="#projects" class="nav-link text-slate-200 hover:text-amber-400 transition-colors">Projects</a>
+                    <a href="#estimator" class="nav-link text-slate-200 hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> Cost Estimator
+                    </a>
+                    <a href="#why-us" class="nav-link text-slate-200 hover:text-amber-400 transition-colors">Why MIRR</a>
+                    <a href="#testimonials" class="nav-link text-slate-200 hover:text-amber-400 transition-colors">Reviews</a>
+                    <a href="#contact" class="nav-link text-slate-200 hover:text-amber-400 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Desktop CTA Button -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <a href="#estimator" class="px-5 py-2.5 rounded-lg border border-amber-500/30 text-amber-400 hover:bg-amber-500/10 font-heading text-xs font-bold uppercase tracking-wider transition-all">
+                        Quick Quote
+                    </a>
+                    <a href="#contact" class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-dark-900 font-heading text-xs font-bold uppercase tracking-wider shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5 transition-all">
+                        Consult Our Engineers
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-dark-900 border-b border-slate-800 px-6 py-6 transition-all duration-300">
+            <div class="flex flex-col gap-4 font-heading font-medium text-base">
+                <a href="#home" class="mobile-nav-link text-amber-400 py-1">Home</a>
+                <a href="#services" class="mobile-nav-link text-slate-200 hover:text-amber-400 py-1">Services</a>
+                <a href="#projects" class="mobile-nav-link text-slate-200 hover:text-amber-400 py-1">Projects</a>
+                <a href="#estimator" class="mobile-nav-link text-slate-200 hover:text-amber-400 py-1 flex items-center justify-between">
+                    Cost Estimator <span class="bg-amber-400 text-dark-900 text-xs px-2 py-0.5 rounded font-bold">Interactive</span>
+                </a>
+                <a href="#why-us" class="mobile-nav-link text-slate-200 hover:text-amber-400 py-1">Why Choose Us</a>
+                <a href="#testimonials" class="mobile-nav-link text-slate-200 hover:text-amber-400 py-1">Client Testimonials</a>
+                <a href="#contact" class="mobile-nav-link text-slate-200 hover:text-amber-400 py-1">Contact Us</a>
+                <div class="pt-4 border-t border-slate-800 flex flex-col gap-3">
+                    <a href="#contact" class="w-full text-center py-3 rounded-lg bg-amber-500 hover:bg-amber-400 text-dark-900 font-bold uppercase text-xs tracking-wider">
+                        Request Site Inspection
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative bg-dark-900 text-white min-h-[90vh] flex items-center overflow-hidden">
+        <!-- Background Imagery with Gradient Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1541888946425-d0fbb18615f3?auto=format&fit=crop&w=2000&q=80" 
+                 alt="Construction Site High Rise" 
+                 class="w-full h-full object-cover object-center opacity-30 transform scale-105 animate-subtle-zoom">
+            <div class="absolute inset-0 bg-gradient-to-r from-dark-900 via-dark-900/90 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+        </div>
+
+        <!-- Blueprint Grid Graphic overlay -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Column -->
+                <div class="lg:col-span-8">
+                    <!-- Pill Tag -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs uppercase tracking-widest font-bold mb-6">
+                        <i class="fa-solid fa-helmet-safety"></i> Tier-1 General Contracting & Civil Works
+                    </div>
+
+                    <!-- Main Catchphrase -->
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-heading tracking-tight leading-[1.08] mb-6">
+                        Engineering Excellence. <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500">
+                            Building Modern Landmarks.
+                        </span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mb-8 font-light leading-relaxed">
+                        From monumental commercial high-rises and state-of-the-art civil infrastructure to luxury architectural residences. Over 25 years of zero-incident precision construction.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12">
+                        <a href="#estimator" class="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-dark-900 font-heading font-extrabold text-sm uppercase tracking-wider shadow-xl shadow-amber-500/30 hover:shadow-amber-500/50 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-1">
+                            <i class="fa-solid fa-calculator"></i> Calculate Project Cost
+                        </a>
+                        <a href="#projects" class="px-8 py-4 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-heading font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all">
+                            <i class="fa-solid fa-building"></i> View Portfolio
+                        </a>
+                        <button onclick="openVideoModal()" class="px-4 py-4 rounded-xl text-slate-300 hover:text-amber-400 flex items-center justify-center gap-2 text-sm font-semibold transition-colors">
+                            <span class="w-10 h-10 rounded-full border border-slate-600 flex items-center justify-center bg-slate-800/50 text-amber-400">
+                                <i class="fa-solid fa-play text-xs"></i>
+                            </span>
+                            Watch Showcase
+                        </button>
+                    </div>
+
+                    <!-- Quick Highlights Strip -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-slate-800">
+                        <div>
+                            <div class="text-3xl font-extrabold font-heading text-amber-400" data-counter="350">0+</div>
+                            <div class="text-xs text-slate-400 uppercase tracking-wider font-medium mt-1">Completed Projects</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold font-heading text-white" data-counter="28">0+</div>
+                            <div class="text-xs text-slate-400 uppercase tracking-wider font-medium mt-1">Years in Industry</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold font-heading text-amber-400" data-counter="99.4" data-decimals="1">0%</div>
+                            <div class="text-xs text-slate-400 uppercase tracking-wider font-medium mt-1">On-Time Milestones</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold font-heading text-white" data-counter="100">0%</div>
+                            <div class="text-xs text-slate-400 uppercase tracking-wider font-medium mt-1">OSHA Safety Index</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Card: Quick Request Card -->
+                <div class="lg:col-span-4 hidden lg:block">
+                    <div class="bg-slate-800/90 backdrop-blur-xl border border-slate-700 rounded-2xl p-7 shadow-2xl relative">
+                        <div class="absolute -top-3 -right-3 bg-amber-500 text-dark-900 text-[11px] font-black uppercase px-3 py-1 rounded-full shadow-md">
+                            Fast Response
+                        </div>
+                        <h3 class="text-xl font-bold font-heading text-white mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-file-signature text-amber-400"></i> Request an RFQ
+                        </h3>
+                        <p class="text-xs text-slate-300 mb-5">
+                            Submit project specs for immediate appraisal by our senior engineering board.
+                        </p>
+
+                        <form id="hero-rfq-form" class="space-y-3.5">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Your Full Name</label>
+                                <input type="text" required placeholder="Johnathan Sterling" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Contact Email</label>
+                                <input type="email" required placeholder="client@company.com" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Project Classification</label>
+                                <select class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                                    <option value="commercial">Commercial High-Rise / Office</option>
+                                    <option value="industrial">Industrial Warehouse / Plant</option>
+                                    <option value="residential">Luxury Residential / Multi-Family</option>
+                                    <option value="civil">Civil & Municipal Infrastructure</option>
+                                    <option value="renovation">Structural Retrofit / Renovation</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Estimated Budget (USD)</label>
+                                <input type="text" placeholder="$500,000 - $5,000,000+" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                            </div>
+                            <button type="submit" class="w-full mt-2 py-3 bg-amber-500 hover:bg-amber-400 text-dark-900 font-heading font-extrabold uppercase text-xs tracking-wider rounded-lg transition-all shadow-md">
+                                Get Preliminary Proposal
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUSTED BY / PARTNERS BANNER -->
+    <section class="bg-dark-800 border-y border-slate-800 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-xs uppercase tracking-widest text-slate-400 font-bold mb-6">
+                Accredited By Leading Engineering Councils & Strategic Partners
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="flex items-center gap-2 font-heading font-bold text-slate-300 text-lg">
+                    <i class="fa-solid fa-compass-drafting text-amber-500 text-2xl"></i> ARCHITECTURAL FORUM
+                </div>
+                <div class="flex items-center gap-2 font-heading font-bold text-slate-300 text-lg">
+                    <i class="fa-solid fa-cube text-amber-500 text-2xl"></i> STRUCTURAL BIM PRO
+                </div>
+                <div class="flex items-center gap-2 font-heading font-bold text-slate-300 text-lg">
+                    <i class="fa-solid fa-leaf text-amber-500 text-2xl"></i> LEED GREEN CERTIFIED
+                </div>
+                <div class="flex items-center gap-2 font-heading font-bold text-slate-300 text-lg">
+                    <i class="fa-solid fa-shield-halved text-amber-500 text-2xl"></i> OSHA GLOBAL SAFE
+                </div>
+                <div class="flex items-center gap-2 font-heading font-bold text-slate-300 text-lg">
+                    <i class="fa-solid fa-award text-amber-500 text-2xl"></i> ACI CONCRETE FELLOW
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPREHENSIVE SERVICES SECTION -->
+    <section id="services" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-amber-600 bg-amber-100 px-3 py-1 rounded-full">
+                    What We Build
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-slate-900 mt-4 mb-4">
+                    Full-Lifecycle Engineering & Construction Services
+                </h2>
+                <p class="text-slate-600 text-base sm:text-lg">
+                    Delivering end-to-end expertise from feasibility studies, pre-construction BIM planning, structural erection to post-handover facility commissioning.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card group bg-slate-50 border border-slate-200 hover:border-amber-400 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-dark-900 transition-colors">
+                        <i class="fa-solid fa-city"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
+                        Commercial High-Rises
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Grade-A office towers, retail complexes, and hotel developments engineered with high-strength structural steel, curtain wall envelopes, and smart MEP systems.
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-700 font-medium mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Post-tensioned concrete framing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Smart HVAC & energy management</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Full regulatory permitting & ADA compliance</li>
+                    </ul>
+                    <button onclick="openServiceDetail('commercial')" class="text-xs font-bold text-amber-600 uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Explore Scope <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card group bg-slate-50 border border-slate-200 hover:border-amber-400 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-dark-900 transition-colors">
+                        <i class="fa-solid fa-industry"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
+                        Industrial & Logistics Facilities
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Turnkey manufacturing plants, automated logistics fulfillment hubs, heavy machinery foundations, and cold-storage architectural warehouses.
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-700 font-medium mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Super-flat laser-screed concrete slabs</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Heavy crane rails & clear-span steel rafters</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Specialized fire suppression & hazardous containment</li>
+                    </ul>
+                    <button onclick="openServiceDetail('industrial')" class="text-xs font-bold text-amber-600 uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Explore Scope <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card group bg-slate-50 border border-slate-200 hover:border-amber-400 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-dark-900 transition-colors">
+                        <i class="fa-solid fa-house-chimney-window"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
+                        Bespoke Luxury Residential
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Custom luxury estates, modernist waterfront villas, and sustainable multi-family residences constructed with artisan craftsmanship and bespoke finishes.
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-700 font-medium mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Cantilevered structural engineering</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Minimalist floor-to-ceiling glass systems</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Net-zero solar & geothermal integration</li>
+                    </ul>
+                    <button onclick="openServiceDetail('residential')" class="text-xs font-bold text-amber-600 uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Explore Scope <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card group bg-slate-50 border border-slate-200 hover:border-amber-400 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-dark-900 transition-colors">
+                        <i class="fa-solid fa-bridge-water"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
+                        Civil Infrastructure & Heavy Earthwork
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Roadways, bridges, deep deep-piling foundation works, storm water detention basins, retaining walls, and municipal site development.
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-700 font-medium mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> GPS-guided heavy earthmoving fleets</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Deep drilled caissons & micro-piling</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Environmental runoff & soil remediation</li>
+                    </ul>
+                    <button onclick="openServiceDetail('civil')" class="text-xs font-bold text-amber-600 uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Explore Scope <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card group bg-slate-50 border border-slate-200 hover:border-amber-400 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-dark-900 transition-colors">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
+                        Pre-Construction & 3D BIM
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Building Information Modeling (BIM 4D/5D) to detect spatial clashes, optimize material usage, schedule micro-phases, and guarantee budget accuracy before breaking ground.
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-700 font-medium mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Zero-clash MEP spatial coordination</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Automated Bill of Quantities (BOQ)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Drone photogrammetry & LiDAR scanning</li>
+                    </ul>
+                    <button onclick="openServiceDetail('bim')" class="text-xs font-bold text-amber-600 uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Explore Scope <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card group bg-slate-50 border border-slate-200 hover:border-amber-400 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden">
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-amber-500 group-hover:text-dark-900 transition-colors">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
+                        Adaptive Reuse & Seismic Retrofit
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Breathe new life into aging structures. Carbon fiber reinforcement, foundation underpinning, historic preservation, and modern energy retrofit conversions.
+                    </p>
+                    <ul class="space-y-2 text-xs text-slate-700 font-medium mb-6">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Structural carbon fiber wrapping (CFRP)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Façade restoration & envelope weatherproofing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-500"></i> Historic district compliance certifications</li>
+                    </ul>
+                    <button onclick="openServiceDetail('retrofit')" class="text-xs font-bold text-amber-600 uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Explore Scope <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE COST ESTIMATOR / BUDGET CALCULATOR -->
+    <section id="estimator" class="py-24 bg-dark-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-amber-400 bg-amber-500/10 border border-amber-500/30 px-3.5 py-1.5 rounded-full">
+                    Transparent Pricing
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white mt-4 mb-4">
+                    Interactive Project Cost Estimator
+                </h2>
+                <p class="text-slate-300 text-base sm:text-lg">
+                    Configure your project parameters below to compute an instant, algorithmic budgetary estimate based on current regional material and labor market indices.
+                </p>
+            </div>
+
+            <div class="bg-dark-800 border border-slate-700 rounded-3xl p-6 sm:p-10 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    <!-- Calculator Inputs -->
+                    <div class="lg:col-span-7 space-y-8">
+                        <!-- Step 1: Project Type -->
+                        <div>
+                            <label class="block text-sm font-heading font-bold uppercase tracking-wider text-amber-400 mb-3">
+                                1. Select Construction Type
+                            </label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="type-selector">
+                                <button type="button" data-rate="210" class="estimator-type-btn active p-3.5 rounded-xl border border-amber-500 bg-amber-500/15 text-white text-left font-semibold text-xs transition-all flex flex-col gap-1.5">
+                                    <i class="fa-solid fa-city text-amber-400 text-lg"></i>
+                                    <span>Commercial Office</span>
+                                    <span class="text-[10px] text-slate-400 font-normal">~$210 / sq.ft</span>
+                                </button>
+                                <button type="button" data-rate="280" class="estimator-type-btn p-3.5 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-slate-500 text-left font-semibold text-xs transition-all flex flex-col gap-1.5">
+                                    <i class="fa-solid fa-house-chimney text-slate-400 text-lg"></i>
+                                    <span>Luxury Residential</span>
+                                    <span class="text-[10px] text-slate-400 font-normal">~$280 / sq.ft</span>
+                                </button>
+                                <button type="button" data-rate="140" class="estimator-type-btn p-3.5 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-slate-500 text-left font-semibold text-xs transition-all flex flex-col gap-1.5">
+                                    <i class="fa-solid fa-industry text-slate-400 text-lg"></i>
+                                    <span>Industrial Warehouse</span>
+                                    <span class="text-[10px] text-slate-400 font-normal">~$140 / sq.ft</span>
+                                </button>
+                                <button type="button" data-rate="160" class="estimator-type-btn p-3.5 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-slate-500 text-left font-semibold text-xs transition-all flex flex-col gap-1.5">
+                                    <i class="fa-solid fa-screwdriver-wrench text-slate-400 text-lg"></i>
+                                    <span>Full Renovation</span>
+                                    <span class="text-[10px] text-slate-400 font-normal">~$160 / sq.ft</span>
+                                </button>
+                                <button type="button" data-rate="190" class="estimator-type-btn p-3.5 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-slate-500 text-left font-semibold text-xs transition-all flex flex-col gap-1.5">
+                                    <i class="fa-solid fa-road text-slate-400 text-lg"></i>
+                                    <span>Civil Infrastructure</span>
+                                    <span class="text-[10px] text-slate-400 font-normal">~$190 / sq.ft</span>
+                                </button>
+                                <button type="button" data-rate="320" class="estimator-type-btn p-3.5 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-300 hover:border-slate-500 text-left font-semibold text-xs transition-all flex flex-col gap-1.5">
+                                    <i class="fa-solid fa-hospital text-slate-400 text-lg"></i>
+                                    <span>Healthcare / Lab</span>
+                                    <span class="text-[10px] text-slate-400 font-normal">~$320 / sq.ft</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Square Footage Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-heading font-bold uppercase tracking-wider text-amber-400">
+                                    2. Total Area (Square Feet)
+                                </label>
+                                <span class="text-lg font-extrabold text-white font-heading" id="area-display">
+                                    15,000 sq ft
+                                </span>
+                            </div>
+                            <input type="range" id="area-slider" min="1000" max="100000" step="500" value="15000" class="w-full accent-amber-500 h-2 bg-slate-700 rounded-lg cursor-pointer">
+                            <div class="flex justify-between text-[11px] text-slate-400 mt-2">
+                                <span>1,000 sq ft (Compact)</span>
+                                <span>50,000 sq ft</span>
+                                <span>100,000+ sq ft (Mega site)</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Finish Quality Tier -->
+                        <div>
+                            <label class="block text-sm font-heading font-bold uppercase tracking-wider text-amber-400 mb-3">
+                                3. Specification & Finishing Level
+                            </label>
+                            <div class="grid grid-cols-3 gap-3" id="quality-selector">
+                                <button type="button" data-multiplier="1.0" class="quality-btn p-3 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-300 text-center font-medium text-xs transition-all">
+                                    <div class="font-bold text-sm text-white mb-0.5">Standard</div>
+                                    <div class="text-[10px] text-slate-400">Code-compliant durable</div>
+                                </button>
+                                <button type="button" data-multiplier="1.25" class="quality-btn active p-3 rounded-xl border border-amber-500 bg-amber-500/15 text-white text-center font-medium text-xs transition-all">
+                                    <div class="font-bold text-sm text-amber-400 mb-0.5">Premium</div>
+                                    <div class="text-[10px] text-slate-300">Architectural grade</div>
+                                </button>
+                                <button type="button" data-multiplier="1.6" class="quality-btn p-3 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-300 text-center font-medium text-xs transition-all">
+                                    <div class="font-bold text-sm text-white mb-0.5">Ultra Luxury</div>
+                                    <div class="text-[10px] text-slate-400">Custom bespoke materials</div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Add-on Capabilities -->
+                        <div>
+                            <label class="block text-sm font-heading font-bold uppercase tracking-wider text-amber-400 mb-3">
+                                4. Value-Add Engineering Options
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-slate-900/40 hover:bg-slate-900/80 cursor-pointer transition-colors">
+                                    <input type="checkbox" id="addon-bim" class="estimator-addon w-4 h-4 accent-amber-500" value="45000">
+                                    <div>
+                                        <div class="text-xs font-bold text-white">Full 4D BIM Clash Modeling</div>
+                                        <div class="text-[10px] text-slate-400">Prevents costly site rework</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-slate-900/40 hover:bg-slate-900/80 cursor-pointer transition-colors">
+                                    <input type="checkbox" id="addon-leed" class="estimator-addon w-4 h-4 accent-amber-500" value="75000" checked>
+                                    <div>
+                                        <div class="text-xs font-bold text-white">LEED Gold Sustainability</div>
+                                        <div class="text-[10px] text-slate-400">Solar, low-carbon concrete</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-slate-900/40 hover:bg-slate-900/80 cursor-pointer transition-colors">
+                                    <input type="checkbox" id="addon-smart" class="estimator-addon w-4 h-4 accent-amber-500" value="60000">
+                                    <div>
+                                        <div class="text-xs font-bold text-white">Smart Building IoT Automation</div>
+                                        <div class="text-[10px] text-slate-400">Sensors, BMS, security access</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-slate-900/40 hover:bg-slate-900/80 cursor-pointer transition-colors">
+                                    <input type="checkbox" id="addon-expedited" class="estimator-addon w-4 h-4 accent-amber-500" value="120000">
+                                    <div>
+                                        <div class="text-xs font-bold text-white">Fast-Track Fast Schedule</div>
+                                        <div class="text-[10px] text-slate-400">Double shifts, early turnover</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculated Output Card -->
+                    <div class="lg:col-span-5 flex flex-col justify-between bg-slate-900/90 border border-amber-500/30 rounded-2xl p-7 relative">
+                        <div class="absolute top-0 right-0 transform translate-x-2 -translate-y-2 bg-amber-500 text-dark-900 text-[10px] font-black uppercase px-2.5 py-1 rounded shadow">
+                            Dynamic Estimate
+                        </div>
+
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-slate-400 font-bold block mb-1">Estimated Project Valuation</span>
+                            <div class="text-4xl sm:text-5xl font-black font-heading text-amber-400 mb-2" id="total-price-display">
+                                $4,012,500
+                            </div>
+                            <p class="text-xs text-slate-400 mb-6">
+                                Estimated turnaround duration: <span class="font-bold text-white" id="timeline-display">12 - 14 Months</span>
+                            </p>
+
+                            <!-- Cost Breakdown Table -->
+                            <div class="border-t border-b border-slate-800 py-4 space-y-2.5 text-xs">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Structural Core & Shell (45%)</span>
+                                    <span class="font-semibold text-white" id="breakdown-structural">$1,805,625</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>MEP (Mech, Elec, Plumbing) (25%)</span>
+                                    <span class="font-semibold text-white" id="breakdown-mep">$1,003,125</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Architectural Finishes (20%)</span>
+                                    <span class="font-semibold text-white" id="breakdown-finishes">$802,500</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Engineering, Permits & BIM (10%)</span>
+                                    <span class="font-semibold text-white" id="breakdown-soft">$401,250</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-3.5 mt-5">
+                                <div class="flex items-start gap-2.5 text-xs text-amber-300">
+                                    <i class="fa-solid fa-circle-info text-amber-400 mt-0.5"></i>
+                                    <span>Estimate includes standard general liability insurance, safety protocol enforcement, and site management fees. Subject to formal soil test.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-slate-800 space-y-3">
+                            <button onclick="transferEstimateToQuote()" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-dark-900 font-heading font-extrabold uppercase text-xs tracking-wider shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Lock In This Estimate & Request Official RFP
+                            </button>
+                            <button onclick="window.print()" class="w-full py-2.5 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 font-semibold text-xs transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-print"></i> Print / Save Specification Summary
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO / FEATURED PROJECTS SECTION -->
+    <section id="projects" class="py-24 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-xs uppercase font-extrabold tracking-widest text-amber-600 bg-amber-100 px-3 py-1 rounded-full">
+                        Built for Longevity
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-slate-900 mt-4">
+                        Masterwork Project Portfolio
+                    </h2>
+                    <p class="text-slate-600 text-base mt-2 max-w-xl">
+                        A curated gallery of our recent landmark deliveries across commercial, residential, and infrastructure sectors.
+                    </p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap items-center gap-2" id="portfolio-filters">
+                    <button class="filter-btn active px-4 py-2 rounded-lg text-xs font-heading font-bold uppercase tracking-wider bg-dark-900 text-white transition-all" data-filter="all">
+                        All Projects
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-lg text-xs font-heading font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-700 hover:border-amber-500 transition-all" data-filter="commercial">
+                        Commercial
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-lg text-xs font-heading font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-700 hover:border-amber-500 transition-all" data-filter="residential">
+                        Residential
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-lg text-xs font-heading font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-700 hover:border-amber-500 transition-all" data-filter="industrial">
+                        Industrial
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-lg text-xs font-heading font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-700 hover:border-amber-500 transition-all" data-filter="civil">
+                        Infrastructure
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+                <!-- Project 1: Commercial -->
+                <div class="project-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-300" data-category="commercial">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" 
+                             alt="Vertex Financial Tower" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 left-4 bg-amber-500 text-dark-900 text-[10px] font-black uppercase px-2.5 py-1 rounded">
+                            Commercial Office
+                        </span>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span class="text-xs text-amber-400 font-medium">Completed 2024 • Dallas, TX</span>
+                            <h3 class="text-xl font-bold font-heading">Vertex Financial Tower</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            42-story corporate tower with structural diagrid perimeter, double-skin low-E glass façade, and LEED Platinum certification.
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-4">
+                            <span>Area: <strong class="text-slate-800">540,000 sq ft</strong></span>
+                            <span>Value: <strong class="text-slate-800">$185M</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Residential -->
+                <div class="project-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-300" data-category="residential">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" 
+                             alt="The Horizon Waterfront Estate" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 left-4 bg-amber-500 text-dark-900 text-[10px] font-black uppercase px-2.5 py-1 rounded">
+                            Luxury Residential
+                        </span>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span class="text-xs text-amber-400 font-medium">Completed 2023 • Miami, FL</span>
+                            <h3 class="text-xl font-bold font-heading">The Horizon Waterfront Estate</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Ultra-modern architectural villa featuring 18-meter cantilevered terraces, deep salt-water infinity pool, and integrated microgrid power.
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-4">
+                            <span>Area: <strong class="text-slate-800">14,200 sq ft</strong></span>
+                            <span>Value: <strong class="text-slate-800">$22M</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Industrial -->
+                <div class="project-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-300" data-category="industrial">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" 
+                             alt="Aeroflow Logistics MegaHub" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 left-4 bg-amber-500 text-dark-900 text-[10px] font-black uppercase px-2.5 py-1 rounded">
+                            Industrial Hub
+                        </span>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span class="text-xs text-amber-400 font-medium">Completed 2024 • Phoenix, AZ</span>
+                            <h3 class="text-xl font-bold font-heading">Aeroflow Logistics MegaHub</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Autonomous robotics-ready logistics center with 42-foot clear ceiling heights, 96 dock doors, and solar rooftop micro-station.
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-4">
+                            <span>Area: <strong class="text-slate-800">850,000 sq ft</strong></span>
+                            <span>Value: <strong class="text-slate-800">$98M</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Civil -->
+                <div class="project-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-300" data-category="civil">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" 
+                             alt="Grand River Suspension Viaduct" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 left-4 bg-amber-500 text-dark-900 text-[10px] font-black uppercase px-2.5 py-1 rounded">
+                            Civil Infrastructure
+                        </span>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span class="text-xs text-amber-400 font-medium">Completed 2023 • Austin, TX</span>
+                            <h3 class="text-xl font-bold font-heading">Grand River Suspension Viaduct</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            6-lane multimodal bridge with seismic dampers, pre-stressed concrete girders, and pedestrian viewing platforms.
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-4">
+                            <span>Span: <strong class="text-slate-800">1.8 Miles</strong></span>
+                            <span>Value: <strong class="text-slate-800">$142M</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Commercial -->
+                <div class="project-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-300" data-category="commercial">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" 
+                             alt="Nexus Tech Innovation Campus" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 left-4 bg-amber-500 text-dark-900 text-[10px] font-black uppercase px-2.5 py-1 rounded">
+                            Corporate Campus
+                        </span>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span class="text-xs text-amber-400 font-medium">Completed 2024 • Denver, CO</span>
+                            <h3 class="text-xl font-bold font-heading">Nexus Tech Innovation Campus</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Mass-timber hybrid structural headquarters with open-air atrium, living bio-walls, and modular laboratories.
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-4">
+                            <span>Area: <strong class="text-slate-800">310,000 sq ft</strong></span>
+                            <span>Value: <strong class="text-slate-800">$115M</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: Residential -->
+                <div class="project-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-300" data-category="residential">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" 
+                             alt="Skyline Penthouse Residences" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 left-4 bg-amber-500 text-dark-900 text-[10px] font-black uppercase px-2.5 py-1 rounded">
+                            Multi-Family
+                        </span>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <span class="text-xs text-amber-400 font-medium">Completed 2023 • Chicago, IL</span>
+                            <h3 class="text-xl font-bold font-heading">Skyline Penthouse Residences</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Luxury high-density urban residences with rooftop recreation skydeck, acoustical isolation, and automated valet parking garage.
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-4">
+                            <span>Units: <strong class="text-slate-800">180 Units</strong></span>
+                            <span>Value: <strong class="text-slate-800">$78M</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE BEFORE & AFTER SLIDER -->
+    <section class="py-24 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-amber-600 bg-amber-100 px-3 py-1 rounded-full">
+                    Transformation In Action
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-slate-900 mt-4 mb-4">
+                    Site Demolition & Modern Rebirth
+                </h2>
+                <p class="text-slate-600 text-base">
+                    Drag the slider below to witness the before-and-after transformation of a neglected warehouse into an award-winning modern tech campus.
+                </p>
+            </div>
+
+            <!-- Before/After Widget -->
+            <div class="max-w-4xl mx-auto">
+                <div class="ba-slider relative rounded-2xl overflow-hidden shadow-2xl h-[380px] sm:h-[480px] select-none" id="ba-container">
+                    <!-- After Image (Background) -->
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80" 
+                         alt="Completed Modern Building" 
+                         class="absolute inset-0 w-full h-full object-cover">
+                    <span class="absolute top-4 right-4 bg-dark-900/80 text-white font-bold text-xs uppercase px-3 py-1.5 rounded backdrop-blur">
+                        After: Modern Campus
+                    </span>
+
+                    <!-- Before Image (Clipped) -->
+                    <div class="ba-before-wrap absolute inset-0 overflow-hidden" id="ba-before-wrap" style="width: 50%;">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=80" 
+                             alt="Under Construction Site" 
+                             class="absolute inset-0 w-full h-full object-cover" id="ba-before-img">
+                        <span class="absolute top-4 left-4 bg-amber-500 text-dark-900 font-extrabold text-xs uppercase px-3 py-1.5 rounded">
+                            Before: Heavy Construction
+                        </span>
+                    </div>
+
+                    <!-- Divider Handle -->
+                    <div class="ba-handle absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-2xl z-20" id="ba-handle" style="left: 50%;">
+                        <div class="w-10 h-10 rounded-full bg-amber-500 text-dark-900 flex items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg border-2 border-white">
+                            <i class="fa-solid fa-arrows-left-right text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center text-xs text-slate-500 mt-4 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-hand-pointer text-amber-500"></i> Click & drag slider horizontally to compare
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US / SAFETY & CAPABILITIES -->
+    <section id="why-us" class="py-24 bg-dark-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs uppercase font-extrabold tracking-widest text-amber-400 bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-full">
+                        The MIRR Standard
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading tracking-tight leading-tight">
+                        Precision Execution. Zero-Tolerance Safety. Guaranteed Turnover.
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Every project undertaken by MIRR Construction adheres to strict geotechnical safety benchmarks, precision prefabrication standards, and continuous on-site drone telemetrics.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-800/60 border border-slate-700">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg flex-shrink-0">
+                                <i class="fa-solid fa-hard-hat"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold font-heading text-white text-base">OSHA Voluntary Protection Program</h4>
+                                <p class="text-slate-400 text-xs mt-1">Over 4.5 million man-hours logged without a single lost-time injury incident across all regional operations.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-800/60 border border-slate-700">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg flex-shrink-0">
+                                <i class="fa-solid fa-drone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold font-heading text-white text-base">Autonomous Aerial Photogrammetry</h4>
+                                <p class="text-slate-400 text-xs mt-1">Daily autonomous drone mapping updates the cloud 3D twin, giving stakeholders 24/7 transparent visual audit trails.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-800/60 border border-slate-700">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg flex-shrink-0">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold font-heading text-white text-base">Bonded & Insured up to $250M</h4>
+                                <p class="text-slate-400 text-xs mt-1">Full surety bond coverage and comprehensive builder's risk insurance backed by premier global underwriters.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right visual graphic -->
+                <div class="lg:col-span-6">
+                    <div class="relative">
+                        <div class="rounded-3xl overflow-hidden border border-slate-700 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Architects on Site with Blueprints" 
+                                 class="w-full h-auto object-cover">
+                        </div>
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-amber-500 text-dark-900 p-6 rounded-2xl shadow-xl flex items-center gap-4">
+                            <div class="text-4xl font-extrabold font-heading">25+</div>
+                            <div class="text-xs font-bold uppercase tracking-wider leading-tight">
+                                Years of Unbroken<br>Engineering Mastery
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-amber-600 bg-amber-100 px-3 py-1 rounded-full">
+                    Client Endorsements
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-slate-900 mt-4 mb-4">
+                    What Industry Leaders Say
+                </h2>
+                <p class="text-slate-600 text-base">
+                    Read unvarnished feedback from institutional developers, asset managers, and private estate owners.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-md flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <div>
+                        <div class="flex text-amber-400 mb-4 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-6 italic">
+                            "MIRR Construction completed our 38-story commercial headquarters 3 weeks ahead of schedule and precisely within the \$120M GMP contract. Their pre-construction BIM clash detection saved us at least \$4M in field adjustments."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-600 text-lg">
+                            MH
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm font-heading">Marcus Hawthorne</h5>
+                            <span class="text-xs text-slate-500">VP of Real Estate Development, Nexus Capital</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-md flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <div>
+                        <div class="flex text-amber-400 mb-4 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-6 italic">
+                            "The structural complexity of our coastal villa required 20-meter cantilevered concrete slabs that several other contractors refused to touch. MIRR’s senior engineering team engineered an elegant post-tensioned solution that exceeded all expectations."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-600 text-lg">
+                            EV
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm font-heading">Elena Vance</h5>
+                            <span class="text-xs text-slate-500">Private Residence Owner & Architect</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-md flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <div>
+                        <div class="flex text-amber-400 mb-4 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-6 italic">
+                            "Their safety protocols and jobsite cleanliness are unmatched. When building our 600,000 sq ft robotic distribution warehouse, they maintained zero lost-time incidents across 250 subcontractors. A phenomenal team."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-600 text-lg">
+                            DB
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm font-heading">David B. Sterling</h5>
+                            <span class="text-xs text-slate-500">Director of Global Logistics Infrastructure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & BID PROPOSAL SECTION -->
+    <section id="contact" class="py-24 bg-dark-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Left Details -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-xs uppercase font-extrabold tracking-widest text-amber-400 bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-full">
+                            Initiate A Project
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-white mt-4 mb-4">
+                            Let's Build Something Exceptional Together
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Have an upcoming project, RFP, or looking for pre-construction advisory? Our executive engineering leadership is ready to assist.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-slate-800 text-amber-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block">Direct Hotline</span>
+                                <a href="tel:+18005550199" class="text-white hover:text-amber-400 font-bold text-base transition-colors">+1 (800) 555-0199</a>
+                                <p class="text-xs text-slate-400">Available 24/7 for emergency structural support</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-slate-800 text-amber-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block">Tender & RFP Submissions</span>
+                                <a href="mailto:bids@mirrbuild.com" class="text-white hover:text-amber-400 font-bold text-base transition-colors">bids@mirrbuild.com</a>
+                                <p class="text-xs text-slate-400">Average RFP review turnaround: under 48 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-slate-800 text-amber-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block">Headquarters</span>
+                                <p class="text-white font-medium text-sm">500 Grand Avenue, Suite 1200, Metropolis Center</p>
+                                <p class="text-xs text-slate-400">With regional site offices across Texas, California, and Florida</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GitHub Repository Link Box -->
+                    <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fa-brands fa-github text-2xl text-amber-400"></i>
+                            <h4 class="font-bold text-sm text-white">GitHub Project Source</h4>
+                        </div>
+                        <p class="text-xs text-slate-300 mb-3">
+                            This website is prepared for continuous deployment to your GitHub repository:
+                        </p>
+                        <code class="block text-xs bg-dark-900 text-amber-300 p-2.5 rounded border border-slate-700 overflow-x-auto">
+                            https://github.com/pong82n/mirr.git
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Right Contact Form -->
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-800/95 border border-slate-700 rounded-3xl p-8 sm:p-10 shadow-2xl relative">
+                        <h3 class="text-2xl font-bold font-heading text-white mb-2">
+                            Request An Official Proposal
+                        </h3>
+                        <p class="text-xs text-slate-300 mb-6">
+                            Fill in your project details and our estimating department will provide an itemized schedule of values.
+                        </p>
+
+                        <form id="main-contact-form" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Your Full Name *</label>
+                                    <input type="text" id="contact-name" required placeholder="Alexander Vance" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Work Email Address *</label>
+                                    <input type="email" id="contact-email" required placeholder="a.vance@company.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Phone Number</label>
+                                    <input type="tel" id="contact-phone" placeholder="+1 (555) 000-0000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Company / Organization</label>
+                                    <input type="text" id="contact-company" placeholder="Vance Real Estate Holdings" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Sector / Type</label>
+                                    <select id="contact-sector" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500">
+                                        <option value="Commercial High-Rise">Commercial High-Rise</option>
+                                        <option value="Industrial & Logistics">Industrial & Logistics</option>
+                                        <option value="Luxury Residential">Luxury Residential</option>
+                                        <option value="Civil & Heavy Highway">Civil & Heavy Highway</option>
+                                        <option value="Renovation & Seismic Retrofit">Renovation & Seismic Retrofit</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Estimated Budget Range</label>
+                                    <select id="contact-budget" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500">
+                                        <option value="$1M - $5M">$1M - $5M</option>
+                                        <option value="$5M - $20M">$5M - $20M</option>
+                                        <option value="$20M - $50M">$20M - $50M</option>
+                                        <option value="$50M+">$50M+</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Project Details, Scope or Timeline *</label>
+                                <textarea id="contact-message" required rows="4" placeholder="Describe project site location, target ground-break date, architectural status, and specific requirements..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"></textarea>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" id="contact-nda" class="w-4 h-4 accent-amber-500 rounded">
+                                <label for="contact-nda" class="text-xs text-slate-400">Request mutual Non-Disclosure Agreement (NDA) prior to blueprint exchange</label>
+                            </div>
+
+                            <button type="submit" id="contact-submit-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-dark-900 font-heading font-extrabold uppercase text-xs tracking-wider shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Submit Proposal Request
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark-900 border-t border-slate-800 text-slate-400 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <!-- Col 1: Brand Info -->
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="#" class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-dark-900 font-bold text-xl">
+                            <i class="fa-solid fa-trowel-bricks"></i>
+                        </div>
+                        <div>
+                            <span class="text-xl font-black font-heading tracking-wider text-white block leading-none">
+                                MIRR<span class="text-amber-400">BUILD</span>
+                            </span>
+                            <span class="text-[9px] tracking-widest uppercase font-semibold text-slate-400">Construction & Engineering</span>
+                        </div>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        MIRR Construction is a full-service general contracting and civil infrastructure enterprise recognized globally for technical excellence, structural longevity, and ethical safety stewardship.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://github.com/pong82n/mirr" target="_blank" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-dark-900 text-slate-300 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-dark-900 text-slate-300 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-dark-900 text-slate-300 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-amber-500 hover:text-dark-900 text-slate-300 flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Services -->
+                <div>
+                    <h5 class="text-white font-heading font-bold text-xs uppercase tracking-wider mb-4">Core Services</h5>
+                    <ul class="space-y-2.5 text-xs">
+                        <li><a href="#services" class="hover:text-amber-400 transition-colors">Commercial High-Rises</a></li>
+                        <li><a href="#services" class="hover:text-amber-400 transition-colors">Industrial Warehousing</a></li>
+                        <li><a href="#services" class="hover:text-amber-400 transition-colors">Luxury Residential Estates</a></li>
+                        <li><a href="#services" class="hover:text-amber-400 transition-colors">Civil Highway & Bridges</a></li>
+                        <li><a href="#services" class="hover:text-amber-400 transition-colors">Seismic Retrofit</a></li>
+                        <li><a href="#services" class="hover:text-amber-400 transition-colors">Pre-construction 4D BIM</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Navigation -->
+                <div>
+                    <h5 class="text-white font-heading font-bold text-xs uppercase tracking-wider mb-4">Navigation</h5>
+                    <ul class="space-y-2.5 text-xs">
+                        <li><a href="#home" class="hover:text-amber-400 transition-colors">Home Page</a></li>
+                        <li><a href="#projects" class="hover:text-amber-400 transition-colors">Portfolio of Works</a></li>
+                        <li><a href="#estimator" class="hover:text-amber-400 transition-colors">Cost Calculator</a></li>
+                        <li><a href="#why-us" class="hover:text-amber-400 transition-colors">Safety Standards</a></li>
+                        <li><a href="#testimonials" class="hover:text-amber-400 transition-colors">Client Reviews</a></li>
+                        <li><a href="#contact" class="hover:text-amber-400 transition-colors">Tenders & RFPs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter -->
+                <div>
+                    <h5 class="text-white font-heading font-bold text-xs uppercase tracking-wider mb-4">Market Intelligence</h5>
+                    <p class="text-xs text-slate-400 mb-3">
+                        Subscribe to quarterly reports on commercial construction cost indexes and material forecasting.
+                    </p>
+                    <form onsubmit="handleNewsletter(event)" class="space-y-2">
+                        <input type="email" required placeholder="your.email@domain.com" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+                        <button type="submit" class="w-full py-2 bg-amber-500 hover:bg-amber-400 text-dark-900 font-bold uppercase text-[10px] tracking-wider rounded-lg transition-colors">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <div>
+                    &copy; 2026 MIRR Construction & Engineering Corp. All Rights Reserved.
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-400 transition-colors">Terms of General Contracting</a>
+                    <a href="#" class="hover:text-slate-400 transition-colors">Safety Compliance Record</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SERVICE DETAIL MODAL -->
+    <div id="service-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-dark-900 border border-slate-700 rounded-2xl max-w-xl w-full p-6 sm:p-8 text-white relative shadow-2xl">
+            <button onclick="closeServiceModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="service-modal-content">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SHOWCASE VIDEO MODAL -->
+    <div id="video-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="max-w-4xl w-full bg-dark-900 rounded-2xl overflow-hidden border border-slate-700 relative shadow-2xl">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-dark-900/80 text-white flex items-center justify-center hover:bg-amber-500 hover:text-dark-900 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="p-6">
+                <h3 class="text-xl font-bold font-heading text-white mb-2">Project Showcase & Construction Technology Reel</h3>
+                <p class="text-xs text-slate-400 mb-4">A behind-the-scenes look at our crane operations, drone mapping, and deep foundation engineering.</p>
+                <div class="aspect-video bg-black rounded-xl overflow-hidden relative flex items-center justify-center">
+                    <iframe id="video-iframe" class="w-full h-full" src="" title="Construction Video Showcase" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUCCESS TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-dark-900 text-white border border-amber-500 px-5 py-4 rounded-xl shadow-2xl transform translate-y-32 opacity-0 transition-all duration-300 flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-amber-500 text-dark-900 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <div class="font-bold text-sm" id="toast-title">Message Received</div>
+            <div class="text-xs text-slate-300" id="toast-msg">Our engineering director will be in touch within 24 hours.</div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 left-6 z-40 flex flex-col gap-2">
+        <a href="#estimator" class="w-12 h-12 bg-amber-500 hover:bg-amber-400 text-dark-900 rounded-full flex items-center justify-center shadow-lg shadow-amber-500/30 transition-transform hover:scale-110" title="Quick Cost Calculator">
+            <i class="fa-solid fa-calculator text-lg"></i>
+        </a>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>

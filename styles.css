@@ -1,0 +1,130 @@
+/* Custom styling and effects for MIRR Construction Website */
+
+/* Blueprint grid background */
+.bg-grid-pattern {
+    background-image: radial-gradient(rgba(245, 158, 11, 0.25) 1px, transparent 1px), radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+}
+
+/* Subtle zoom effect for hero */
+@keyframes subtleZoom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+
+.animate-subtle-zoom {
+    animation: subtleZoom 25s ease-in-out infinite alternate;
+}
+
+/* Before and After Image Slider */
+.ba-slider {
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.ba-before-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.ba-before-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+}
+
+.ba-handle {
+    cursor: ew-resize;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #0b1120;
+}
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #f59e0b;
+}
+
+/* Interactive range slider styling */
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #f59e0b;
+    cursor: pointer;
+    border: 3px solid #0b1120;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    transition: transform 0.15s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+input[type=range]::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #f59e0b;
+    cursor: pointer;
+    border: 3px solid #0b1120;
+}
+
+/* Service card hover effects */
+.service-card {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+/* Active navigation link highlight */
+.nav-link.active-section {
+    color: #f59e0b !important;
+}
+
+/* Print styling for quotes */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    header, footer, #video-modal, #service-modal, #portfolio-filters, .ba-slider {
+        display: none !important;
+    }
+    #estimator {
+        background: white !important;
+        color: black !important;
+        padding: 0 !important;
+    }
+    #estimator * {
+        color: black !important;
+        border-color: #ccc !important;
+    }
+    #total-price-display {
+        color: #d97706 !important;
+    }
+}
