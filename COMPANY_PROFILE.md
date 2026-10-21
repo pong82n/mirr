@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # COMPANY PROFILE: MIRR CONSTRUCTION SERVICES
+=======
+# COMPANY PROFILE: MIRR CONSTRUCTION SERVICES.
+>>>>>>> ecba477b77a4d43581b4ba419dfa9b82ef4287b0
 **"Engineering Excellence. Building Tomorrow's Landmarks Today."**
 
 ---
@@ -7,7 +11,11 @@
 
 **MIRR Construction Services** (MIRR) is an established general building contractor, civil engineering firm, and pre-construction consultancy. Established in 2017, MIRR has built a reputation over nearly a decade for executing technically sound residential and commercial facilities on schedule and within guaranteed maximum price (GMP) contracts.
 
+<<<<<<< HEAD
 With a portfolio exceeding **₱180 Million** in delivered assets across residential, commercial, and civil infrastructure developments, MIRR pairs traditional structural engineering craftsmanship with modern 4D/5D Building Information Modeling (BIM), autonomous drone photogrammetry, and green low-carbon concrete technologies.
+=======
+With a portfolio exceeding **₱180 Million** in delivered assets across the commercial, industrial, civil infrastructure, and luxury residential sectors, MIRR pairs traditional structural engineering craftsmanship with pioneering 4D/5D Building Information Modeling (BIM), autonomous drone photogrammetry, and green low-carbon concrete technologies.
+>>>>>>> ecba477b77a4d43581b4ba419dfa9b82ef4287b0
 
 ---
 
@@ -17,6 +25,7 @@ With a portfolio exceeding **₱180 Million** in delivered assets across residen
 | :--- | :--- |
 | **Corporate Name** | MIRR Construction Services |
 | **Trade Name** | MIRR |
+<<<<<<< HEAD
 | **Year Established** | 2017 (9 Years of Continuous Operations) |
 | **Licensure** | Class D General Building Contractor & Heavy Civil Engineer |
 | **Corporate Headquarters** | 101 Padilla St., Brgy. Inarawan, Antipolo City, Philippines |
@@ -24,6 +33,15 @@ With a portfolio exceeding **₱180 Million** in delivered assets across residen
 | **Aggregate Bonding Capacity** | ₱28,000,000 PHP (₱28 Million) |
 | **Total Projects Completed** | 11+ Residential and Commercial Facilities |
 | **Workforce** | 18+ Engineers, Project Managers, Supervisors & Craftspeople |
+=======
+| **Year Established** | 2017 ( 9 Years of Continuous Operations) |
+| **Licensure** | Class D General Building Contractor & Heavy Civil Engineer |
+| **Corporate Headquarters** | 101 Padilla St., Brgy. Inarawan, Antipolo City |
+| **Single-Project Bonding Capacity** | ₱14,000,000 PHP (₱14 Million) |
+| **Aggregate Bonding Capacity** | ₱28,000,000 PHP (₱28 Million) |
+| **Total Projects Completed** | 11+ Residential and Commercial Facilities |
+| **Workforce** | 18+ Engineers, Project Managers, Supervisor & Craftspeople |
+>>>>>>> ecba477b77a4d43581b4ba419dfa9b82ef4287b0
 | **Safety Certification** | OSHA VPP Status (1.5M+ Zero Lost-Time Injury Hours) |
 | **Quality & Environmental ISO** | ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 |
 | **Official Repository** | [https://github.com/pong82n/mirr](https://github.com/pong82n/mirr) |
@@ -85,14 +103,22 @@ To be the nation’s most trusted and technologically advanced engineering contr
 ## 5. Landmark Project Portfolio Highlights
 
 ### 1. Dr. Albert Elementary School (Sampaloc, Metro Manila)
+<<<<<<< HEAD
 - **Sector:** Commercial / Institutional High-Rise
+=======
+- **Sector:** Commercial Corporate High-Rise
+>>>>>>> ecba477b77a4d43581b4ba419dfa9b82ef4287b0
 - **Scope:** Roof Deck Concrete Topping, 40,000 sq.m, LEED Platinum
 - **Contract Valuation:** ₱2,500,000 PHP (₱2.5 Million)
 - **Delivery:** Completed 3 weeks ahead of scheduled turnover.
 
 ### 2. Two Storey Residential Building (Antipolo City, Rizal)
 - **Sector:** Residential, Commercial
+<<<<<<< HEAD
 - **Scope:** 850,000 sq.ft, 6 dock doors, 1.2MW solar roof, Architectural Finish
+=======
+- **Scope:** 850,000 sq.ft,6 dock doors, 1.2MW solar roof, Architectural Finish.
+>>>>>>> ecba477b77a4d43581b4ba419dfa9b82ef4287b0
 - **Contract Valuation:** ₱5,600,000 PHP (₱5.6 Million)
 - **Delivery:** Zero lost-time safety incidents across 250,000 craft hours.
 
@@ -105,7 +131,11 @@ To be the nation’s most trusted and technologically advanced engineering contr
 ### 4. Grand River Modification (Marikina)
 - **Sector:** Civil Infrastructure
 - **Scope:** 1.8-mile 6-lane multimodal viaduct with seismic dampers
+<<<<<<< HEAD
 - **Contract Valuation:** ₱4,100,000 PHP (₱4.1 Million)
+=======
+- **Contract Valuation:** ₱4,100,000,000 PHP (₱4.1 Million)
+>>>>>>> ecba477b77a4d43581b4ba419dfa9b82ef4287b0
 - **Authority:** Local Government Unit of Marikina.
 
 ### 5. STI Tech Innovation Campus (Cainta, Rizal)
@@ -144,8 +174,13 @@ Safety is not a department at MIRR—it is our primary operating condition.
 ## 8. Financial Stability & Assurance
 
 - **Surety Bonding:** Issued by A-rated global surety underwriters (Travelers / Zurich).
+<<<<<<< HEAD
 - **Builder’s Risk & Commercial General Liability:** ₱100M excess liability umbrella.
 - **Audited Financials:** Clean annual audits by recognized accounting firms over 9 continuous operating years.
+=======
+- **Builder’s Risk & Commercial General Liability:** \Php100M excess liability umbrella.
+- **Audited Financials:** Clean annual audits by Big Four accounting firms for over decades.
+>>>>>>> ecba477b77a4d43581b4ba419dfa9b82ef4287b0
 - **Banking Relationship:** Multi-tiered commercial credit facilities with tier-1 national financial institutions.
 
 ---
@@ -153,7 +188,12 @@ Safety is not a department at MIRR—it is our primary operating condition.
 ## 9. Contact & Tender Office
 
 - **Tender Submissions & RFPs:** `bids@mirrcon.com`
+<<<<<<< HEAD
 - **Executive Office Hotline:** `+63 (02) 555-0199` / `+63 936 958-0308`
 - **Headquarters:** 101 Padilla St., Brgy. Inarawan, Antipolo City, Philippines
+=======
+- **Executive Office Hotline:** `+63 (02) 555-0199`, +63 936 958-0308
+- **Headquarters:** 101 Padilla St., Brgy. Inarawan, Antipolo City
+>>>>>>> ecba477b77a4d43581b4ba419dfa9b82ef4287b0
 - **Online Hub:** [index.html](file:///d:/ONLINE%20PROJECT/index.html)
 - **Source Code Repository:** [https://github.com/pong82n/mirr.git](https://github.com/pong82n/mirr.git)
