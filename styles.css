@@ -33,8 +33,12 @@
     --shadow-amber: 6px 6px 16px rgba(217, 119, 6, 0.3), -6px -6px 16px var(--neu-light);
 }
 
-body {
+html {
     background-color: var(--neu-bg);
+}
+
+body {
+    background-color: transparent;
     color: var(--neu-text);
 }
 
@@ -324,3 +328,85 @@ input[type=range].neu-slider::-moz-range-thumb {
         border: 1px solid #ccc !important;
     }
 }
+
+/* -------------------------------------------------------------
+ * FULL-PAGE FIXED BACKGROUND SLIDESHOW (ARCHITECTURAL NEUMORPHIC)
+ * ------------------------------------------------------------- */
+.fixed-bg-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.fixed-bg-slide,
+.hero-bg-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1), transform 12s ease-out;
+}
+
+.fixed-bg-slide.active,
+.hero-bg-slide.active {
+    opacity: 1;
+    transform: scale(1.06);
+}
+
+.fixed-bg-overlay {
+    position: absolute;
+    inset: 0;
+    /* Frosted glass architectural tint:
+       Shows construction visuals clearly across the full page while maintaining 
+       exceptional contrast for neumorphic text and extruded cards */
+    background: radial-gradient(circle at 50% 25%, rgba(230, 237, 245, 0.58) 0%, rgba(230, 237, 245, 0.74) 65%, rgba(230, 237, 245, 0.86) 100%);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+}
+
+/* Subtle architectural grid pattern in neumorphic tone */
+.fixed-bg-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(rgba(184, 196, 212, 0.35) 1.2px, transparent 1.2px);
+    background-size: 28px 28px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.hero-slide-dot {
+    width: 20px;
+    height: 8px;
+    border-radius: 9999px;
+    background: #cdd8e6;
+    border: none;
+    cursor: pointer;
+    box-shadow: inset 2px 2px 4px #b3c2d4, inset -2px -2px 4px #ffffff;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.hero-slide-dot.active {
+    width: 42px;
+    background: #d97706;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.hero-slide-dot:hover:not(.active) {
+    background: #b8c7da;
+}
+

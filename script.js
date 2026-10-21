@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
+    initHeroSlideshow();
     initCounters();
     initEstimator();
     initPortfolioFilter();
@@ -70,6 +71,145 @@ function updateActiveNavSection() {
             link.classList.add('text-slate-700');
         }
     });
+}
+
+/* -------------------------------------------------------------
+ * 1.5. AUTOMATED HERO BACKGROUND SLIDESHOW
+ * ------------------------------------------------------------- */
+function initHeroSlideshow() {
+    const slides = document.querySelectorAll('.fixed-bg-slide, .hero-bg-slide');
+    const dots = document.querySelectorAll('#hero-slide-dots .hero-slide-dot');
+    const prevBtn = document.getElementById('hero-slide-prev');
+    const nextBtn = document.getElementById('hero-slide-next');
+    const playPauseBtn = document.getElementById('hero-slide-playpause');
+    const playPauseIcon = document.getElementById('hero-playpause-icon');
+    const captionEl = document.getElementById('hero-slide-caption');
+
+    if (!slides.length) return;
+
+    const captions = [
+        '01 / 04 • High-Rise Commercial Hub & Structural Steel Frame',
+        '02 / 04 • Heavy Foundation Works & Reinforced Substructure',
+        '03 / 04 • Multi-Storey Framing & Precision Rebar Engineering',
+        '04 / 04 • Modern Commercial Complex & Turnkey Facade Handover'
+    ];
+
+    let currentIndex = 0;
+    let timer = null;
+    let isPlaying = true;
+    const intervalTime = 5000;
+
+    function showSlide(index) {
+        if (index < 0) {
+            index = slides.length - 1;
+        } else if (index >= slides.length) {
+            index = 0;
+        }
+
+        slides.forEach((slide, i) => {
+            if (i === index) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+
+        if (captionEl && captions[index]) {
+            captionEl.style.opacity = '0';
+            setTimeout(() => {
+                captionEl.textContent = captions[index];
+                captionEl.style.opacity = '1';
+            }, 200);
+        }
+
+        currentIndex = index;
+    }
+
+    function startTimer() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, intervalTime);
+        isPlaying = true;
+        if (playPauseIcon) {
+            playPauseIcon.className = 'fa-solid fa-pause text-[11px]';
+        }
+        if (playPauseBtn) {
+            playPauseBtn.setAttribute('title', 'Pause Slideshow');
+        }
+    }
+
+    function stopTimer() {
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+        isPlaying = false;
+        if (playPauseIcon) {
+            playPauseIcon.className = 'fa-solid fa-play text-[11px]';
+        }
+        if (playPauseBtn) {
+            playPauseBtn.setAttribute('title', 'Resume Slideshow');
+        }
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            showSlide(currentIndex - 1);
+            if (isPlaying) startTimer();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            showSlide(currentIndex + 1);
+            if (isPlaying) startTimer();
+        });
+    }
+
+    if (playPauseBtn) {
+        playPauseBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                stopTimer();
+            } else {
+                startTimer();
+            }
+        });
+    }
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            showSlide(i);
+            if (isPlaying) startTimer();
+        });
+    });
+
+    if (captionEl) {
+        captionEl.style.transition = 'opacity 0.25s ease';
+    }
+
+    // Keyboard navigation (ArrowLeft / ArrowRight)
+    window.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return;
+        if (e.key === 'ArrowLeft') {
+            showSlide(currentIndex - 1);
+            if (isPlaying) startTimer();
+        } else if (e.key === 'ArrowRight') {
+            showSlide(currentIndex + 1);
+            if (isPlaying) startTimer();
+        }
+    });
+
+    // Start automated cycle
+    startTimer();
 }
 
 /* -------------------------------------------------------------

@@ -50,14 +50,23 @@
         }
     </style>
 </head>
-<body class="bg-neu-base text-slate-800 font-sans antialiased bg-neu-grid selection:bg-amber-500 selection:text-white">
+<body class="text-slate-800 font-sans antialiased selection:bg-amber-500 selection:text-white relative min-h-screen">
+
+    <!-- FULL-PAGE FIXED BACKGROUND SLIDESHOW (SCREEN ONLY) -->
+    <div class="fixed-bg-slideshow no-print" id="global-bg-slider" aria-hidden="true">
+        <div class="fixed-bg-slide active" style="background-image: url('images/bg-1.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-2.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-3.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-4.jpg');"></div>
+        <div class="fixed-bg-overlay"></div>
+    </div>
 
     <!-- Top Action Nav -->
     <header class="no-print sticky top-0 z-50 neu-nav py-4 px-6 sm:px-12">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
-                <div class="w-10 h-10 neu-flat-sm flex items-center justify-center text-amber-600 font-black text-xl">
-                    <i class="fa-solid fa-trowel-bricks"></i>
+                <div class="w-10 h-10 neu-flat-sm flex items-center justify-center text-amber-600 font-black text-xl overflow-hidden p-1">
+                    <img src="images/logo-badge.jpg" alt="MIRR Logo" class="w-full h-full object-cover rounded-lg" onerror="this.remove();">
                 </div>
                 <div>
                     <span class="text-xl font-black font-heading text-slate-900 leading-none block">
@@ -396,5 +405,7 @@
         &copy; 2026 MIRR Construction & Engineering Corporation. All rights reserved.
     </footer>
 
+    <!-- Interactive Slideshow & Logic Engine -->
+    <script src="script.js"></script>
 </body>
 </html>

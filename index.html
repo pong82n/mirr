@@ -49,8 +49,16 @@
     
     <!-- Neumorphic Stylesheet -->
     <link rel="stylesheet" href="styles.css">
-</head>
-<body class="bg-neu-base text-slate-800 font-sans antialiased selection:bg-amber-500 selection:text-white bg-neu-grid">
+<body class="text-slate-800 font-sans antialiased selection:bg-amber-500 selection:text-white relative min-h-screen">
+
+    <!-- FULL-PAGE FIXED BACKGROUND SLIDESHOW (ARCHITECTURAL NEUMORPHISM) -->
+    <div class="fixed-bg-slideshow" id="global-bg-slider" aria-hidden="true">
+        <div class="fixed-bg-slide active" style="background-image: url('images/bg-1.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-2.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-3.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-4.jpg');"></div>
+        <div class="fixed-bg-overlay"></div>
+    </div>
 
     <!-- TOP ANNOUNCEMENT / UTILITY BAR (NEUMORPHIC) -->
     <div class="py-2.5 px-4 sm:px-8 border-b border-white/50 bg-neu-base text-xs text-slate-600">
@@ -90,8 +98,8 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
                 <a href="#" class="flex items-center gap-3.5 group">
-                    <div class="w-12 h-12 neu-flat-sm flex items-center justify-center text-amber-600 font-extrabold text-2xl group-hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-trowel-bricks"></i>
+                    <div class="w-12 h-12 neu-flat-sm flex items-center justify-center text-amber-600 font-extrabold text-2xl group-hover:scale-105 transition-transform overflow-hidden p-1">
+                        <img src="images/logo-badge.jpg" alt="MIRR Logo" class="w-full h-full object-cover rounded-xl" onerror="this.remove();">
                     </div>
                     <div>
                         <span class="text-2xl font-black font-heading tracking-wider text-slate-900 block leading-none">
@@ -160,7 +168,7 @@
 
     <!-- HERO SECTION (NEUMORPHIC) -->
     <section id="home" class="relative py-16 lg:py-24 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <!-- Text Column -->
                 <div class="lg:col-span-7">
@@ -259,6 +267,42 @@
                                 Request Engineering Appraisal
                             </button>
                         </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Slideshow Controller Bar -->
+            <div class="mt-10 pt-5 border-t border-slate-300/60 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <span class="neu-pill px-3 py-1 text-[11px] font-bold text-slate-600 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Project Showcase:</span>
+                    </span>
+                    <span id="hero-slide-caption" class="text-xs font-black font-heading text-slate-800">
+                        01 / 04 • High-Rise Commercial Hub & Structural Steel Frame
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <!-- Slideshow Indicator Dots -->
+                    <div class="flex items-center gap-2" id="hero-slide-dots">
+                        <button class="hero-slide-dot active" data-slide="0" title="Slide 1: High-Rise Commercial Hub"></button>
+                        <button class="hero-slide-dot" data-slide="1" title="Slide 2: Heavy Civil Foundation"></button>
+                        <button class="hero-slide-dot" data-slide="2" title="Slide 3: Multi-Storey Framing"></button>
+                        <button class="hero-slide-dot" data-slide="3" title="Slide 4: Modern Commercial Complex"></button>
+                    </div>
+
+                    <!-- Slide Controls -->
+                    <div class="flex items-center gap-1.5 ml-2">
+                        <button id="hero-slide-prev" class="neu-btn w-8 h-8 flex items-center justify-center text-slate-700 hover:text-amber-600 transition-colors" title="Previous Slide" aria-label="Previous Slide">
+                            <i class="fa-solid fa-chevron-left text-[11px]"></i>
+                        </button>
+                        <button id="hero-slide-playpause" class="neu-btn w-8 h-8 flex items-center justify-center text-slate-700 hover:text-amber-600 transition-colors" title="Pause Slideshow" aria-label="Pause or Play Slideshow">
+                            <i class="fa-solid fa-pause text-[11px]" id="hero-playpause-icon"></i>
+                        </button>
+                        <button id="hero-slide-next" class="neu-btn w-8 h-8 flex items-center justify-center text-slate-700 hover:text-amber-600 transition-colors" title="Next Slide" aria-label="Next Slide">
+                            <i class="fa-solid fa-chevron-right text-[11px]"></i>
+                        </button>
                     </div>
                 </div>
             </div>
