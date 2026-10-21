@@ -1,6 +1,6 @@
-# MIRR Construction & Engineering Co.
+# MIRR Construction Services
 
-A modern, high-performance, and responsive website designed for **MIRR Construction & Engineering**, a premier general contracting firm specializing in commercial high-rises, industrial facilities, luxury architectural residential builds, and civil infrastructure.
+A modern, high-performance, and responsive website designed for **MIRR Construction Services**, a premier general building contractor and heavy civil engineering firm established in 2017, headquartered in Antipolo City, Philippines.
 
 ---
 

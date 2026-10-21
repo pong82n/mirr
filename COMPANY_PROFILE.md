@@ -1,13 +1,13 @@
-# COMPANY PROFILE: MIRR CONSTRUCTION & ENGINEERING CORP.
+# COMPANY PROFILE: MIRR CONSTRUCTION SERVICES
 **"Engineering Excellence. Building Tomorrow's Landmarks Today."**
 
 ---
 
 ## 1. Executive Summary
 
-**MIRR Construction & Engineering Corporation** (MIRR Build) is an internationally recognized Tier-1 general contractor, civil engineering firm, and pre-construction technology consultancy. Established in 1998, MIRR has built a reputation over nearly three decades for executing monumental, technically complex projects on schedule and within guaranteed maximum price (GMP) contracts.
+**MIRR Construction Services** (MIRR) is an established general building contractor, civil engineering firm, and pre-construction consultancy. Established in 2017, MIRR has built a reputation over nearly a decade for executing technically sound residential and commercial facilities on schedule and within guaranteed maximum price (GMP) contracts.
 
-With a portfolio exceeding **₱180 Billion** in delivered assets across the commercial, industrial, civil infrastructure, and luxury residential sectors, MIRR pairs traditional structural engineering craftsmanship with pioneering 4D/5D Building Information Modeling (BIM), autonomous drone photogrammetry, and green low-carbon concrete technologies.
+With a portfolio exceeding **₱180 Million** in delivered assets across residential, commercial, and civil infrastructure developments, MIRR pairs traditional structural engineering craftsmanship with modern 4D/5D Building Information Modeling (BIM), autonomous drone photogrammetry, and green low-carbon concrete technologies.
 
 ---
 
@@ -15,17 +15,16 @@ With a portfolio exceeding **₱180 Billion** in delivered assets across the com
 
 | Parameter | Details |
 | :--- | :--- |
-| **Corporate Name** | MIRR Construction & Engineering Corporation |
-| **Trade Name** | MIRR Build |
-| **Year Established** | 1998 (28 Years of Continuous Operations) |
-| **Licensure** | Class A Unlimited General Building Contractor & Heavy Civil Engineer |
-| **Corporate Headquarters** | 500 Grand Avenue, Suite 1200, Metropolis Center |
-| **Regional Operating Hubs** | Dallas (TX), Phoenix (AZ), Denver (CO), Miami (FL) |
-| **Single-Project Bonding Capacity** | ₱14,000,000,000 PHP (₱14 Billion) |
-| **Aggregate Bonding Capacity** | ₱28,000,000,000 PHP (₱28 Billion) |
-| **Total Projects Completed** | 350+ Major Turnkey Facilities |
-| **Workforce** | 1,200+ Engineers, Project Managers, Superintendents & Craftspeople |
-| **Safety Certification** | OSHA VPP Star Status (4.5M+ Zero Lost-Time Injury Hours) |
+| **Corporate Name** | MIRR Construction Services |
+| **Trade Name** | MIRR |
+| **Year Established** | 2017 (9 Years of Continuous Operations) |
+| **Licensure** | Class D General Building Contractor & Heavy Civil Engineer |
+| **Corporate Headquarters** | 101 Padilla St., Brgy. Inarawan, Antipolo City, Philippines |
+| **Single-Project Bonding Capacity** | ₱14,000,000 PHP (₱14 Million) |
+| **Aggregate Bonding Capacity** | ₱28,000,000 PHP (₱28 Million) |
+| **Total Projects Completed** | 11+ Residential and Commercial Facilities |
+| **Workforce** | 18+ Engineers, Project Managers, Supervisors & Craftspeople |
+| **Safety Certification** | OSHA VPP Status (1.5M+ Zero Lost-Time Injury Hours) |
 | **Quality & Environmental ISO** | ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 |
 | **Official Repository** | [https://github.com/pong82n/mirr](https://github.com/pong82n/mirr) |
 
@@ -37,7 +36,7 @@ With a portfolio exceeding **₱180 Billion** in delivered assets across the com
 To engineer and construct durable, safe, and architecturally stunning built environments that empower communities, drive commerce, and stand resilient across generations.
 
 ### Vision Statement
-To be the world’s most trusted and technologically advanced engineering contractor, leading the transformation toward zero-carbon structural engineering, intelligent automation, and zero-compromise jobsite safety.
+To be the nation’s most trusted and technologically advanced engineering contractor, leading the transformation toward zero-carbon structural engineering, intelligent automation, and zero-compromise jobsite safety.
 
 ### Core Values
 1. **Structural Integrity & Precision:** No cutting corners, no tolerance for subpar materials or execution.
@@ -51,7 +50,7 @@ To be the world’s most trusted and technologically advanced engineering contra
 ## 4. Core Divisions & Engineering Capabilities
 
 ### A. Commercial High-Rise & Mixed-Use
-- Turnkey grade-A corporate towers, retail pavilions, luxury hotels, and biomedical research centers.
+- Metro Manila grade-A corporate towers, retail pavilions, luxury hotels, government infrastructure.
 - Post-tensioned concrete structural framing, perimeter diagrid engineering, and unitized silicone-glazed curtain wall systems.
 - Smart Building Management Systems (BMS), redundant power microgrids, and acoustic vibration dampening.
 
@@ -85,34 +84,34 @@ To be the world’s most trusted and technologically advanced engineering contra
 
 ## 5. Landmark Project Portfolio Highlights
 
-### 1. Vertex Financial Tower (Dallas, TX)
-- **Sector:** Commercial Corporate High-Rise
-- **Scope:** 42 stories, 540,000 sq.ft, LEED Platinum
-- **Contract Valuation:** ₱10,500,000,000 PHP (₱10.5 Billion)
+### 1. Dr. Albert Elementary School (Sampaloc, Metro Manila)
+- **Sector:** Commercial / Institutional High-Rise
+- **Scope:** Roof Deck Concrete Topping, 40,000 sq.m, LEED Platinum
+- **Contract Valuation:** ₱2,500,000 PHP (₱2.5 Million)
 - **Delivery:** Completed 3 weeks ahead of scheduled turnover.
 
-### 2. Aeroflow Logistics MegaHub (Phoenix, AZ)
-- **Sector:** Industrial Robotics Fulfillment Center
-- **Scope:** 850,000 sq.ft, 42-foot clear heights, 96 dock doors, 1.2MW solar roof
-- **Contract Valuation:** ₱5,600,000,000 PHP (₱5.6 Billion)
+### 2. Two Storey Residential Building (Antipolo City, Rizal)
+- **Sector:** Residential, Commercial
+- **Scope:** 850,000 sq.ft, 6 dock doors, 1.2MW solar roof, Architectural Finish
+- **Contract Valuation:** ₱5,600,000 PHP (₱5.6 Million)
 - **Delivery:** Zero lost-time safety incidents across 250,000 craft hours.
 
-### 3. The Horizon Waterfront Estate (Miami, FL)
-- **Sector:** Bespoke Modernist Luxury Villa
-- **Scope:** 14,200 sq.ft, 18-meter cantilevered living slabs, infinity saltwater pool
-- **Contract Valuation:** ₱1,250,000,000 PHP (₱1.25 Billion)
+### 3. The Horizon Waterfront Hotel (Antipolo City, Rizal)
+- **Sector:** Modernist Luxury Hotel
+- **Scope:** 14,200 sq.ft, 18-meter cantilevered living slabs, infinity freshwater pool
+- **Contract Valuation:** ₱1,250,000 PHP (₱1.25 Million)
 - **Accolade:** Awarded Regional Architectural MasterPrize.
 
-### 4. Grand River Suspension Viaduct (Austin, TX)
-- **Sector:** Civil Transportation Infrastructure
+### 4. Grand River Modification (Marikina)
+- **Sector:** Civil Infrastructure
 - **Scope:** 1.8-mile 6-lane multimodal viaduct with seismic dampers
-- **Contract Valuation:** ₱8,100,000,000 PHP (₱8.1 Billion)
-- **Authority:** State Department of Transportation.
+- **Contract Valuation:** ₱4,100,000 PHP (₱4.1 Million)
+- **Authority:** Local Government Unit of Marikina.
 
-### 5. Nexus Tech Innovation Campus (Denver, CO)
+### 5. STI Tech Innovation Campus (Cainta, Rizal)
 - **Sector:** Sustainable Corporate Mass-Timber Campus
 - **Scope:** 310,000 sq.ft hybrid cross-laminated timber (CLT) & steel structure
-- **Contract Valuation:** ₱6,500,000,000 PHP (₱6.5 Billion)
+- **Contract Valuation:** ₱6,500,000 PHP (₱6.5 Million)
 - **Sustainability:** Zero-carbon construction methodology.
 
 ---
@@ -121,7 +120,7 @@ To be the world’s most trusted and technologically advanced engineering contra
 
 Safety is not a department at MIRR—it is our primary operating condition.
 
-- **OSHA VPP Star Status:** Maintained consecutively since 2014.
+- **OSHA VPP Status:** Maintained consecutively since 2017.
 - **Experience Modification Rate (EMR):** 0.62 (Industry average is 1.0; significantly lower worker risk and lower insurance overhead passed on to clients).
 - **Mandatory 100% Fall Protection:** Strictly enforced tie-off standard above 6 feet.
 - **Daily BIM Safety Audits:** Work zones are simulated in 3D prior to high-risk crane picks and trench excavations.
@@ -131,13 +130,13 @@ Safety is not a department at MIRR—it is our primary operating condition.
 
 ## 7. Executive Leadership Team
 
-- **Elena Rostova, PE, LEED AP** — *Chief Executive Officer & Founder*  
-  Over 30 years of civil engineering and megaproject leadership. Former advisor to the National Infrastructure Advisory Council.
-- **Marcus Sterling, AIA, NCARB** — *Executive Vice President & Principal Architect*  
+- **Raffy Soguilon, PE, LEED AP** — *Chief Executive Officer & Founder*  
+  Over 15 years of civil engineering and project leadership. Former advisor to the National Infrastructure Advisory Council.
+- **Marcus Alcantara, AIA, NCARB** — *Executive Vice President & Principal Architect*  
   Master of Architecture (MIT). Directs architectural feasibility, structural aesthetics, and historic preservation divisions.
-- **David Vance, PE, SE** — *Chief Structural Engineer & Pre-Construction Director*  
+- **David Vercenal, PE, SE** — *Chief Structural Engineer & Pre-Construction Director*  
   Specialist in high-rise seismic retrofitting, post-tensioned systems, and deep-soil geotechnical foundation stabilization.
-- **Sarah Jenkins, CSP, CIH** — *Director of Global Health, Safety & Environmental Compliance*  
+- **Sarah Almaieda, CSP, CIH** — *Director of Global Health, Safety & Environmental Compliance*  
   Architect of MIRR’s industry-leading safety record and OSHA VPP certification protocols.
 
 ---
@@ -145,16 +144,16 @@ Safety is not a department at MIRR—it is our primary operating condition.
 ## 8. Financial Stability & Assurance
 
 - **Surety Bonding:** Issued by A-rated global surety underwriters (Travelers / Zurich).
-- **Builder’s Risk & Commercial General Liability:** \$100M excess liability umbrella.
-- **Audited Financials:** Clean annual audits by Big Four accounting firms for over two decades.
+- **Builder’s Risk & Commercial General Liability:** ₱100M excess liability umbrella.
+- **Audited Financials:** Clean annual audits by recognized accounting firms over 9 continuous operating years.
 - **Banking Relationship:** Multi-tiered commercial credit facilities with tier-1 national financial institutions.
 
 ---
 
 ## 9. Contact & Tender Office
 
-- **Tender Submissions & RFPs:** `bids@mirrbuild.com`
-- **Executive Office Hotline:** `+1 (800) 555-0199`
-- **Headquarters:** 500 Grand Avenue, Suite 1200, Metropolis Center
+- **Tender Submissions & RFPs:** `bids@mirrcon.com`
+- **Executive Office Hotline:** `+63 (02) 555-0199` / `+63 936 958-0308`
+- **Headquarters:** 101 Padilla St., Brgy. Inarawan, Antipolo City, Philippines
 - **Online Hub:** [index.html](file:///d:/ONLINE%20PROJECT/index.html)
 - **Source Code Repository:** [https://github.com/pong82n/mirr.git](https://github.com/pong82n/mirr.git)
