@@ -115,7 +115,7 @@ body {
 
 /* Neumorphic Amber Action Button */
 .neu-btn-primary {
-    background: linear-gradient(135deg, #335c35, #334a02);
+    background: linear-gradient(135deg, #335c35, #36c402);
     color: #0b1120 !important;
     box-shadow: 6px 6px 16px var(--neu-dark), -6px -6px 16px var(--neu-light);
     border-radius: 14px;
