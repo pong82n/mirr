@@ -3,33 +3,33 @@
    ========================================================================== */
 
 :root {
-    --neu-bg: #000000;
-    --neu-bg-subtle: #edf3fa;
-    --neu-surface: #0d0e0f;
+    --neu-bg: #1b1818;
+    --neu-bg-subtle: #034796;
+    --neu-surface: #55a6f7;
     --neu-light: #ffffff;
     --neu-dark: #b8c4d4;
     --neu-darker: #9ba8ba;
-    
-    --neu-amber: #0a0c91;
+
+    --neu-amber: #e0e0ee;
     --neu-amber-light: #fbbf24;
     --neu-amber-dark: #d97706;
     --neu-amber-glow: rgba(245, 158, 11, 0.35);
-    
-    --neu-text: #1e293b;
-    --neu-text-secondary: #475569;
-    --neu-text-muted: #64748b;
-    
+
+    --neu-text: #e4eeff;
+    --neu-text-secondary: #e8eef5;
+    --neu-text-muted: #e1e7f0;
+
     /* Standard Neumorphic Shadows */
     --shadow-flat: 8px 8px 18px var(--neu-dark), -8px -8px 18px var(--neu-light);
     --shadow-flat-sm: 4px 4px 10px var(--neu-dark), -4px -4px 10px var(--neu-light);
     --shadow-flat-lg: 14px 14px 28px var(--neu-dark), -14px -14px 28px var(--neu-light);
-    
+
     --shadow-hover: 11px 11px 22px var(--neu-dark), -11px -11px 22px var(--neu-light);
-    
+
     --shadow-inset: inset 5px 5px 10px var(--neu-dark), inset -5px -5px 10px var(--neu-light);
     --shadow-inset-sm: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
     --shadow-inset-lg: inset 8px 8px 16px var(--neu-dark), inset -8px -8px 16px var(--neu-light);
-    
+
     --shadow-amber: 6px 6px 16px rgba(217, 119, 6, 0.3), -6px -6px 16px var(--neu-light);
 }
 
@@ -107,7 +107,8 @@ body {
     color: var(--neu-amber-dark);
 }
 
-.neu-btn:active, .neu-btn.active {
+.neu-btn:active,
+.neu-btn.active {
     box-shadow: var(--shadow-inset-sm) !important;
     transform: translateY(1px);
     color: var(--neu-amber-dark) !important;
@@ -292,22 +293,25 @@ input[type=range].neu-slider::-moz-range-thumb {
 ::-webkit-scrollbar {
     width: 10px;
 }
+
 ::-webkit-scrollbar-track {
     background: var(--neu-bg);
     box-shadow: inset 2px 2px 5px var(--neu-dark);
 }
+
 ::-webkit-scrollbar-thumb {
     background: #9ba8ba;
     border-radius: 5px;
     border: 2px solid var(--neu-bg);
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: #d97706;
 }
 
 /* Subtle architectural grid pattern in neumorphic tone */
 .bg-neu-grid {
-    background-image: 
+    background-image:
         radial-gradient(rgba(184, 196, 212, 0.45) 1.5px, transparent 1.5px),
         radial-gradient(rgba(255, 255, 255, 0.8) 1.5px, transparent 1.5px);
     background-size: 32px 32px;
@@ -320,10 +324,19 @@ input[type=range].neu-slider::-moz-range-thumb {
         background: white !important;
         color: black !important;
     }
-    header, footer, #video-modal, #service-modal, #portfolio-filters, .ba-slider {
+
+    header,
+    footer,
+    #video-modal,
+    #service-modal,
+    #portfolio-filters,
+    .ba-slider {
         display: none !important;
     }
-    .neu-card, .neu-inset, .neu-btn {
+
+    .neu-card,
+    .neu-inset,
+    .neu-btn {
         box-shadow: none !important;
         border: 1px solid #ccc !important;
     }
@@ -381,7 +394,7 @@ input[type=range].neu-slider::-moz-range-thumb {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: 
+    background-image:
         radial-gradient(rgba(184, 196, 212, 0.35) 1.2px, transparent 1.2px);
     background-size: 28px 28px;
     opacity: 0.7;
@@ -409,4 +422,3 @@ input[type=range].neu-slider::-moz-range-thumb {
 .hero-slide-dot:hover:not(.active) {
     background: #b8c7da;
 }
-
