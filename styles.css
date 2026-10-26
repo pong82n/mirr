@@ -395,7 +395,7 @@ input[type=range].neu-slider::-moz-range-thumb {
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(rgba(184, 196, 212, 0.35) 1.2px, transparent 1.2px);
+        radial-gradient(rgba(104, 106, 107, 0.308) 1.2px, transparent 1.2px);
     background-size: 28px 28px;
     opacity: 0.7;
     pointer-events: none;
