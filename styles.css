@@ -80,7 +80,7 @@ body {
     background: var(--neu-bg);
     box-shadow: var(--shadow-inset);
     border-radius: 20px;
-    border: 1px solid rgba(184, 196, 212, 0.2);
+    border: 1px solid rgba(91, 157, 243, 0.2);
 }
 
 .neu-inset-sm {
@@ -116,7 +116,7 @@ body {
 
 /* Neumorphic Amber Action Button */
 .neu-btn-primary {
-    background: linear-gradient(135deg, #335c35, #36c402);
+    background: linear-gradient(135deg, #d0f0d1, #36c402);
     color: #0b1120 !important;
     box-shadow: 6px 6px 16px var(--neu-dark), -6px -6px 16px var(--neu-light);
     border-radius: 14px;
@@ -141,7 +141,7 @@ body {
 .neu-input {
     background: var(--neu-bg) !important;
     box-shadow: var(--shadow-inset) !important;
-    border: 1px solid rgba(184, 196, 212, 0.3) !important;
+    border: 1px solid rgba(208, 225, 247, 0.3) !important;
     border-radius: 14px !important;
     color: var(--neu-text) !important;
     transition: all 0.2s ease;
