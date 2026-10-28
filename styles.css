@@ -128,7 +128,7 @@ body {
 }
 
 .neu-btn-primary:hover {
-    background: linear-gradient(135deg, #fcd34d, #f59e0b);
+    background: linear-gradient(135deg, #22f54c, #c7f0dd);
     box-shadow: 8px 8px 20px var(--neu-dark), -8px -8px 20px var(--neu-light);
     transform: translateY(-2px);
 }
