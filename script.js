@@ -39,10 +39,12 @@ function initNavigation() {
 
     // Header subtle elevation on scroll
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 30) {
-            mainNav.classList.add('shadow-lg');
-        } else {
-            mainNav.classList.remove('shadow-lg');
+        if (mainNav) {
+            if (window.scrollY > 30) {
+                mainNav.classList.add('shadow-lg');
+            } else {
+                mainNav.classList.remove('shadow-lg');
+            }
         }
         updateActiveNavSection();
     });
@@ -51,6 +53,8 @@ function initNavigation() {
 function updateActiveNavSection() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
+    if (!sections.length || !navLinks.length) return;
+
     let currentId = '';
 
     const scrollY = window.pageYOffset + 220;
@@ -63,10 +67,12 @@ function updateActiveNavSection() {
     });
 
     navLinks.forEach(link => {
-        if (link.getAttribute('href') === `#${currentId}`) {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        if (href === `#${currentId}`) {
             link.classList.add('text-amber-600', 'active');
             link.classList.remove('text-slate-700');
-        } else if (link.getAttribute('href').startsWith('#')) {
+        } else if (href.startsWith('#')) {
             link.classList.remove('text-amber-600', 'active');
             link.classList.add('text-slate-700');
         }
@@ -105,44 +111,55 @@ function initHeroSlideshow() {
     let isPlaying = true;
     const intervalTime = 5000;
 
-    function showSlide(index) {
+    function showSlide(index, direction = 'next') {
         if (index < 0) {
             index = slides.length - 1;
         } else if (index >= slides.length) {
             index = 0;
         }
 
+        const prevIndex = currentIndex;
+        currentIndex = index;
+
         slides.forEach((slide, i) => {
-            if (i === index) {
+            slide.classList.remove('active', 'slide-from-right', 'slide-from-left', 'slide-to-left', 'slide-to-right');
+            if (i === currentIndex) {
                 slide.classList.add('active');
-            } else {
-                slide.classList.remove('active');
+                if (direction === 'next') {
+                    slide.classList.add('slide-from-right');
+                } else if (direction === 'prev') {
+                    slide.classList.add('slide-from-left');
+                }
+            } else if (i === prevIndex && direction !== 'none') {
+                if (direction === 'next') {
+                    slide.classList.add('slide-to-left');
+                } else if (direction === 'prev') {
+                    slide.classList.add('slide-to-right');
+                }
             }
         });
 
         dots.forEach((dot, i) => {
-            if (i === index) {
+            if (i === currentIndex) {
                 dot.classList.add('active');
             } else {
                 dot.classList.remove('active');
             }
         });
 
-        if (captionEl && captions[index]) {
+        if (captionEl && captions[currentIndex]) {
             captionEl.style.opacity = '0';
             setTimeout(() => {
-                captionEl.textContent = captions[index];
+                captionEl.textContent = captions[currentIndex];
                 captionEl.style.opacity = '1';
             }, 200);
         }
-
-        currentIndex = index;
     }
 
     function startTimer() {
         if (timer) clearInterval(timer);
         timer = setInterval(() => {
-            showSlide(currentIndex + 1);
+            showSlide(currentIndex + 1, 'next');
         }, intervalTime);
         isPlaying = true;
         if (playPauseIcon) {
@@ -169,14 +186,14 @@ function initHeroSlideshow() {
 
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            showSlide(currentIndex - 1);
+            showSlide(currentIndex - 1, 'prev');
             if (isPlaying) startTimer();
         });
     }
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            showSlide(currentIndex + 1);
+            showSlide(currentIndex + 1, 'next');
             if (isPlaying) startTimer();
         });
     }
@@ -193,7 +210,8 @@ function initHeroSlideshow() {
 
     dots.forEach((dot, i) => {
         dot.addEventListener('click', () => {
-            showSlide(i);
+            const dir = i >= currentIndex ? 'next' : 'prev';
+            showSlide(i, dir);
             if (isPlaying) startTimer();
         });
     });
@@ -206,15 +224,16 @@ function initHeroSlideshow() {
     window.addEventListener('keydown', (e) => {
         if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return;
         if (e.key === 'ArrowLeft') {
-            showSlide(currentIndex - 1);
+            showSlide(currentIndex - 1, 'prev');
             if (isPlaying) startTimer();
         } else if (e.key === 'ArrowRight') {
-            showSlide(currentIndex + 1);
+            showSlide(currentIndex + 1, 'next');
             if (isPlaying) startTimer();
         }
     });
 
-    // Start automated cycle
+    // Start automated cycle with initial slide
+    showSlide(0, 'none');
     startTimer();
 }
 

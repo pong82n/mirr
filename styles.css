@@ -68,9 +68,20 @@ html {
 }
 
 body {
-    background-color: transparent;
+    background-color: transparent !important;
     color: var(--neu-text);
     font-family: 'Archivo', 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Ensure all page content sections sit above background slideshow */
+header,
+main,
+section,
+footer {
+    position: relative;
+    z-index: 2;
 }
 
 /* Typography Defaults */
@@ -529,7 +540,7 @@ input[type=range].neu-slider::-moz-range-thumb {
     bottom: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
+    z-index: 0;
     overflow: hidden;
     pointer-events: none;
 }
@@ -544,23 +555,91 @@ input[type=range].neu-slider::-moz-range-thumb {
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0;
-    transform: scale(1);
-    transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1), transform 12s ease-out;
+    transform: scale(1.02);
+    will-change: opacity, transform;
+    pointer-events: none;
 }
 
 .fixed-bg-slide.active,
 .hero-bg-slide.active {
-    opacity: 0.38;
-    transform: scale(1.06);
+    opacity: 0.85;
+    transform: scale(1);
+    z-index: 2;
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Sliding Directional Transitions */
+.fixed-bg-slide.slide-from-right {
+    animation: bgSlideInRight 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.fixed-bg-slide.slide-from-left {
+    animation: bgSlideInLeft 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.fixed-bg-slide.slide-to-left {
+    animation: bgSlideOutLeft 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    z-index: 1;
+}
+
+.fixed-bg-slide.slide-to-right {
+    animation: bgSlideOutRight 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    z-index: 1;
+}
+
+@keyframes bgSlideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px) scale(1.04);
+    }
+    100% {
+        opacity: 0.85;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes bgSlideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px) scale(1.04);
+    }
+    100% {
+        opacity: 0.85;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes bgSlideOutLeft {
+    0% {
+        opacity: 0.85;
+        transform: translateX(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-100px) scale(1.04);
+    }
+}
+
+@keyframes bgSlideOutRight {
+    0% {
+        opacity: 0.85;
+        transform: translateX(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100px) scale(1.04);
+    }
 }
 
 /* Glossy Deep Blue Radial Glass Overlay */
 .fixed-bg-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 18%, rgba(18, 44, 105, 0.82) 0%, rgba(6, 16, 44, 0.92) 55%, #030712 100%);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background: radial-gradient(circle at 50% 25%, rgba(12, 28, 72, 0.35) 0%, rgba(5, 14, 42, 0.65) 55%, rgba(2, 6, 20, 0.86) 100%);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 3;
+    pointer-events: none;
 }
 
 .fixed-bg-overlay::after {
@@ -568,10 +647,10 @@ input[type=range].neu-slider::-moz-range-thumb {
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(rgba(56, 189, 248, 0.16) 1.2px, transparent 1.2px),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+        radial-gradient(rgba(56, 189, 248, 0.12) 1.2px, transparent 1.2px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
     background-size: 32px 32px, 100% 100%;
-    opacity: 0.75;
+    opacity: 0.7;
     pointer-events: none;
 }
 
