@@ -12,12 +12,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Oxanium:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"        rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Oxanium:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Tailwind CSS CDN with Dark Blue Glossy Glass Theme Configuration -->    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind CSS CDN with Dark Blue Glossy Glass Theme Configuration -->
+
+    <!-- Tailwind CSS CDN with Neumorphic Palette Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -36,6 +47,7 @@
                             teal: '#06B6D4',
                         },
                         neu: {
+
                             base: '#030712',
                             light: 'rgba(255, 255, 255, 0.15)',
                             dark: 'rgba(4, 10, 28, 0.8)',
@@ -58,12 +70,42 @@
                             100: '#F8FAFC',
                             200: '#F1F5F9',
                             300: '#E2E8F0',
-                            400: '#94A3B8',
+                            400: '#a9fcd8',
                             500: '#CBD5E1',
                             600: '#E2E8F0',
                             700: '#F1F5F9',
                             800: '#F8FAFC',
-                            900: '#FFFFFF',                        }
+                            900: '#FFFFFF',
+
+                            base: '#030124',
+                            light: '#ebeef5',
+                            dark: '#8bacd9',
+                            darker: '#9ba8ba',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#d7def5',
+                            600: '#bbfcc7',
+                            700: '#0b630e',
+                            800: '#030142',
+                            900: '#2e0115',
+                            300: '#39f759',
+                            200: '#4ac6f7',
+                      
+                        },
+                        slate: {
+                            1000: '#f7e197',
+                            800: '#7fd493',
+                            900: '#404bb3',
+                            600: '#c5faea',
+                            500: '#d3ddf2',
+                            700: '#f7f7f7',
+                            400: '#a9fcd5',
+                            300: '#5ff216',
+                            200: '#283d37',
+                            100: '#343af7',
+
+                        }
                     },
                     fontFamily: {
                         heading: ['Oxanium', 'Montserrat', 'sans-serif'],
@@ -75,18 +117,24 @@
         }
     </script>
 
+
     <!-- Glossy Glass Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 
 <body class="text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-white relative min-h-screen bg-[#030712]">
-    <!-- FULL-PAGE FIXED BACKGROUND SLIDESHOW (DARK BLUE GLASS ARCHITECTURE) -->
+
+    <!-- Neumorphic Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+<body class="text-slate-800 font-sans antialiased selection:bg-amber-500 selection:text-white relative min-h-screen">
+
+
+    <!-- FULL-PAGE FIXED BACKGROUND SLIDESHOW (ARCHITECTURAL NEUMORPHISM) -->
     <div class="fixed-bg-slideshow" id="global-bg-slider" aria-hidden="true">
-        <div class="fixed-bg-slide active" style="background-image: url('images/bg-night-site.jpg');"></div>
-        <div class="fixed-bg-slide" style="background-image: url('images/bg-crane-steel.jpg');"></div>
-        <div class="fixed-bg-slide" style="background-image: url('images/bg-1.jpg');"></div>
-        <div class="fixed-bg-slide" style="background-image: url('images/bg-engineer-crane.jpg');"></div>
+        <div class="fixed-bg-slide active" style="background-image: url('images/bg-1.jpg');"></div>
         <div class="fixed-bg-slide" style="background-image: url('images/bg-2.jpg');"></div>
-        <div class="fixed-bg-slide" style="background-image: url('images/bg-luxury-interior.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-3.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-4.jpg');"></div>
         <div class="fixed-bg-overlay"></div>
     </div>
 
@@ -140,7 +188,10 @@
                     <div>
                         <span
                             class="text-[30px] font-black font-heading tracking-wider text-slate-100 block leading-none">
-                            MIRR<span class="text-amber-500">BUILD</span>                        </span>
+
+                MIRR<span class="text-amber-100"></span>
+
+                        </span>
                         <span class="text-[12px] tracking-widest uppercase font-extrabold text-slate-400">Construction
                             Services</span>
                     </div>
@@ -232,9 +283,9 @@
 
                     <!-- Main Catchphrase -->
                     <h1
-                        class="text-4xl sm:text-5xl md:text-6xl font-black font-heading text-slate-400 tracking-tight leading-[1.08] mb-6">
+                        class="text-4xl sm:text-5xl md:text-6xl font-black font-heading text-slate-600 tracking-tight leading-[1.08] mb-6">
                         Engineering Excellence. <br>
-                        <span class="text-amber-700">
+                        <span class="text-amber-400">
                             Building Tomorrow's Landmarks Today.
                         </span>
                     </h1>
@@ -351,8 +402,8 @@
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                         <span>Project Showcase:</span>
                     </span>
-                    <span id="hero-slide-caption" class="text-s font-black font-heading text-slate-100">
-                        01 / 06 • Night Heavy Structural Concrete Pour & Illuminated Scaffolding
+                    <span id="hero-slide-caption" class="text-s font-black font-heading text-slate-800">
+                        01 / 04 • High-Rise Commercial Hub & Structural Steel Frame
                     </span>
                 </div>
 
@@ -360,12 +411,11 @@
                     <!-- Slideshow Indicator Dots -->
                     <div class="flex items-center gap-2" id="hero-slide-dots">
                         <button class="hero-slide-dot active" data-slide="0"
-                            title="Slide 1: Night Structural Concrete Pour"></button>
-                        <button class="hero-slide-dot" data-slide="1" title="Slide 2: Tower Crane & Structural Steel"></button>
-                        <button class="hero-slide-dot" data-slide="2" title="Slide 3: High-Rise Deck Concrete Pouring"></button>
-                        <button class="hero-slide-dot" data-slide="3" title="Slide 4: Site QA/QC Engineering Oversight"></button>
-                        <button class="hero-slide-dot" data-slide="4" title="Slide 5: Foundation Substructure Phase"></button>
-                        <button class="hero-slide-dot" data-slide="5" title="Slide 6: Modern Architectural Finish"></button>
+                            title="Slide 1: High-Rise Commercial Hub"></button>
+                        <button class="hero-slide-dot" data-slide="1" title="Slide 2: Heavy Civil Foundation"></button>
+                        <button class="hero-slide-dot" data-slide="2" title="Slide 3: Multi-Storey Framing"></button>
+                        <button class="hero-slide-dot" data-slide="3"
+                            title="Slide 4: Modern Commercial Complex"></button>
                     </div>
 
                     <!-- Slide Controls -->
@@ -975,25 +1025,25 @@
                 <!-- Project 5 -->
                 <div class="project-item neu-card overflow-hidden group" data-category="commercial">
                     <div class="relative h-60 overflow-hidden m-3 rounded-2xl neu-inset">
-                        <img src="images/bg-crane-steel.jpg"
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
                             alt="STI Tech Innovation Campus"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span
                             class="neu-pill absolute top-3 left-3 px-2.5 py-1 text-[10px] uppercase font-black text-amber-700">
-                            Mass-Timber & Steel
+                            Mass-Timber Campus
                         </span>
                     </div>
                     <div class="p-6 pt-2">
                         <span class="text-xs text-amber-600 font-bold">Completed 2024 • Cainta, Rizal</span>
-                        <h3 class="text-xl font-bold font-heading text-slate-100 mt-1 mb-2">STI Tech Innovation Campus
+                        <h3 class="text-xl font-bold font-heading text-slate-500 mt-1 mb-2">STI Tech Innovation Campus
                         </h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                            Hybrid structural steel and pre-engineered framing campus engineered with heavy tower crane picks and
-                            zero-carbon construction methods.
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Hybrid cross-laminated timber (CLT) & structural steel educational campus built with
+                            zero-carbon prefabrication methods.
                         </p>
-                        <div class="neu-inset-sm p-3 flex justify-between text-xs text-slate-400">
-                            <span>Area: <strong class="text-slate-100">310,000 sq ft</strong></span>
-                            <span>Value: <strong class="text-amber-500 font-bold">₱6.50 Million</strong></span>
+                        <div class="neu-inset-sm p-3 flex justify-between text-xs text-slate-600">
+                            <span>Area: <strong class="text-slate-500">310,000 sq ft</strong></span>
+                            <span>Value: <strong class="text-amber-600 font-bold">₱6.50 Million</strong></span>
                         </div>
                     </div>
                 </div>
@@ -1001,7 +1051,7 @@
                 <!-- Project 6 -->
                 <div class="project-item neu-card overflow-hidden group" data-category="residential">
                     <div class="relative h-60 overflow-hidden m-3 rounded-2xl neu-inset">
-                        <img src="images/bg-luxury-interior.jpg"
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
                             alt="Antipolo Luxury Executive Estate"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span
@@ -1011,15 +1061,15 @@
                     </div>
                     <div class="p-6 pt-2">
                         <span class="text-xs text-amber-600 font-bold">Completed 2024 • Antipolo City, Rizal</span>
-                        <h3 class="text-xl font-bold font-heading text-slate-100 mt-1 mb-2">Antipolo Luxury Executive
+                        <h3 class="text-xl font-bold font-heading text-slate-500 mt-1 mb-2">Antipolo Luxury Executive
                             Estate</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                            Custom private residence with bespoke imported marble island countertops, recessed warm cove lighting,
-                            and turnkey architectural finish.
+                        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                            Custom private residence with bespoke exposed architectural concrete, automated climate
+                            glass, and sustainable solar microgrid.
                         </p>
-                        <div class="neu-inset-sm p-3 flex justify-between text-xs text-slate-400">
-                            <span>Area: <strong class="text-slate-100">12,500 sq ft</strong></span>
-                            <span>Value: <strong class="text-amber-500 font-bold">₱3.80 Million</strong></span>
+                        <div class="neu-inset-sm p-3 flex justify-between text-xs text-slate-600">
+                            <span>Area: <strong class="text-slate-500">12,500 sq ft</strong></span>
+                            <span>Value: <strong class="text-amber-600 font-bold">₱3.80 Million</strong></span>
                         </div>
                     </div>
                 </div>
@@ -1048,22 +1098,22 @@
                 <div class="ba-slider relative rounded-3xl overflow-hidden h-[360px] sm:h-[480px] select-none"
                     id="ba-container">
                     <!-- After Image -->
-                    <img src="images/bg-luxury-interior.jpg"
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80"
                         alt="Completed Modern Building" class="absolute inset-0 w-full h-full object-cover">
                     <span
-                        class="neu-pill absolute top-4 right-4 text-slate-100 font-black text-xs uppercase px-3 py-1.5">
-                        After: Modern Handover
+                        class="neu-pill absolute top-4 right-4 text-slate-900 font-black text-xs uppercase px-3 py-1.5">
+                        After: Modern Campus
                     </span>
 
                     <!-- Before Image -->
                     <div class="ba-before-wrap absolute inset-0 overflow-hidden" id="ba-before-wrap"
                         style="width: 50%;">
-                        <img src="images/bg-night-site.jpg"
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=80"
                             alt="Under Construction Site" class="absolute inset-0 w-full h-full object-cover"
                             id="ba-before-img">
                         <span
-                            class="neu-btn-primary absolute top-4 left-4 text-slate-100 font-black text-xs uppercase px-3 py-1.5">
-                            Before: Heavy Structural Pour
+                            class="neu-btn-primary absolute top-4 left-4 text-slate-900 font-black text-xs uppercase px-3 py-1.5">
+                            Before: Heavy Structural
                         </span>
                     </div>
 
@@ -1145,8 +1195,8 @@
                 <div class="lg:col-span-6">
                     <div class="neu-card p-4 relative">
                         <div class="rounded-2xl overflow-hidden neu-inset">
-                            <img src="images/bg-engineer-crane.jpg"
-                                alt="MIRR Field QA/QC Engineer on Site" class="w-full h-auto object-cover">
+                            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80"
+                                alt="Architects on Site with Blueprints" class="w-full h-auto object-cover">
                         </div>
                         <!-- Floating Badge -->
                         <div class="absolute -bottom-5 -left-5 neu-btn-primary p-6 rounded-2xl flex items-center gap-4">
@@ -1578,10 +1628,10 @@
                     photogrammetry, and deep foundation engineering.</p>
                 <div
                     class="aspect-video bg-slate-900 rounded-2xl overflow-hidden relative flex items-center justify-center shadow-inner">
-                    <video id="video-player" class="w-full h-full object-cover rounded-2xl" controls preload="metadata" poster="images/bg-night-site.jpg">
-                        <source src="images/showcase-reel.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
-                    </video>
+                    <iframe id="video-iframe" class="w-full h-full" src="" title="Construction Video Showcase"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                 </div>
             </div>
         </div>
