@@ -6,35 +6,71 @@
     <title>Company Profile | MIRR Construction & Engineering</title>
     <meta name="description" content="Official Corporate Profile of MIRR Construction & Engineering Corp. Neumorphic Architectural Edition.">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Oxanium & Archivo (OCCT / OCBase Design System) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Oxanium:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS with OCCT Personal Use Theme Configuration -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
+                        occt: {
+                            bg: '#0F0F11',
+                            depth: '#161619',
+                            surface: '#1A1A1F',
+                            card: '#1F1F26',
+                            red: '#FF002B',
+                            'red-light': '#FF3355',
+                            'red-dark': '#D90024',
+                            orange: '#FF6B00',
+                            cyan: '#00D2FF',
+                            green: '#00E676',
+                        },
                         neu: {
-                            base: '#e6edf5',
-                            light: '#ffffff',
-                            dark: '#b8c4d4',
+                            base: '#0F0F11',
+                            light: '#1F1F26',
+                            dark: '#161619',
+                            darker: '#0A0A0D',
                         },
                         amber: {
-                            500: '#f59e0b',
-                            600: '#d97706',
-                            700: '#b45309',
+                            50: '#FFF1F2',
+                            100: '#FFE4E6',
+                            200: '#FECDD3',
+                            300: '#FDA4AF',
+                            400: '#FB7185',
+                            500: '#FF002B', /* Primary OCCT Red */
+                            600: '#E60026',
+                            700: '#CC0022',
+                            800: '#99001A',
+                            900: '#660011',
+                        },
+                        slate: {
+                            50: '#F4F4F5',
+                            100: '#E4E4E7',
+                            200: '#D4D4D8',
+                            300: '#A1A1AA',
+                            400: '#8A8A93',
+                            500: '#A1A1AA',
+                            600: '#D4D4D8',
+                            700: '#E4E4E7',
+                            800: '#F4F4F5',
+                            900: '#FFFFFF',
                         }
                     },
                     fontFamily: {
-                        heading: ['Montserrat', 'sans-serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Oxanium', 'Montserrat', 'sans-serif'],
+                        sans: ['Archivo', 'Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Oxanium', 'monospace'],
                     }
                 }
             }
@@ -50,7 +86,7 @@
         }
     </style>
 </head>
-<body class="text-slate-800 font-sans antialiased selection:bg-amber-500 selection:text-white relative min-h-screen">
+<body class="text-zinc-200 font-sans antialiased selection:bg-[#FF002B] selection:text-white relative min-h-screen bg-[#0F0F11]">
 
     <!-- FULL-PAGE FIXED BACKGROUND SLIDESHOW (SCREEN ONLY) -->
     <div class="fixed-bg-slideshow no-print" id="global-bg-slider" aria-hidden="true">
