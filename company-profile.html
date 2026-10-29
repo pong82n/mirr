@@ -6,7 +6,7 @@
     <title>Company Profile | MIRR Construction & Engineering</title>
     <meta name="description" content="Official Corporate Profile of MIRR Construction & Engineering Corp. Neumorphic Architectural Edition.">
     
-    <!-- Google Fonts: Oxanium & Archivo (OCCT / OCBase Design System) -->
+    <!-- Google Fonts: Oxanium & Archivo (Dark Blue Glossy Glass Architecture Theme) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -16,7 +16,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Tailwind CSS with OCCT Personal Use Theme Configuration -->
+    <!-- Tailwind CSS with Dark Blue Glossy Glass Theme Configuration -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -24,46 +24,45 @@
             theme: {
                 extend: {
                     colors: {
-                        occt: {
-                            bg: '#0F0F11',
-                            depth: '#161619',
-                            surface: '#1A1A1F',
-                            card: '#1F1F26',
-                            red: '#FF002B',
-                            'red-light': '#FF3355',
-                            'red-dark': '#D90024',
-                            orange: '#FF6B00',
-                            cyan: '#00D2FF',
-                            green: '#00E676',
+                        glass: {
+                            bg: '#030712',
+                            depth: '#060E26',
+                            surface: 'rgba(16, 34, 78, 0.55)',
+                            card: 'rgba(10, 24, 58, 0.65)',
+                            border: 'rgba(147, 197, 253, 0.18)',
+                            blue: '#2563EB',
+                            'blue-light': '#60A5FA',
+                            cyan: '#38BDF8',
+                            teal: '#06B6D4',
                         },
                         neu: {
-                            base: '#0F0F11',
-                            light: '#1F1F26',
-                            dark: '#161619',
-                            darker: '#0A0A0D',
+                            base: '#030712',
+                            light: 'rgba(255, 255, 255, 0.15)',
+                            dark: 'rgba(4, 10, 28, 0.8)',
+                            darker: '#020617',
                         },
                         amber: {
-                            50: '#FFF1F2',
-                            100: '#FFE4E6',
-                            200: '#FECDD3',
-                            300: '#FDA4AF',
-                            400: '#FB7185',
-                            500: '#FF002B', /* Primary OCCT Red */
-                            600: '#E60026',
-                            700: '#CC0022',
-                            800: '#99001A',
-                            900: '#660011',
+                            50: '#F0F9FF',
+                            100: '#E0F2FE',
+                            200: '#BAE6FD',
+                            300: '#7DD3FC',
+                            400: '#38BDF8',
+                            500: '#00D2FF', /* Vivid Cyan / Glossy Electric Blue */
+                            600: '#2563EB', /* Royal Electric Blue */
+                            700: '#60A5FA', /* Ice Blue */
+                            800: '#93C5FD',
+                            900: '#1D4ED8',
                         },
                         slate: {
-                            50: '#F4F4F5',
-                            100: '#E4E4E7',
-                            200: '#D4D4D8',
-                            300: '#A1A1AA',
-                            400: '#8A8A93',
-                            500: '#A1A1AA',
-                            600: '#D4D4D8',
-                            700: '#E4E4E7',
-                            800: '#F4F4F5',
+                            50: '#FFFFFF',
+                            100: '#F8FAFC',
+                            200: '#F1F5F9',
+                            300: '#E2E8F0',
+                            400: '#94A3B8',
+                            500: '#CBD5E1',
+                            600: '#E2E8F0',
+                            700: '#F1F5F9',
+                            800: '#F8FAFC',
                             900: '#FFFFFF',
                         }
                     },
@@ -86,7 +85,7 @@
         }
     </style>
 </head>
-<body class="text-zinc-200 font-sans antialiased selection:bg-[#FF002B] selection:text-white relative min-h-screen bg-[#0F0F11]">
+<body class="text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-white relative min-h-screen bg-[#030712]">
 
     <!-- FULL-PAGE FIXED BACKGROUND SLIDESHOW (SCREEN ONLY) -->
     <div class="fixed-bg-slideshow no-print" id="global-bg-slider" aria-hidden="true">
