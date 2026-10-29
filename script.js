@@ -88,10 +88,12 @@ function initHeroSlideshow() {
     if (!slides.length) return;
 
     const captions = [
-        '01 / 04 • High-Rise Commercial Hub & Structural Steel Frame',
-        '02 / 04 • Heavy Foundation Works & Reinforced Substructure',
-        '03 / 04 • Multi-Storey Framing & Precision Rebar Engineering',
-        '04 / 04 • Modern Commercial Complex & Turnkey Facade Handover'
+        '01 / 06 • Night Heavy Structural Concrete Pour & Illuminated Scaffolding',
+        '02 / 06 • Tower Crane & Multi-Tier Structural Steel Erection',
+        '03 / 06 • High-Rise Commercial Deck Reinforcement & Concrete Topping',
+        '04 / 06 • Site Engineering Oversight & Rigging Safety Protocol',
+        '05 / 06 • Substructure Foundations & Structural Framing Phase',
+        '06 / 06 • Modern Architectural Finish & Luxury Interior Handover'
     ];
 
     let currentIndex = 0;
@@ -619,21 +621,26 @@ window.closeServiceModal = function() {
  * ------------------------------------------------------------- */
 window.openVideoModal = function() {
     const modal = document.getElementById('video-modal');
-    const iframe = document.getElementById('video-iframe');
-    if (modal && iframe) {
-        iframe.src = "https://www.youtube-nocookie.com/embed/zoxU4ZpndnU?autoplay=1&mute=0";
+    const video = document.getElementById('video-player');
+    if (modal) {
         modal.classList.remove('hidden');
         modal.classList.add('flex');
+        if (video) {
+            video.currentTime = 0;
+            video.play().catch(() => {});
+        }
     }
 };
 
 window.closeVideoModal = function() {
     const modal = document.getElementById('video-modal');
-    const iframe = document.getElementById('video-iframe');
-    if (modal && iframe) {
-        iframe.src = "";
+    const video = document.getElementById('video-player');
+    if (modal) {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
+        if (video) {
+            video.pause();
+        }
     }
 };
 

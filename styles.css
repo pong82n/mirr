@@ -10,7 +10,6 @@
    ========================================================================== */
 
 :root {
-<<<<<<< HEAD
     /* Dark Blue Glass Palette Hierarchy */
     --glass-bg: #030712;
     --glass-depth: #060E26;
@@ -61,37 +60,6 @@
     --shadow-hover: 0 20px 45px rgba(0, 4, 25, 0.7), 0 0 28px rgba(37, 99, 235, 0.35);
     --shadow-inset: inset 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.06);
     --shadow-blue-glow: 0 0 25px rgba(37, 99, 235, 0.6), 0 6px 20px rgba(0, 4, 20, 0.5);
-=======
-    --neu-bg: #1e0242;
-    --neu-bg-subtle: #034796;
-    --neu-surface: #55a6f7;
-    --neu-light: #ededed;
-    --neu-dark: #b8c4d4;
-    --neu-darker: #9ba8ba;
-   
-/* TEXT "HOME" */
-    --neu-amber: #e0e0ee;
-    --neu-amber-light: #2bfb24;
-    --neu-amber-dark: #919491;
-    --neu-amber-glow: rgba(245, 158, 11, 0.35);
-
-    --neu-text: #e4eeff;
-    --neu-text-secondary: #e8eef5;
-    --neu-text-muted: #e1e7f0;
-
-    /* Standard Neumorphic Shadows */
-    --shadow-flat: 8px 8px 18px var(--neu-dark), -8px -8px 18px var(--neu-light);
-    --shadow-flat-sm: 4px 4px 10px var(--neu-dark), -4px -4px 10px var(--neu-light);
-    --shadow-flat-lg: 14px 14px 28px var(--neu-dark), -14px -14px 28px var(--neu-light);
-
-    --shadow-hover: 11px 11px 22px var(--neu-dark), -11px -11px 22px var(--neu-light);
-
-    --shadow-inset: inset 5px 5px 10px var(--neu-dark), inset -5px -5px 10px var(--neu-light);
-    --shadow-inset-sm: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
-    --shadow-inset-lg: inset 8px 8px 16px var(--neu-dark), inset -8px -8px 16px var(--neu-light);
-
-    --shadow-amber: 6px 6px 16px rgba(217, 119, 6, 0.3), -6px -6px 16px var(--neu-light);
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
 }
 
 html {
@@ -186,19 +154,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Recessed Glass Inset Cavity */
 .neu-inset {
-<<<<<<< HEAD
     background: rgba(4, 10, 28, 0.72) !important;
     backdrop-filter: blur(14px) !important;
     -webkit-backdrop-filter: blur(14px) !important;
     box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.08) !important;
     border-radius: 14px !important;
     border: 1px solid rgba(30, 58, 120, 0.45) !important;
-=======
-    background: var(--neu-bg);
-    box-shadow: var(--shadow-inset);
-    border-radius: 20px;
-    border: 1px solid rgba(91, 157, 243, 0.2);
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
 }
 
 .neu-inset-sm {
@@ -244,20 +205,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .neu-btn:active,
 .neu-btn.active {
-<<<<<<< HEAD
     background: rgba(6, 14, 38, 0.9) !important;
     border-color: #38BDF8 !important;
     color: #38BDF8 !important;
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7), 0 0 14px rgba(56, 189, 248, 0.35) !important;
-=======
-    box-shadow: var(--shadow-inset-sm) !important;
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
     transform: translateY(1px);
 }
 
 /* Primary Glossy Electric Blue Liquid Glass Button */
 .neu-btn-primary {
-<<<<<<< HEAD
     background: linear-gradient(180deg, #3B82F6 0%, #1D4ED8 50%, #1E40AF 100%) !important;
     color: #FFFFFF !important;
     box-shadow: 0 8px 25px rgba(37, 99, 235, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.65), inset 0 -2px 4px rgba(0, 0, 0, 0.35) !important;
@@ -269,15 +225,6 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.05em !important;
     text-transform: uppercase !important;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-=======
-    background: linear-gradient(135deg, #d0f0d1, #36c402);
-    color: #0b1120 !important;
-    box-shadow: 6px 6px 16px var(--neu-dark), -6px -6px 16px var(--neu-light);
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    font-weight: 800;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -297,13 +244,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .neu-btn-primary:hover {
-<<<<<<< HEAD
     background: linear-gradient(180deg, #60A5FA 0%, #2563EB 50%, #1D4ED8 100%) !important;
     box-shadow: 0 10px 32px rgba(37, 99, 235, 0.75), 0 0 25px rgba(96, 165, 250, 0.65), inset 0 1px 2px rgba(255, 255, 255, 0.8) !important;
-=======
-    background: linear-gradient(135deg, #22f54c, #c7f0dd);
-    box-shadow: 8px 8px 20px var(--neu-dark), -8px -8px 20px var(--neu-light);
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
     transform: translateY(-2px);
     color: #FFFFFF !important;
 }
@@ -319,7 +261,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glossy Translucent Inputs */
 .neu-input {
-<<<<<<< HEAD
     background: rgba(5, 12, 32, 0.75) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
@@ -330,14 +271,6 @@ h1, h2, h3, h4, h5, h6 {
     color: #FFFFFF !important;
     font-family: 'Archivo', sans-serif !important;
     transition: all 0.2s ease !important;
-=======
-    background: var(--neu-bg) !important;
-    box-shadow: var(--shadow-inset) !important;
-    border: 1px solid rgba(208, 225, 247, 0.3) !important;
-    border-radius: 14px !important;
-    color: var(--neu-text) !important;
-    transition: all 0.2s ease;
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
 }
 
 .neu-input::placeholder {
@@ -407,11 +340,7 @@ input[type="checkbox"].neu-checkbox:checked::after {
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     font-size: 11px;
-<<<<<<< HEAD
     color: #FFFFFF;
-=======
-    color: #7a9cf3;
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
     position: absolute;
     top: 50%;
     left: 50%;
@@ -489,11 +418,7 @@ input[type=range].neu-slider::-moz-range-thumb {
 
 .ba-handle {
     cursor: ew-resize;
-<<<<<<< HEAD
     box-shadow: 0 0 22px rgba(56, 189, 248, 0.7);
-=======
-    box-shadow: 0 0 20px rgba(0, 2, 73, 0.527);
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
 }
 
 .neu-slider-thumb {
@@ -516,45 +441,8 @@ input[type=range].neu-slider::-moz-range-thumb {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-<<<<<<< HEAD
     background: #2563EB;
     box-shadow: 0 0 12px rgba(37, 99, 235, 0.7);
-=======
-    background: #d97706;
-}
-
-/* Subtle architectural grid pattern in neumorphic tone */
-.bg-neu-grid {
-    background-image:
-        radial-gradient(rgba(184, 196, 212, 0.45) 1.5px, transparent 1.5px),
-        radial-gradient(rgba(255, 255, 255, 0.8) 1.5px, transparent 1.5px);
-    background-size: 32px 32px;
-    background-position: 0 0, 16px 16px;
-}
-
-/* Print styling */
-@media print {
-    body {
-        background: white !important;
-        color: rgb(221, 215, 215) !important;
-    }
-
-    header,
-    footer,
-    #video-modal,
-    #service-modal,
-    #portfolio-filters,
-    .ba-slider {
-        display: none !important;
-    }
-
-    .neu-card,
-    .neu-inset,
-    .neu-btn {
-        box-shadow: none !important;
-        border: 1px solid #ccc !important;
-    }
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
 }
 
 /* -------------------------------------------------------------
@@ -597,18 +485,9 @@ input[type=range].neu-slider::-moz-range-thumb {
 .fixed-bg-overlay {
     position: absolute;
     inset: 0;
-<<<<<<< HEAD
     background: radial-gradient(circle at 50% 18%, rgba(18, 44, 105, 0.82) 0%, rgba(6, 16, 44, 0.92) 55%, #030712 100%);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-=======
-    /* Frosted glass architectural tint:
-       Shows construction visuals clearly across the full page while maintaining 
-       exceptional contrast for neumorphic text and extruded cards */
-    background: radial-gradient(circle at 50% 25%, rgba(26, 35, 44, 0.58) 0%, rgba(230, 237, 245, 0.74) 65%, rgba(230, 237, 245, 0.86) 100%);
-    backdrop-filter: blur(1.5px);
-    -webkit-backdrop-filter: blur(1.5px);
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
 }
 
 .fixed-bg-overlay::after {
@@ -616,16 +495,10 @@ input[type=range].neu-slider::-moz-range-thumb {
     position: absolute;
     inset: 0;
     background-image:
-<<<<<<< HEAD
         radial-gradient(rgba(56, 189, 248, 0.16) 1.2px, transparent 1.2px),
         linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
     background-size: 32px 32px, 100% 100%;
     opacity: 0.75;
-=======
-        radial-gradient(rgba(104, 106, 107, 0.308) 1.2px, transparent 1.2px);
-    background-size: 28px 28px;
-    opacity: 0.7;
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
     pointer-events: none;
 }
 
@@ -643,11 +516,7 @@ input[type=range].neu-slider::-moz-range-thumb {
     width: 18px;
     height: 6px;
     border-radius: 9999px;
-<<<<<<< HEAD
     background: rgba(30, 58, 120, 0.6);
-=======
-    background: #09121f;
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
     border: none;
     cursor: pointer;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
@@ -664,7 +533,6 @@ input[type=range].neu-slider::-moz-range-thumb {
 .hero-slide-dot:hover:not(.active) {
     background: rgba(56, 189, 248, 0.4);
 }
-<<<<<<< HEAD
 
 /* -------------------------------------------------------------
  * GLOBAL TEXT UTILITY & CONTRAST OVERRIDES
@@ -731,5 +599,3 @@ input[type=range].neu-slider::-moz-range-thumb {
         color: black !important;
     }
 }
-=======
->>>>>>> 2037c37d7e67a5c4f9bb4df33b843b19c64960c3
