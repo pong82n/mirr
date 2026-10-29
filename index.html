@@ -129,15 +129,18 @@
 <body class="text-slate-800 font-sans antialiased selection:bg-amber-500 selection:text-white relative min-h-screen">
 
 
-    <!-- FULL-PAGE FIXED BACKGROUND SLIDESHOW (ARCHITECTURAL NEUMORPHISM) -->
+    <!-- FULL-PAGE FIXED BACKGROUND SLIDESHOW -->
     <div class="fixed-bg-slideshow" id="global-bg-slider" aria-hidden="true">
-        <div class="fixed-bg-slide active" style="background-image: url('image/bg-crane-steel.jpg');"></div>
-        <div class="fixed-bg-slide active" style="background-image: url('image/bg-engineer-crane.jpg');"></div>
-        <div class="fixed-bg-slide active" style="background-image: url('image/bg-3.jpg');"></div>
-        <div class="fixed-bg-slide active" style="background-image: url('image/bg-4.jpg');"></div>
-        <div class="fixed-bg-slide active" style="background-image: url('image/bg-2.jpg');"></div>
-        <div class="fixed-bg-slide active" style="background-image: url('image/bg-night-site.jpg');"></div>
-        
+        <div class="fixed-bg-slide active" style="background-image: url('images/bg-night-site.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/before-heavy-structural.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-crane-steel.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-1.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-engineer-crane.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-steel-frame.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-2.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-luxury-interior.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-3.jpg');"></div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-4.jpg');"></div>
         <div class="fixed-bg-overlay"></div>
     </div>
 
@@ -405,20 +408,24 @@
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                         <span>Project Showcase:</span>
                     </span>
-                    <span id="hero-slide-caption" class="text-s font-black font-heading text-slate-800">
-                        01 / 04 • High-Rise Commercial Hub & Structural Steel Frame
+                    <span id="hero-slide-caption" class="text-s font-black font-heading text-slate-100">
+                        01 / 10 • Night Heavy Structural Concrete Pour & Illuminated Scaffolding
                     </span>
                 </div>
 
                 <div class="flex items-center gap-3">
                     <!-- Slideshow Indicator Dots -->
-                    <div class="flex items-center gap-2" id="hero-slide-dots">
-                        <button class="hero-slide-dot active" data-slide="0"
-                            title="Slide 1: High-Rise Commercial Hub"></button>
-                        <button class="hero-slide-dot" data-slide="1" title="Slide 2: Heavy Civil Foundation"></button>
-                        <button class="hero-slide-dot" data-slide="2" title="Slide 3: Multi-Storey Framing"></button>
-                        <button class="hero-slide-dot" data-slide="3"
-                            title="Slide 4: Modern Commercial Complex"></button>
+                    <div class="flex items-center gap-1.5" id="hero-slide-dots">
+                        <button class="hero-slide-dot active" data-slide="0" title="Slide 1: Night Structural Concrete Pour"></button>
+                        <button class="hero-slide-dot" data-slide="1" title="Slide 2: Steel Framing & Rebar Slab Grid"></button>
+                        <button class="hero-slide-dot" data-slide="2" title="Slide 3: Tower Crane & Structural Steel"></button>
+                        <button class="hero-slide-dot" data-slide="3" title="Slide 4: High-Rise Deck Concrete Topping"></button>
+                        <button class="hero-slide-dot" data-slide="4" title="Slide 5: Site QA/QC Engineering Oversight"></button>
+                        <button class="hero-slide-dot" data-slide="5" title="Slide 6: Steel Girder Framing & Assembly"></button>
+                        <button class="hero-slide-dot" data-slide="6" title="Slide 7: Foundation Substructure Phase"></button>
+                        <button class="hero-slide-dot" data-slide="7" title="Slide 8: Modern Architectural Finish"></button>
+                        <button class="hero-slide-dot" data-slide="8" title="Slide 9: Modernist Architecture"></button>
+                        <button class="hero-slide-dot" data-slide="9" title="Slide 10: Civil Viaduct Infrastructure"></button>
                     </div>
 
                     <!-- Slide Controls -->
@@ -1631,10 +1638,10 @@
                     photogrammetry, and deep foundation engineering.</p>
                 <div
                     class="aspect-video bg-slate-900 rounded-2xl overflow-hidden relative flex items-center justify-center shadow-inner">
-                    <iframe id="video-iframe" class="w-full h-full" src="" title="Construction Video Showcase"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                    <video id="video-player" class="w-full h-full object-cover rounded-2xl" controls preload="metadata" poster="images/bg-night-site.jpg">
+                        <source src="Media/showcase-reel.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
                 </div>
             </div>
         </div>

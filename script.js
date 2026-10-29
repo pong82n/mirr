@@ -88,12 +88,16 @@ function initHeroSlideshow() {
     if (!slides.length) return;
 
     const captions = [
-        '01 / 06 • Night Heavy Structural Concrete Pour & Illuminated Scaffolding',
-        '02 / 06 • Tower Crane & Multi-Tier Structural Steel Erection',
-        '03 / 06 • High-Rise Commercial Deck Reinforcement & Concrete Topping',
-        '04 / 06 • Site Engineering Oversight & Rigging Safety Protocol',
-        '05 / 06 • Substructure Foundations & Structural Framing Phase',
-        '06 / 06 • Modern Architectural Finish & Luxury Interior Handover'
+        '01 / 10 • Night Heavy Structural Concrete Pour & Illuminated Scaffolding',
+        '02 / 10 • Structural Steel Framing & Reinforced Slab Rebar Grid',
+        '03 / 10 • Tower Crane & Multi-Tier Structural Steel Erection',
+        '04 / 10 • High-Rise Commercial Deck Reinforcement & Concrete Topping',
+        '05 / 10 • Site Engineering Oversight & Rigging Safety Protocol',
+        '06 / 10 • Pre-Engineered Steel Girder Framing & Assembly',
+        '07 / 10 • Substructure Foundations & Structural Framing Phase',
+        '08 / 10 • Modern Architectural Finish & Luxury Interior Handover',
+        '09 / 10 • The Horizon Waterfront Cantilevered Structural Architecture',
+        '10 / 10 • Heavy Civil Infrastructure & Multimodal Viaduct'
     ];
 
     let currentIndex = 0;
