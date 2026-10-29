@@ -118,6 +118,43 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* -------------------------------------------------------------
+ * POLISHED METALLIC MAROON 3D TYPOGRAPHY (CHROME / RUBY HORIZON)
+ * ------------------------------------------------------------- */
+.font-metallic-maroon {
+    background: linear-gradient(
+        180deg,
+        #FFD8E0 0%,     /* Bright specular rim chrome shine */
+        #F43F5E 16%,    /* Polished crimson reflection band */
+        #9B0F2E 42%,    /* Rich upper metallic maroon */
+        #520416 48%,    /* Dark horizon shadow crease */
+        #2A0009 50%,    /* Core horizon cutoff line */
+        #820725 54%,    /* Reflective lower specular bounce */
+        #B91C3F 76%,    /* Brushed ruby-maroon body */
+        #FFA2B6 91%,    /* Bottom edge specular highlight */
+        #6B0018 100%    /* Beveled dark maroon undertone */
+    ) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+    display: inline-block;
+    position: relative;
+    letter-spacing: 0.03em;
+    filter: drop-shadow(0 -1px 0.5px rgba(255, 210, 225, 0.85))
+            drop-shadow(0 2px 0 #28000A)
+            drop-shadow(0 3px 5px rgba(0, 0, 0, 0.95))
+            drop-shadow(0 0 16px rgba(190, 24, 60, 0.65)) !important;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.font-metallic-maroon:hover {
+    filter: drop-shadow(0 -1px 1px rgba(255, 225, 235, 0.95))
+            drop-shadow(0 2px 0 #3A000F)
+            drop-shadow(0 4px 8px rgba(0, 0, 0, 0.95))
+            drop-shadow(0 0 24px rgba(225, 29, 72, 0.85)) !important;
+}
+
+/* -------------------------------------------------------------
  * GLOSSY GLASS CARDS & SURFACES (GLASSMORPHISM)
  * ------------------------------------------------------------- */
 
@@ -633,5 +670,12 @@ input[type=range].neu-slider::-moz-range-thumb {
         border: 1px solid #ccc !important;
         background: white !important;
         color: black !important;
+    }
+
+    .font-metallic-maroon {
+        background: none !important;
+        -webkit-text-fill-color: #800020 !important;
+        color: #800020 !important;
+        filter: none !important;
     }
 }
