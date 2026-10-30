@@ -1354,24 +1354,43 @@
                         <div class="flex items-center gap-2">
                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
                             <span id="promo-clip-counter" class="font-heading font-bold text-slate-200 uppercase tracking-wider text-[11px]">
-                                Clip 01 of 04 • Master Showcase
+                                Clip 01 of 04 • Civil & Concrete Substructure
                             </span>
                         </div>
-                        <div class="flex items-center gap-2 text-[11px] text-slate-400">
-                            <span class="neu-pill px-2 py-0.5 text-slate-300 font-mono text-[10px]"><i class="fa-solid fa-expand text-amber-400 mr-1"></i> 1024×576 HD (16:9)</span>
-                            <span class="hidden sm:inline-block neu-pill px-2 py-0.5 text-slate-300 font-mono text-[10px]"><i class="fa-solid fa-shield-halved text-amber-400 mr-1"></i> ISO 9001:2026</span>
+                        <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+                            <!-- Motivational Soundtrack Indicator & Controls -->
+                            <div class="flex items-center gap-2 px-2.5 py-1 neu-inset rounded-full text-[11px]">
+                                <div id="promo-equalizer" class="flex items-end gap-0.5 h-3 opacity-40">
+                                    <span class="w-0.5 h-2 bg-amber-400 rounded-full"></span>
+                                    <span class="w-0.5 h-3 bg-cyan-400 rounded-full"></span>
+                                    <span class="w-0.5 h-1.5 bg-blue-400 rounded-full"></span>
+                                </div>
+                                <span class="text-slate-300 font-semibold hidden md:inline">Motivational BGM:</span>
+                                <span class="text-amber-400 font-bold truncate max-w-[120px] sm:max-w-[180px]">Inspiring Horizon</span>
+                            </div>
+
+                            <button type="button" id="promo-music-toggle" onclick="togglePromoMusic()" class="neu-btn px-2.5 py-1 text-[11px] text-amber-400 font-bold flex items-center gap-1.5" title="Toggle Motivational Background Music">
+                                <i class="fa-solid fa-volume-high" id="promo-music-icon"></i>
+                                <span id="promo-music-status" class="hidden xs:inline">Music: Ready</span>
+                            </button>
+
+                            <span class="neu-pill px-2 py-0.5 text-slate-300 font-mono text-[10px] hidden lg:inline-block"><i class="fa-solid fa-expand text-amber-400 mr-1"></i> 1024×576 HD</span>
                         </div>
                     </div>
 
-                    <!-- Main Video Stage (Strictly Contained Aspect-Video Ratio) -->
+                    <!-- Hidden Background Music Track (Replaces Raw Video Audio) -->
+                    <audio id="promo-bg-music" src="Media/motivational-bgm.wav" preload="auto" loop></audio>
+
+                    <!-- Main Video Stage (Strictly Contained Aspect-Video Ratio, Original Sound Removed/Muted) -->
                     <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-inner border border-white/10 group">
                         <video id="promo-video-player"
                             class="w-full h-full object-contain bg-black"
                             controls
+                            muted
                             playsinline
                             preload="metadata"
                             poster="images/bg-night-site.jpg">
-                            <source id="promo-video-source" src="Media/showcase-reel.mp4" type="video/mp4">
+                            <source id="promo-video-source" src="Media/2ab353b2-8712-4dff-b570-2ae5e4718c45.mp4" type="video/mp4">
                             Your browser does not support HTML5 video streaming.
                         </video>
                     </div>
@@ -1381,15 +1400,15 @@
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 pb-3 border-b border-white/10">
                             <div>
                                 <span id="promo-clip-badge" class="neu-pill px-2.5 py-0.5 text-[10px] text-amber-400 font-extrabold uppercase tracking-wider inline-block mb-1">
-                                    Master Showcase Reel
+                                    Civil & Concrete Substructure
                                 </span>
                                 <h3 id="promo-clip-title" class="text-base sm:text-lg font-black font-heading text-white">
-                                    MIRR Master Engineering Showcase Reel
+                                    Reinforced Concrete Slabs & Civil Substructure
                                 </h3>
                             </div>
                             <div class="flex items-center gap-2 flex-shrink-0">
                                 <span id="promo-clip-duration" class="neu-pill px-2.5 py-1 text-slate-300 text-xs font-mono font-bold">
-                                    <i class="fa-regular fa-clock text-amber-400 mr-1"></i> 0:42
+                                    <i class="fa-regular fa-clock text-amber-400 mr-1"></i> 0:07
                                 </span>
                             </div>
                         </div>
@@ -1400,10 +1419,10 @@
                                 <i class="fa-solid fa-quote-left"></i> Suggested Architectural Caption
                             </div>
                             <blockquote id="promo-clip-caption" class="text-xs sm:text-sm text-slate-100 font-bold leading-relaxed pl-3 border-l-2 border-amber-400">
-                                "End-to-End Turnkey Civil & Commercial Execution — From Geotechnical Groundbreak to High-Rise Commissioning."
+                                "Monolithic Post-Tensioned Slabs, Rebar Matrices & Embedded MEP Reticulation."
                             </blockquote>
                             <p id="promo-clip-desc" class="text-xs text-slate-300 leading-relaxed mt-2.5">
-                                A comprehensive look at MIRR Construction's integrated capabilities: precision structural core casting, autonomous tower crane logistics, high-tolerance MEP reticulation, and certified OSHA VPP safety protocols across 1.5M+ safe man-hours.
+                                Complex elevated deck engineering featuring dense rebar grids, precision-spaced post-tensioning tendons, integrated MEP electrical conduits, and laser-screeded monolithic pours achieving FF/FL superflat tolerances.
                             </p>
                         </div>
 
@@ -1419,16 +1438,16 @@
                             <span class="font-heading font-extrabold text-slate-200 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
                                 <i class="fa-solid fa-list-ol text-amber-400"></i> Select Clip / Chapter
                             </span>
-                            <span class="text-[10px] text-slate-400 font-medium">Click any clip to play • Continuous playback enabled</span>
+                            <span class="text-[10px] text-slate-400 font-medium">Click any clip to play • Continuous playback with motivational soundtrack</span>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                             <button type="button" onclick="switchPromoClip(0)" class="promo-clip-btn active neu-btn p-3 text-left rounded-xl transition-all border border-amber-400/50 flex flex-col justify-between">
                                 <div class="flex items-center justify-between gap-1 mb-1.5">
                                     <span class="text-[10px] font-mono text-amber-400 font-bold">CLIP 01</span>
-                                    <span class="text-[10px] text-slate-400 font-mono">0:42</span>
+                                    <span class="text-[10px] text-slate-400 font-mono">0:07</span>
                                 </div>
-                                <h4 class="text-xs font-bold text-white leading-snug">Master Showcase</h4>
-                                <p class="text-[10px] text-slate-400 mt-1 line-clamp-1">Full Project Lifecycle</p>
+                                <h4 class="text-xs font-bold text-white leading-snug">Concrete Slabs</h4>
+                                <p class="text-[10px] text-slate-400 mt-1 line-clamp-1">Post-Tensioned & Conduits</p>
                             </button>
 
                             <button type="button" onclick="switchPromoClip(1)" class="promo-clip-btn neu-btn p-3 text-left rounded-xl transition-all flex flex-col justify-between">
@@ -1443,10 +1462,10 @@
                             <button type="button" onclick="switchPromoClip(2)" class="promo-clip-btn neu-btn p-3 text-left rounded-xl transition-all flex flex-col justify-between">
                                 <div class="flex items-center justify-between gap-1 mb-1.5">
                                     <span class="text-[10px] font-mono text-slate-400 font-bold">CLIP 03</span>
-                                    <span class="text-[10px] text-slate-400 font-mono">0:07</span>
+                                    <span class="text-[10px] text-slate-400 font-mono">0:42</span>
                                 </div>
-                                <h4 class="text-xs font-bold text-slate-200 leading-snug">Concrete Slabs</h4>
-                                <p class="text-[10px] text-slate-400 mt-1 line-clamp-1">Post-Tensioned & Conduits</p>
+                                <h4 class="text-xs font-bold text-slate-200 leading-snug">Master Showcase</h4>
+                                <p class="text-[10px] text-slate-400 mt-1 line-clamp-1">Full Project Lifecycle</p>
                             </button>
 
                             <button type="button" onclick="switchPromoClip(3)" class="promo-clip-btn neu-btn p-3 text-left rounded-xl transition-all flex flex-col justify-between">
@@ -1787,7 +1806,7 @@
                 <h3 class="text-xl font-black font-heading text-white mb-1">Project Showcase & Construction Technology Reel</h3>
                 <p class="text-xs text-slate-400 mb-4">A behind-the-scenes look at our crane operations, drone photogrammetry, and deep foundation engineering.</p>
                 <div class="aspect-video bg-black rounded-xl overflow-hidden relative flex items-center justify-center shadow-inner border border-white/10">
-                    <video id="video-player" class="w-full h-full object-contain bg-black rounded-xl" controls preload="metadata" poster="images/bg-night-site.jpg">
+                    <video id="video-player" class="w-full h-full object-contain bg-black rounded-xl" controls muted preload="metadata" poster="images/bg-night-site.jpg">
                         <source src="Media/showcase-reel.mp4" type="video/mp4">
                         Your browser does not support HTML5 video.
                     </video>

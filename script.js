@@ -746,17 +746,17 @@ window.closeVideoModal = function() {
 const promoClipsData = [
     {
         id: 0,
-        title: "MIRR Master Engineering Showcase Reel",
-        badge: "Master Showcase Reel",
-        duration: "0:42",
-        file: "Media/showcase-reel.mp4",
-        caption: "End-to-End Turnkey Civil & Commercial Execution — From Geotechnical Groundbreak to High-Rise Commissioning.",
-        description: "A comprehensive look at MIRR Construction's integrated capabilities: precision structural core casting, autonomous tower crane logistics, high-tolerance MEP reticulation, and certified OSHA VPP safety protocols across 1.5M+ safe man-hours.",
+        title: "Reinforced Concrete Slabs & Civil Substructure",
+        badge: "Civil & Concrete",
+        duration: "0:07",
+        file: "Media/2ab353b2-8712-4dff-b570-2ae5e4718c45.mp4",
+        caption: "Monolithic Post-Tensioned Slabs, Rebar Matrices & Embedded MEP Reticulation.",
+        description: "Complex elevated deck engineering featuring dense rebar grids, precision-spaced post-tensioning tendons, integrated MEP electrical conduits, and laser-screeded monolithic pours achieving FF/FL superflat tolerances.",
         specs: [
-            { label: "Scope", value: "Turnkey Commercial & Civil" },
-            { label: "Safety Index", value: "1.5M+ Zero-Incident Hours" },
-            { label: "Standards", value: "ISO 9001:2026 & OSHA VPP" },
-            { label: "Execution", value: "100% On-Schedule Milestone Rate" }
+            { label: "System", value: "Post-Tensioned Monolithic Slab" },
+            { label: "Integration", value: "Embedded Conduit Reticulation" },
+            { label: "Tolerance", value: "FF/FL Superflat Specification" },
+            { label: "Testing", value: "Compressive Strength >40 MPa" }
         ]
     },
     {
@@ -776,17 +776,17 @@ const promoClipsData = [
     },
     {
         id: 2,
-        title: "Reinforced Concrete Slabs & Civil Substructure",
-        badge: "Civil & Concrete",
-        duration: "0:07",
-        file: "Media/2ab353b2-8712-4dff-b570-2ae5e4718c45.mp4",
-        caption: "Monolithic Post-Tensioned Slabs, Rebar Matrices & Embedded MEP Reticulation.",
-        description: "Complex elevated deck engineering featuring dense rebar grids, precision-spaced post-tensioning tendons, integrated MEP electrical conduits, and laser-screeded monolithic pours achieving FF/FL superflat tolerances.",
+        title: "MIRR Master Engineering Showcase Reel",
+        badge: "Master Showcase Reel",
+        duration: "0:42",
+        file: "Media/showcase-reel.mp4",
+        caption: "End-to-End Turnkey Civil & Commercial Execution — From Geotechnical Groundbreak to High-Rise Commissioning.",
+        description: "A comprehensive look at MIRR Construction's integrated capabilities: precision structural core casting, autonomous tower crane logistics, high-tolerance MEP reticulation, and certified OSHA VPP safety protocols across 1.5M+ safe man-hours.",
         specs: [
-            { label: "System", value: "Post-Tensioned Monolithic Slab" },
-            { label: "Integration", value: "Embedded Conduit Reticulation" },
-            { label: "Tolerance", value: "FF/FL Superflat Specification" },
-            { label: "Testing", value: "Compressive Strength >40 MPa" }
+            { label: "Scope", value: "Turnkey Commercial & Civil" },
+            { label: "Safety Index", value: "1.5M+ Zero-Incident Hours" },
+            { label: "Standards", value: "ISO 9001:2026 & OSHA VPP" },
+            { label: "Execution", value: "100% On-Schedule Milestone Rate" }
         ]
     },
     {
@@ -807,19 +807,166 @@ const promoClipsData = [
 ];
 
 let currentPromoClipIndex = 0;
+let promoBgmUserMuted = false;
+let webAudioContext = null;
+let webAudioOscillators = [];
 
 function initPromoVideoPresentation() {
     const video = document.getElementById('promo-video-player');
+    const bgMusic = document.getElementById('promo-bg-music');
     if (!video) return;
 
-    // Render initial clip and specs
+    // Permanently remove original sound of all videos
+    video.muted = true;
+    if (bgMusic) {
+        bgMusic.volume = 0.75;
+    }
+
+    // Render initial swapped clip 1 (Concrete Slabs)
     renderPromoClip(0, false);
+
+    // Synchronize motivational background music with video playback
+    video.addEventListener('play', () => {
+        video.muted = true; // Ensure original audio remains removed
+        if (!promoBgmUserMuted) {
+            playMotivationalBgm();
+        }
+    });
+
+    video.addEventListener('pause', () => {
+        pauseMotivationalBgm();
+    });
 
     // Auto-advance sequentially to next clip when current clip ends
     video.addEventListener('ended', () => {
         const nextIndex = (currentPromoClipIndex + 1) % promoClipsData.length;
         window.switchPromoClip(nextIndex, true);
     });
+}
+
+function playMotivationalBgm() {
+    const bgMusic = document.getElementById('promo-bg-music');
+    if (bgMusic) {
+        bgMusic.play().then(() => {
+            setBgmPlayingUI(true);
+        }).catch(() => {
+            // Fallback to Web Audio procedural synthesis if file playback is blocked
+            startProceduralMotivationalSynth();
+            setBgmPlayingUI(true);
+        });
+    } else {
+        startProceduralMotivationalSynth();
+        setBgmPlayingUI(true);
+    }
+}
+
+function pauseMotivationalBgm() {
+    const bgMusic = document.getElementById('promo-bg-music');
+    if (bgMusic) {
+        bgMusic.pause();
+    }
+    stopProceduralMotivationalSynth();
+    setBgmPlayingUI(false);
+}
+
+function setBgmPlayingUI(isPlaying) {
+    const eq = document.getElementById('promo-equalizer');
+    const status = document.getElementById('promo-music-status');
+    const icon = document.getElementById('promo-music-icon');
+    if (eq) {
+        if (isPlaying) {
+            eq.classList.remove('opacity-40');
+            eq.querySelectorAll('span').forEach(b => b.classList.add('animate-pulse'));
+        } else {
+            eq.classList.add('opacity-40');
+            eq.querySelectorAll('span').forEach(b => b.classList.remove('animate-pulse'));
+        }
+    }
+    if (status && !promoBgmUserMuted) {
+        status.innerText = isPlaying ? 'Music: Playing' : 'Music: Ready';
+    }
+}
+
+window.togglePromoMusic = function() {
+    const bgMusic = document.getElementById('promo-bg-music');
+    const video = document.getElementById('promo-video-player');
+    const status = document.getElementById('promo-music-status');
+    const icon = document.getElementById('promo-music-icon');
+    const btn = document.getElementById('promo-music-toggle');
+
+    promoBgmUserMuted = !promoBgmUserMuted;
+
+    if (promoBgmUserMuted) {
+        pauseMotivationalBgm();
+        if (status) status.innerText = 'Music: OFF';
+        if (icon) icon.className = 'fa-solid fa-volume-xmark text-slate-400';
+        if (btn) btn.classList.add('opacity-60');
+    } else {
+        if (status) status.innerText = 'Music: ON';
+        if (icon) icon.className = 'fa-solid fa-volume-high text-amber-400';
+        if (btn) btn.classList.remove('opacity-60');
+        if (video && !video.paused) {
+            playMotivationalBgm();
+        }
+    }
+};
+
+window.setPromoMusicVolume = function(vol) {
+    const bgMusic = document.getElementById('promo-bg-music');
+    if (bgMusic) {
+        bgMusic.volume = Math.max(0, Math.min(1, parseFloat(vol)));
+    }
+};
+
+/* Procedural Web Audio API Motivational Pad Synthesizer (Zero-Network Built-in Fallback) */
+function startProceduralMotivationalSynth() {
+    try {
+        if (!webAudioContext) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+            webAudioContext = new AudioCtx();
+        }
+        if (webAudioContext.state === 'suspended') {
+            webAudioContext.resume();
+        }
+        if (webAudioOscillators.length > 0) return;
+
+        // D Major Inspirational Chord: D3 (146.8Hz), F#3 (185.0Hz), A3 (220.0Hz), D4 (293.7Hz)
+        const freqs = [146.83, 185.00, 220.00, 293.66];
+        const masterGain = webAudioContext.createGain();
+        masterGain.gain.setValueAtTime(0.001, webAudioContext.currentTime);
+        masterGain.gain.exponentialRampToValueAtTime(0.18, webAudioContext.currentTime + 1.2);
+        masterGain.connect(webAudioContext.destination);
+
+        freqs.forEach(f => {
+            const osc = webAudioContext.createOscillator();
+            const gain = webAudioContext.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(f, webAudioContext.currentTime);
+
+            gain.gain.setValueAtTime(0.25, webAudioContext.currentTime);
+            osc.connect(gain);
+            gain.connect(masterGain);
+            osc.start();
+            webAudioOscillators.push({ osc, masterGain });
+        });
+    } catch (e) {
+        // Silent graceful fallback
+    }
+}
+
+function stopProceduralMotivationalSynth() {
+    try {
+        if (webAudioOscillators.length > 0 && webAudioContext) {
+            webAudioOscillators.forEach(({ osc, masterGain }) => {
+                try {
+                    masterGain.gain.exponentialRampToValueAtTime(0.0001, webAudioContext.currentTime + 0.5);
+                    setTimeout(() => osc.stop(), 500);
+                } catch (err) {}
+            });
+            webAudioOscillators = [];
+        }
+    } catch (e) {}
 }
 
 window.switchPromoClip = function(index, autoPlay = true) {
@@ -879,6 +1026,7 @@ function renderPromoClip(index, autoPlay) {
     });
 
     if (video && source) {
+        video.muted = true; // Guarantee original video audio is completely silenced
         if (source.getAttribute('src') !== clip.file) {
             source.setAttribute('src', clip.file);
             video.load();
