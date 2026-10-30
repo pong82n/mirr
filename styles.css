@@ -135,6 +135,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* -------------------------------------------------------------
+ * HERO CATCHPHRASE SUBTITLE - CLEAN SHADOW-FREE ARCHITECTURAL ACCENT
+ * ------------------------------------------------------------- */
+.catchphrase-landmark {
+    color: #38BDF8 !important;
+    text-shadow: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    letter-spacing: 0.02em;
+    font-weight: 800;
+}
+
+/* -------------------------------------------------------------
  * POLISHED METALLIC MAROON 3D TYPOGRAPHY (CHROME / RUBY HORIZON)
  * ------------------------------------------------------------- */
 .font-metallic-maroon {
