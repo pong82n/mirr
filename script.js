@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
+    initHeaderDateTime();
     initHeroSlideshow();
     initCounters();
     initEstimator();
@@ -86,6 +87,35 @@ function updateActiveNavSection() {
             link.classList.add('text-slate-700');
         }
     });
+}
+
+/* -------------------------------------------------------------
+ * 1.2. LIVE DATE & TIME IN HEADER UTILITY ROW
+ * ------------------------------------------------------------- */
+function initHeaderDateTime() {
+    const dateElements = document.querySelectorAll('#header-live-date');
+    const timeElements = document.querySelectorAll('#header-live-time');
+    if (!dateElements.length && !timeElements.length) return;
+
+    function refreshClock() {
+        const now = new Date();
+        const dateOptions = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+
+        const formattedDate = now.toLocaleDateString('en-US', dateOptions);
+        const formattedTime = now.toLocaleTimeString('en-US', timeOptions);
+
+        dateElements.forEach(el => {
+            el.innerText = formattedDate;
+        });
+
+        timeElements.forEach(el => {
+            el.innerText = `Mon - Sat: 7AM - 6PM • ${formattedTime}`;
+        });
+    }
+
+    refreshClock();
+    setInterval(refreshClock, 1000);
 }
 
 /* -------------------------------------------------------------
@@ -323,9 +353,9 @@ function initCounters() {
  * 3. TACTILE NEUMORPHIC COST ESTIMATOR
  * ------------------------------------------------------------- */
 let estimatorState = {
-    baseRate: 12000, // PHP ₱ per sq ft
+    baseRate: 25000, // PHP ₱ per sq m
     typeName: 'Commercial Office',
-    area: 15000,
+    area: 1500, // in sq.m
     multiplier: 1.25,
     addons: 4200000 // LEED checked initially (₱4.2M)
 };
@@ -356,12 +386,12 @@ function initEstimator() {
         });
     });
 
-    // Area Range Slider
+    // Area Range Slider (in Square Meters)
     if (areaSlider && areaDisplay) {
         areaSlider.addEventListener('input', (e) => {
-            const sqft = parseInt(e.target.value);
-            estimatorState.area = sqft;
-            areaDisplay.innerText = Number(sqft).toLocaleString() + ' sq ft';
+            const sqm = parseInt(e.target.value);
+            estimatorState.area = sqm;
+            areaDisplay.innerText = Number(sqm).toLocaleString() + ' sq.m';
             recalculateEstimate();
         });
     }
@@ -413,7 +443,7 @@ function recalculateEstimate() {
     const finishes = Math.round(total * 0.20);
     const softCosts = Math.round(total * 0.10);
 
-    let monthsMin = Math.max(6, Math.round(Math.sqrt(estimatorState.area / 100)));
+    let monthsMin = Math.max(6, Math.round(Math.sqrt(estimatorState.area / 10)));
     let monthsMax = Math.round(monthsMin * 1.25);
     if (estimatorState.multiplier > 1.4) {
         monthsMin += 2;
@@ -440,7 +470,7 @@ window.transferEstimateToQuote = function() {
     const totalPriceDisplay = document.getElementById('total-price-display');
 
     if (messageField && totalPriceDisplay) {
-        messageField.value = `[Generated Estimate: ${estimatorState.typeName} | ${estimatorState.area.toLocaleString()} sq.ft | Estimated Valuation: ${totalPriceDisplay.innerText}]\n\nWe require an engineering consultation, soil test coordination, and formal schedule of values for this project.`;
+        messageField.value = `[Generated Estimate: ${estimatorState.typeName} | ${estimatorState.area.toLocaleString()} sq.m | Estimated Valuation: ${totalPriceDisplay.innerText}]\n\nWe require an engineering consultation, soil test coordination, and formal schedule of values for this project.`;
     }
 
     const contactSection = document.getElementById('contact');
@@ -570,7 +600,7 @@ const serviceData = {
             "Smart BMS with automated chilled water systems and dual-feed redundancy.",
             "Complete tenant-fitout turnkey capability for Fortune 500 tenants."
         ],
-        stats: "Over 8.2M sq.ft of Grade-A commercial space delivered."
+        stats: "Over 760,000 sq.m of Grade-A commercial space delivered."
     },
     industrial: {
         title: "Industrial Plants & Robotics Logistics Hubs",

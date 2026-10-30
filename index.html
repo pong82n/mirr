@@ -140,34 +140,47 @@
     </div>
 
     <!-- TOP ANNOUNCEMENT / UTILITY BAR (NEUMORPHIC) -->
-    <div class="py-2.5 px-4 sm:px-8 border-b border-white/50 bg-neu-base text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-            <div class="flex items-center gap-4 flex-wrap justify-center md:justify-start">
-                <span class="neu-pill px-3 py-1 inline-flex items-center gap-2 text-amber-500 font-bold text-[11px]">
-                    <i class="fa-solid fa-shield-halved text-amber-500"></i> ISO 9001:2023 & OSHA VPP Certified
+    <div class="py-2.5 px-4 sm:px-8 border-b border-white/50 bg-neu-base text-xs text-slate-300">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-3 sm:gap-4 flex-wrap justify-center lg:justify-start">
+                <!-- 1. ISO Tab -->
+                <span class="neu-pill px-3 py-1 inline-flex items-center gap-2 text-amber-500 font-bold text-[11px] flex-shrink-0">
+                    <i class="fa-solid fa-shield-halved text-amber-500"></i> ISO 9001:2015 & OSHA VPP Certified
                 </span>
-                <span class="hidden sm:inline text-slate-400">•</span>
-                <span class="flex items-center gap-1.5 font-medium">
-                    <i class="fa-solid fa-location-dot text-amber-500"></i> HQ: 101 Padilla St., Brgy. Inarawan,
-                    Antipolo City
+                <span class="hidden sm:inline text-slate-500">•</span>
+
+                <!-- 2. Office Address -->
+                <span class="flex items-center gap-1.5 font-medium text-slate-300">
+                    <i class="fa-solid fa-location-dot text-amber-500"></i> 101 Padilla St., Brgy. Inarawan, Antipolo City
                 </span>
-                <span class="hidden sm:inline text-slate-400">•</span>
-                <span class="flex items-center gap-1.5 font-medium">
-                    <i class="fa-solid fa-clock text-amber-500"></i> Mon - Sat: 07:00 AM - 06:00 PM
+                <span class="hidden sm:inline text-slate-500">•</span>
+
+                <!-- 3. Time and Date -->
+                <span class="flex items-center gap-1.5 font-medium text-slate-300">
+                    <i class="fa-solid fa-clock text-amber-500"></i>
+                    <span id="header-live-time">Mon - Sat: 07:00 AM - 06:00 PM</span>
+                </span>
+                <span class="hidden md:inline text-slate-500">•</span>
+                <span class="flex items-center gap-1.5 font-medium text-slate-300">
+                    <i class="fa-solid fa-calendar-days text-amber-500"></i>
+                    <span id="header-live-date">Thursday, Oct 29, 2026</span>
                 </span>
             </div>
-            <div class="flex items-center gap-3">
-                <a href="tel:+63 9369580308"
-                    class="neu-btn px-3 py-1 font-bold text-slate-700 hover:text-amber-600 transition-colors flex items-center gap-1.5">
+
+            <!-- 4. Mobile Number & Social Links -->
+            <div class="flex items-center gap-3 flex-shrink-0">
+                <a href="tel:+639369580308"
+                    class="neu-btn px-3 py-1 font-bold text-slate-200 hover:text-amber-400 transition-colors flex items-center gap-1.5"
+                    title="Call Executive Hotline">
                     <i class="fa-solid fa-phone text-amber-500"></i> +63 936-958-0308
                 </a>
                 <div class="flex items-center gap-2">
                     <a href="https://github.com/pong82n/mirr" target="_blank" title="GitHub Project"
-                        class="neu-btn w-7 h-7 flex items-center justify-center text-slate-700 hover:text-amber-600">
+                        class="neu-btn w-7 h-7 flex items-center justify-center text-slate-300 hover:text-amber-400">
                         <i class="fa-brands fa-github text-xs"></i>
                     </a>
                     <a href="#"
-                        class="neu-btn w-7 h-7 flex items-center justify-center text-slate-700 hover:text-amber-600">
+                        class="neu-btn w-7 h-7 flex items-center justify-center text-slate-300 hover:text-amber-400">
                         <i class="fa-brands fa-linkedin-in text-xs"></i>
                     </a>
                 </div>
@@ -690,62 +703,62 @@
                                 1. Select Construction Type
                             </label>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="type-selector">
-                                <button type="button" data-rate="12000"
+                                <button type="button" data-rate="25000"
                                     class="estimator-type-btn neu-btn active p-3.5 text-left text-xs transition-all flex flex-col gap-1">
                                     <i class="fa-solid fa-city text-amber-600 text-lg"></i>
                                     <span class="font-bold">Commercial Office</span>
-                                    <span class="text-[10px] text-slate-500 font-normal">~₱12,000 / sq.ft</span>
+                                    <span class="text-[10px] text-slate-500 font-normal">~₱25,000 / sq.m</span>
                                 </button>
-                                <button type="button" data-rate="16000"
+                                <button type="button" data-rate="35000"
                                     class="estimator-type-btn neu-btn p-3.5 text-left text-xs transition-all flex flex-col gap-1">
                                     <i class="fa-solid fa-house-chimney text-slate-500 text-lg"></i>
                                     <span class="font-bold">Luxury Residential</span>
-                                    <span class="text-[10px] text-slate-500 font-normal">~₱16,000 / sq.ft</span>
+                                    <span class="text-[10px] text-slate-500 font-normal">~₱35,000 / sq.m</span>
                                 </button>
-                                <button type="button" data-rate="8000"
+                                <button type="button" data-rate="18000"
                                     class="estimator-type-btn neu-btn p-3.5 text-left text-xs transition-all flex flex-col gap-1">
                                     <i class="fa-solid fa-industry text-slate-500 text-lg"></i>
                                     <span class="font-bold">Industrial Hub</span>
-                                    <span class="text-[10px] text-slate-500 font-normal">~₱8,000 / sq.ft</span>
+                                    <span class="text-[10px] text-slate-500 font-normal">~₱18,000 / sq.m</span>
                                 </button>
-                                <button type="button" data-rate="9500"
+                                <button type="button" data-rate="20000"
                                     class="estimator-type-btn neu-btn p-3.5 text-left text-xs transition-all flex flex-col gap-1">
                                     <i class="fa-solid fa-screwdriver-wrench text-slate-500 text-lg"></i>
                                     <span class="font-bold">Full Renovation</span>
-                                    <span class="text-[10px] text-slate-500 font-normal">~₱9,500 / sq.ft</span>
+                                    <span class="text-[10px] text-slate-500 font-normal">~₱20,000 / sq.m</span>
                                 </button>
-                                <button type="button" data-rate="11000"
+                                <button type="button" data-rate="22000"
                                     class="estimator-type-btn neu-btn p-3.5 text-left text-xs transition-all flex flex-col gap-1">
                                     <i class="fa-solid fa-road text-slate-500 text-lg"></i>
                                     <span class="font-bold">Civil Works</span>
-                                    <span class="text-[10px] text-slate-500 font-normal">~₱11,000 / sq.ft</span>
+                                    <span class="text-[10px] text-slate-500 font-normal">~₱22,000 / sq.m</span>
                                 </button>
-                                <button type="button" data-rate="18500"
+                                <button type="button" data-rate="38000"
                                     class="estimator-type-btn neu-btn p-3.5 text-left text-xs transition-all flex flex-col gap-1">
                                     <i class="fa-solid fa-hospital text-slate-500 text-lg"></i>
                                     <span class="font-bold">Healthcare Lab</span>
-                                    <span class="text-[10px] text-slate-500 font-normal">~₱18,500 / sq.ft</span>
+                                    <span class="text-[10px] text-slate-500 font-normal">~₱38,000 / sq.m</span>
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Step 2: Square Footage Slider -->
+                        <!-- Step 2: Square Meters Slider -->
                         <div>
                             <div class="flex justify-between items-center mb-3">
                                 <label class="text-xs font-heading font-black uppercase tracking-wider text-slate-300">
-                                    2. Total Area (Square Feet)
+                                    2. Total Area (Square Meters)
                                 </label>
                                 <span class="neu-pill px-3 py-1 text-sm font-black text-amber-300 font-heading"
                                     id="area-display">
-                                    15,000 sq ft
+                                    1,500 sq.m
                                 </span>
                             </div>
-                            <input type="range" id="area-slider" min="1000" max="100000" step="500" value="15000"
+                            <input type="range" id="area-slider" min="100" max="10000" step="50" value="1500"
                                 class="neu-slider w-full cursor-pointer">
                             <div class="flex justify-between text-[11px] text-slate-300 mt-2 font-medium">
-                                <span>1,000 sq ft (Compact)</span>
-                                <span>50,000 sq ft</span>
-                                <span>100,000+ sq ft (Mega site)</span>
+                                <span>100 sq.m (Compact)</span>
+                                <span>5,000 sq.m</span>
+                                <span>10,000+ sq.m (Mega site)</span>
                             </div>
                         </div>
 
@@ -969,7 +982,7 @@
                             1.2MW solar rooftop integration.
                         </p>
                         <div class="neu-inset-sm p-3 flex justify-between text-xs text-slate-600">
-                            <span>Area: <strong class="text-slate-500">850,000 sq ft</strong></span>
+                            <span>Area: <strong class="text-slate-500">79,000 sq m</strong></span>
                             <span>Value: <strong class="text-amber-600 font-bold">₱5.60 Million</strong></span>
                         </div>
                     </div>
@@ -994,7 +1007,7 @@
                             architectural framing. Regional MasterPrize recipient.
                         </p>
                         <div class="neu-inset-sm p-3 flex justify-between text-xs text-slate-600">
-                            <span>Area: <strong class="text-slate-500">14,200 sq ft</strong></span>
+                            <span>Area: <strong class="text-slate-500">1,320 sq m</strong></span>
                             <span>Value: <strong class="text-amber-600 font-bold">₱1.25 Million</strong></span>
                         </div>
                     </div>
@@ -1045,7 +1058,7 @@
                             zero-carbon prefabrication methods.
                         </p>
                         <div class="neu-inset-sm p-3 flex justify-between text-xs text-slate-600">
-                            <span>Area: <strong class="text-slate-500">310,000 sq ft</strong></span>
+                            <span>Area: <strong class="text-slate-500">28,800 sq m</strong></span>
                             <span>Value: <strong class="text-amber-600 font-bold">₱6.50 Million</strong></span>
                         </div>
                     </div>
@@ -1071,7 +1084,7 @@
                             glass, and sustainable solar microgrid.
                         </p>
                         <div class="neu-inset-sm p-3 flex justify-between text-xs text-slate-600">
-                            <span>Area: <strong class="text-slate-500">12,500 sq ft</strong></span>
+                            <span>Area: <strong class="text-slate-500">1,160 sq m</strong></span>
                             <span>Value: <strong class="text-amber-600 font-bold">₱3.80 Million</strong></span>
                         </div>
                     </div>
