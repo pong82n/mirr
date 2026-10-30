@@ -746,17 +746,17 @@ window.closeVideoModal = function() {
 const promoClipsData = [
     {
         id: 0,
-        title: "Reinforced Concrete Slabs & Civil Substructure",
-        badge: "Civil & Concrete",
+        title: "Turnkey Architectural Fit-Out & Architectural Finishes",
+        badge: "Architectural Finish",
         duration: "0:07",
         file: "Media/2ab353b2-8712-4dff-b570-2ae5e4718c45.mp4",
-        caption: "Monolithic Post-Tensioned Slabs, Rebar Matrices & Embedded MEP Reticulation.",
-        description: "Complex elevated deck engineering featuring dense rebar grids, precision-spaced post-tensioning tendons, integrated MEP electrical conduits, and laser-screeded monolithic pours achieving FF/FL superflat tolerances.",
+        caption: "Acoustic Glass Partitions, Ambient Illumination & Bespoke Corporate Finishes.",
+        description: "High-end corporate and commercial fit-outs crafted with acoustic glazing, architectural woodwork, seamless drywall partitions, energy-efficient LED luminaires, and tailored spatial ergonomics.",
         specs: [
-            { label: "System", value: "Post-Tensioned Monolithic Slab" },
-            { label: "Integration", value: "Embedded Conduit Reticulation" },
-            { label: "Tolerance", value: "FF/FL Superflat Specification" },
-            { label: "Testing", value: "Compressive Strength >40 MPa" }
+            { label: "Acoustics", value: "STC 50+ Double-Glazed Glass" },
+            { label: "Efficiency", value: "LEED Gold Certified Lighting" },
+            { label: "Craftsmanship", value: "Custom Architectural Joinery" },
+            { label: "Handover", value: "Turnkey Move-In Commissioning" }
         ]
     },
     {
@@ -791,17 +791,17 @@ const promoClipsData = [
     },
     {
         id: 3,
-        title: "Turnkey Architectural Fit-Out & Corporate Interiors",
-        badge: "Architectural Finishes",
+        title: "Reinforced Concrete Slabs & Civil Substructure",
+        badge: "Civil & Concrete",
         duration: "0:10",
         file: "Media/a8da201a-1c76-4aca-89aa-45ce223c6e52.mp4",
-        caption: "Acoustic Glass Partitions, Ambient Illumination & Bespoke Corporate Finishes.",
-        description: "High-end corporate and commercial fit-outs crafted with acoustic glazing, architectural woodwork, seamless drywall partitions, energy-efficient LED luminaires, and tailored spatial ergonomics.",
+        caption: "Monolithic Post-Tensioned Slabs, Rebar Matrices & Embedded MEP Reticulation.",
+        description: "Complex elevated deck engineering featuring dense rebar grids, precision-spaced post-tensioning tendons, integrated MEP electrical conduits, and laser-screeded monolithic pours achieving FF/FL superflat tolerances.",
         specs: [
-            { label: "Acoustics", value: "STC 50+ Double-Glazed Glass" },
-            { label: "Efficiency", value: "LEED Gold Certified Lighting" },
-            { label: "Craftsmanship", value: "Custom Architectural Joinery" },
-            { label: "Handover", value: "Turnkey Move-In Commissioning" }
+            { label: "System", value: "Post-Tensioned Monolithic Slab" },
+            { label: "Integration", value: "Embedded Conduit Reticulation" },
+            { label: "Tolerance", value: "FF/FL Superflat Specification" },
+            { label: "Testing", value: "Compressive Strength >40 MPa" }
         ]
     }
 ];
