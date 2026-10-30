@@ -23,7 +23,8 @@ function initNavigation() {
     const mainNav = document.getElementById('main-nav');
 
     if (mobileBtn && mobileMenu) {
-        mobileBtn.addEventListener('click', () => {
+        mobileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             mobileMenu.classList.toggle('hidden');
             const isOpened = !mobileMenu.classList.contains('hidden');
             menuIcon.className = isOpened ? 'fa-solid fa-xmark text-lg' : 'fa-solid fa-bars text-lg';
@@ -34,6 +35,14 @@ function initNavigation() {
                 mobileMenu.classList.add('hidden');
                 menuIcon.className = 'fa-solid fa-bars text-lg';
             });
+        });
+
+        // Close mobile drawer when tapping outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-lg';
+            }
         });
     }
 
@@ -231,6 +240,35 @@ function initHeroSlideshow() {
             if (isPlaying) startTimer();
         }
     });
+
+    // Mobile touch swipe gestures (Swipe Left / Swipe Right)
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const minSwipeDist = 45;
+    const heroSection = document.getElementById('home') || document.body;
+
+    heroSection.addEventListener('touchstart', (e) => {
+        if (e.target.closest('#ba-container, input, button, a, select, textarea')) return;
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    heroSection.addEventListener('touchend', (e) => {
+        if (e.target.closest('#ba-container, input, button, a, select, textarea')) return;
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDist) {
+            if (deltaX < 0) {
+                // Swiped Left -> Next Slide
+                showSlide(currentIndex + 1, 'next');
+            } else {
+                // Swiped Right -> Previous Slide
+                showSlide(currentIndex - 1, 'prev');
+            }
+            if (isPlaying) startTimer();
+        }
+    }, { passive: true });
 
     // Start automated cycle with initial slide
     showSlide(0, 'none');
@@ -510,6 +548,10 @@ function initBeforeAfterSlider() {
     }, { passive: true });
 
     window.addEventListener('touchend', () => {
+        isSliding = false;
+    });
+
+    window.addEventListener('touchcancel', () => {
         isSliding = false;
     });
 }

@@ -65,6 +65,8 @@
 html {
     background-color: var(--glass-bg);
     color-scheme: dark;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -72,7 +74,10 @@ body {
     color: var(--neu-text);
     font-family: 'Archivo', 'Plus Jakarta Sans', sans-serif;
     min-height: 100vh;
+    min-height: 100dvh;
     position: relative;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Ensure all page content sections sit above background slideshow */
@@ -479,6 +484,7 @@ input[type=range].neu-slider::-moz-range-thumb {
     box-shadow: 0 20px 45px rgba(0, 4, 25, 0.75), inset 0 1px 1px rgba(255, 255, 255, 0.25);
     border: 2px solid rgba(147, 197, 253, 0.35);
     border-radius: 14px;
+    touch-action: pan-y;
 }
 
 .ba-before-wrap {
@@ -503,6 +509,7 @@ input[type=range].neu-slider::-moz-range-thumb {
 .ba-handle {
     cursor: ew-resize;
     box-shadow: 0 0 22px rgba(56, 189, 248, 0.7);
+    touch-action: pan-y;
 }
 
 .neu-slider-thumb {
@@ -539,7 +546,9 @@ input[type=range].neu-slider::-moz-range-thumb {
     right: 0;
     bottom: 0;
     width: 100vw;
+    width: 100%;
     height: 100vh;
+    height: 100dvh;
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
@@ -724,6 +733,118 @@ input[type=range].neu-slider::-moz-range-thumb {
 /* Glass Dividers */
 .border-white\/50, .border-white\/60, .border-slate-300\/60, .border-slate-300\/40 {
     border-color: rgba(147, 197, 253, 0.16) !important;
+}
+
+/* -------------------------------------------------------------
+ * MOBILE & RESPONSIVE ADAPTATIONS
+ * ------------------------------------------------------------- */
+@media (max-width: 768px) {
+    /* Mobile Drawer */
+    #mobile-menu {
+        background: rgba(6, 16, 44, 0.95) !important;
+        backdrop-filter: blur(25px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+        border-bottom: 1px solid rgba(147, 197, 253, 0.22) !important;
+        box-shadow: 0 24px 50px rgba(0, 4, 20, 0.85) !important;
+    }
+
+    /* Slideshow transitions optimized for mobile GPUs */
+    @keyframes bgSlideInRight {
+        0% {
+            opacity: 0;
+            transform: translateX(50px) scale(1.02);
+        }
+        100% {
+            opacity: 0.85;
+            transform: translateX(0) scale(1);
+        }
+    }
+
+    @keyframes bgSlideInLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(-50px) scale(1.02);
+        }
+        100% {
+            opacity: 0.85;
+            transform: translateX(0) scale(1);
+        }
+    }
+
+    @keyframes bgSlideOutLeft {
+        0% {
+            opacity: 0.85;
+            transform: translateX(0) scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(-50px) scale(1.02);
+        }
+    }
+
+    @keyframes bgSlideOutRight {
+        0% {
+            opacity: 0.85;
+            transform: translateX(0) scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(50px) scale(1.02);
+        }
+    }
+
+    /* Mobile indicator dots */
+    .hero-slide-dot {
+        width: 10px;
+        height: 5px;
+        flex-shrink: 0;
+    }
+
+    .hero-slide-dot.active {
+        width: 22px;
+    }
+
+    /* Touch-friendly interactive elements */
+    .neu-btn, .neu-btn-primary {
+        touch-action: manipulation;
+    }
+
+    /* Mobile modal scrolling */
+    #service-modal > div,
+    #video-modal > div {
+        max-height: 90vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 640px) {
+    /* Headings scale on compact screens */
+    h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+    }
+
+    /* Mobile card padding */
+    .neu-card {
+        padding: 1.25rem !important;
+        border-radius: 14px !important;
+    }
+
+    .neu-inset {
+        padding: 1rem !important;
+        border-radius: 12px !important;
+    }
+
+    /* Cost Estimator adjustments */
+    #total-price-display {
+        font-size: 1.85rem !important;
+    }
+
+    /* Before/After slider height */
+    .ba-slider {
+        height: 280px !important;
+    }
 }
 
 /* Print Styling */
