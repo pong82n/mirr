@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Oxanium:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,41 +71,12 @@
                             100: '#F8FAFC',
                             200: '#F1F5F9',
                             300: '#E2E8F0',
-                            400: '#a9fcd8',
+                            400: '#94A3B8',
                             500: '#CBD5E1',
                             600: '#E2E8F0',
                             700: '#F1F5F9',
                             800: '#F8FAFC',
                             900: '#FFFFFF',
-
-                            base: '#030124',
-                            light: '#ebeef5',
-                            dark: '#8bacd9',
-                            darker: '#9ba8ba',
-                        },
-                        amber: {
-                            400: '#fbbf24',
-                            500: '#d7def5',
-                            600: '#bbfcc7',
-                            700: '#0b630e',
-                            800: '#030142',
-                            900: '#2e0115',
-                            300: '#39f759',
-                            200: '#4ac6f7',
-                      
-                        },
-                        slate: {
-                            1000: '#f7e197',
-                            800: '#7fd493',
-                            900: '#404bb3',
-                            600: '#c5faea',
-                            500: '#d3ddf2',
-                            700: '#f7f7f7',
-                            400: '#a9fcd5',
-                            300: '#5ff216',
-                            200: '#283d37',
-                            100: '#343af7',
-
                         }
                     },
                     fontFamily: {
@@ -139,57 +111,56 @@
         <div class="fixed-bg-overlay"></div>
     </div>
 
-    <!-- TOP ANNOUNCEMENT / UTILITY BAR (NEUMORPHIC) -->
-    <div class="py-2.5 px-4 sm:px-8 border-b border-white/50 bg-neu-base text-xs text-slate-300">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-2">
-            <div class="flex items-center gap-3 sm:gap-4 flex-wrap justify-center lg:justify-start">
-                <!-- 1. ISO Tab -->
-                <span class="neu-pill px-3 py-1 inline-flex items-center gap-2 text-amber-500 font-bold text-[11px] flex-shrink-0">
-                    <i class="fa-solid fa-shield-halved text-amber-500"></i> ISO 9001:2015 & OSHA VPP Certified
-                </span>
-                <span class="hidden sm:inline text-slate-500">•</span>
+    <!-- MAIN NAVIGATION BAR (FLOATING NEUMORPHIC) -->
+    <header id="main-nav" class="sticky top-0 z-50 neu-nav transition-all duration-300">
+        <!-- TOP ANNOUNCEMENT / UTILITY BAR (STAYS WITH HEADER) -->
+        <div class="top-utility-bar border-b border-white/10 py-2 px-4 sm:px-8 text-xs text-slate-100">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+                <div class="flex items-center gap-2.5 sm:gap-4 flex-wrap justify-center md:justify-start">
+                    <!-- 1. ISO Tab -->
+                    <span class="neu-pill px-2.5 py-0.5 inline-flex items-center gap-1.5 text-amber-400 font-bold text-[10px] sm:text-[11px] flex-shrink-0">
+                        <i class="fa-solid fa-shield-halved text-amber-400"></i> ISO 9001:2015 & OSHA VPP Certified
+                    </span>
+                    <span class="hidden sm:inline text-slate-500">•</span>
 
-                <!-- 2. Office Address -->
-                <span class="flex items-center gap-1.5 font-medium text-slate-300">
-                    <i class="fa-solid fa-location-dot text-amber-500"></i> 101 Padilla St., Brgy. Inarawan, Antipolo City
-                </span>
-                <span class="hidden sm:inline text-slate-500">•</span>
+                    <!-- 2. Office Address -->
+                    <span class="inline-flex items-center gap-1.5 font-medium text-slate-100 text-[11px] sm:text-xs">
+                        <i class="fa-solid fa-location-dot text-amber-400"></i> 101 Padilla St., Brgy. Inarawan, Antipolo City
+                    </span>
+                    <span class="hidden sm:inline text-slate-500">•</span>
 
-                <!-- 3. Time and Date -->
-                <span class="flex items-center gap-1.5 font-medium text-slate-300">
-                    <i class="fa-solid fa-clock text-amber-500"></i>
-                    <span id="header-live-time">Mon - Sat: 07:00 AM - 06:00 PM</span>
-                </span>
-                <span class="hidden md:inline text-slate-500">•</span>
-                <span class="flex items-center gap-1.5 font-medium text-slate-300">
-                    <i class="fa-solid fa-calendar-days text-amber-500"></i>
-                    <span id="header-live-date">Thursday, Oct 29, 2026</span>
-                </span>
-            </div>
+                    <!-- 3. Time and Date -->
+                    <span class="inline-flex items-center gap-1.5 font-medium text-slate-100 text-[11px] sm:text-xs">
+                        <i class="fa-regular fa-clock text-amber-400"></i>
+                        <span class="header-live-time" id="header-live-time">Mon - Sat: 07:00 AM - 06:00 PM</span>
+                    </span>
+                    <span class="hidden md:inline text-slate-500">•</span>
+                    <span class="inline-flex items-center gap-1.5 font-medium text-slate-100 text-[11px] sm:text-xs">
+                        <i class="fa-regular fa-calendar-days text-amber-400"></i>
+                        <span class="header-live-date" id="header-live-date">Oct 29, 2026</span>
+                    </span>
+                </div>
 
-            <!-- 4. Mobile Number & Social Links -->
-            <div class="flex items-center gap-3 flex-shrink-0">
-                <a href="tel:+639369580308"
-                    class="neu-btn px-3 py-1 font-bold text-slate-200 hover:text-amber-400 transition-colors flex items-center gap-1.5"
-                    title="Call Executive Hotline">
-                    <i class="fa-solid fa-phone text-amber-500"></i> +63 936-958-0308
-                </a>
-                <div class="flex items-center gap-2">
-                    <a href="https://github.com/pong82n/mirr" target="_blank" title="GitHub Project"
-                        class="neu-btn w-7 h-7 flex items-center justify-center text-slate-300 hover:text-amber-400">
-                        <i class="fa-brands fa-github text-xs"></i>
+                <!-- 4. Mobile Number & Social Links -->
+                <div class="flex items-center gap-2.5 sm:gap-3 flex-shrink-0">
+                    <a href="tel:+639369580308"
+                        class="neu-btn px-2.5 py-1 font-bold text-slate-100 hover:text-amber-400 transition-colors flex items-center gap-1.5 text-[11px] sm:text-xs"
+                        title="Call Executive Hotline">
+                        <i class="fa-solid fa-phone text-amber-400"></i> +63 936-958-0308
                     </a>
-                    <a href="#"
-                        class="neu-btn w-7 h-7 flex items-center justify-center text-slate-300 hover:text-amber-400">
-                        <i class="fa-brands fa-linkedin-in text-xs"></i>
-                    </a>
+                    <div class="flex items-center gap-1.5">
+                        <a href="https://github.com/pong82n/mirr" target="_blank" title="GitHub Project"
+                            class="neu-btn w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center text-slate-200 hover:text-amber-400">
+                            <i class="fa-brands fa-github text-xs"></i>
+                        </a>
+                        <a href="#"
+                            class="neu-btn w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center text-slate-200 hover:text-amber-400">
+                            <i class="fa-brands fa-linkedin-in text-xs"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- MAIN NAVIGATION BAR (FLOATING NEUMORPHIC) -->
-    <header id="main-nav" class="sticky top-0 z-50 neu-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
@@ -274,6 +245,30 @@
                     <a href="#contact"
                         class="neu-btn-primary block w-full text-center py-3 text-xs uppercase tracking-wider">
                         Request Site Inspection
+                    </a>
+                </div>
+
+                <!-- Mobile Drawer Corporate Info Bar -->
+                <div class="mt-2 pt-3 border-t border-white/10 text-xs text-slate-200 flex flex-col gap-2">
+                    <div class="flex items-center gap-2">
+                        <span class="neu-pill px-2 py-0.5 text-amber-400 font-bold text-[10px] inline-flex items-center gap-1.5">
+                            <i class="fa-solid fa-shield-halved text-amber-400"></i> ISO 9001:2015 & OSHA VPP
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-100 text-[11px]">
+                        <i class="fa-solid fa-location-dot text-amber-400 flex-shrink-0"></i>
+                        <span>101 Padilla St., Brgy. Inarawan, Antipolo City</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-100 text-[11px]">
+                        <i class="fa-regular fa-clock text-amber-400 flex-shrink-0"></i>
+                        <span class="header-live-time">Mon - Sat: 07:00 AM - 06:00 PM</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-100 text-[11px]">
+                        <i class="fa-regular fa-calendar-days text-amber-400 flex-shrink-0"></i>
+                        <span class="header-live-date">Oct 29, 2026</span>
+                    </div>
+                    <a href="tel:+639369580308" class="neu-btn px-3 py-2 text-center text-slate-100 font-bold hover:text-amber-400 mt-1 flex items-center justify-center gap-2 text-xs">
+                        <i class="fa-solid fa-phone text-amber-400"></i> +63 936-958-0308
                     </a>
                 </div>
             </div>

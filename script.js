@@ -93,8 +93,8 @@ function updateActiveNavSection() {
  * 1.2. LIVE DATE & TIME IN HEADER UTILITY ROW
  * ------------------------------------------------------------- */
 function initHeaderDateTime() {
-    const dateElements = document.querySelectorAll('#header-live-date');
-    const timeElements = document.querySelectorAll('#header-live-time');
+    const dateElements = document.querySelectorAll('#header-live-date, .header-live-date');
+    const timeElements = document.querySelectorAll('#header-live-time, .header-live-time');
     if (!dateElements.length && !timeElements.length) return;
 
     function refreshClock() {

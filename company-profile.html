@@ -39,11 +39,7 @@
                             base: '#030712',
                             light: 'rgba(255, 255, 255, 0.15)',
                             dark: 'rgba(4, 10, 28, 0.8)',
-                            darker: '#020617',                        },
                             darker: '#020617',
-                            base: '#030124',
-                            light: '#ffffff',
-                            dark: '#b8c4d4',
                         },
 
                         amber: {
@@ -107,48 +103,50 @@
         <div class="fixed-bg-overlay"></div>
     </div>
 
-    <!-- TOP ANNOUNCEMENT / UTILITY BAR (NEUMORPHIC) -->
-    <div class="no-print py-2 px-4 sm:px-12 border-b border-white/50 bg-neu-base text-xs text-slate-300">
-        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-2">
-            <div class="flex items-center gap-3 sm:gap-4 flex-wrap justify-center lg:justify-start">
-                <!-- 1. ISO Tab -->
-                <span class="neu-pill px-3 py-0.5 inline-flex items-center gap-2 text-amber-500 font-bold text-[11px] flex-shrink-0">
-                    <i class="fa-solid fa-shield-halved text-amber-500"></i> ISO 9001:2015 & OSHA VPP Certified
-                </span>
-                <span class="hidden sm:inline text-slate-500">•</span>
+    <!-- Top Action Nav with Integrated Utility Bar -->
+    <header class="no-print sticky top-0 z-50 neu-nav transition-all duration-300">
+        <!-- TOP ANNOUNCEMENT / UTILITY BAR (NEUMORPHIC) -->
+        <div class="top-utility-bar border-b border-white/10 py-1.5 px-4 sm:px-12 text-xs text-slate-100">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+                <div class="flex items-center gap-2.5 sm:gap-4 flex-wrap justify-center md:justify-start">
+                    <!-- 1. ISO Tab -->
+                    <span class="neu-pill px-2.5 py-0.5 inline-flex items-center gap-1.5 text-amber-400 font-bold text-[10px] sm:text-[11px] flex-shrink-0">
+                        <i class="fa-solid fa-shield-halved text-amber-400"></i> ISO 9001:2015 & OSHA VPP Certified
+                    </span>
+                    <span class="hidden sm:inline text-slate-500">•</span>
 
-                <!-- 2. Office Address -->
-                <span class="flex items-center gap-1.5 font-medium text-slate-300">
-                    <i class="fa-solid fa-location-dot text-amber-500"></i> 101 Padilla St., Brgy. Inarawan, Antipolo City
-                </span>
-                <span class="hidden sm:inline text-slate-500">•</span>
+                    <!-- 2. Office Address -->
+                    <span class="inline-flex items-center gap-1.5 font-medium text-slate-100 text-[11px] sm:text-xs">
+                        <i class="fa-solid fa-location-dot text-amber-400"></i> 101 Padilla St., Brgy. Inarawan, Antipolo City
+                    </span>
+                    <span class="hidden sm:inline text-slate-500">•</span>
 
-                <!-- 3. Time and Date -->
-                <span class="flex items-center gap-1.5 font-medium text-slate-300">
-                    <i class="fa-solid fa-clock text-amber-500"></i>
-                    <span id="header-live-time">Mon - Sat: 07:00 AM - 06:00 PM</span>
-                </span>
-                <span class="hidden md:inline text-slate-500">•</span>
-                <span class="flex items-center gap-1.5 font-medium text-slate-300">
-                    <i class="fa-solid fa-calendar-days text-amber-500"></i>
-                    <span id="header-live-date">Thursday, Oct 29, 2026</span>
-                </span>
-            </div>
+                    <!-- 3. Time and Date -->
+                    <span class="inline-flex items-center gap-1.5 font-medium text-slate-100 text-[11px] sm:text-xs">
+                        <i class="fa-regular fa-clock text-amber-400"></i>
+                        <span class="header-live-time" id="header-live-time">Mon - Sat: 07:00 AM - 06:00 PM</span>
+                    </span>
+                    <span class="hidden md:inline text-slate-500">•</span>
+                    <span class="inline-flex items-center gap-1.5 font-medium text-slate-100 text-[11px] sm:text-xs">
+                        <i class="fa-regular fa-calendar-days text-amber-400"></i>
+                        <span class="header-live-date" id="header-live-date">Oct 29, 2026</span>
+                    </span>
+                </div>
 
-            <!-- 4. Mobile Number & Links -->
-            <div class="flex items-center gap-3 flex-shrink-0">
-                <a href="tel:+639369580308"
-                    class="neu-btn px-3 py-1 font-bold text-slate-200 hover:text-amber-400 transition-colors flex items-center gap-1.5"
-                    title="Call Executive Hotline">
-                    <i class="fa-solid fa-phone text-amber-500"></i> +63 936-958-0308
-                </a>
+                <!-- 4. Mobile Number & Links -->
+                <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                    <a href="tel:+639369580308"
+                        class="neu-btn px-2.5 py-1 font-bold text-slate-100 hover:text-amber-400 transition-colors flex items-center gap-1.5 text-[11px] sm:text-xs"
+                        title="Call Executive Hotline">
+                        <i class="fa-solid fa-phone text-amber-400"></i> +63 936-958-0308
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Top Action Nav -->
-    <header class="no-print sticky top-0 z-50 neu-nav py-3 sm:py-4 px-4 sm:px-12">
-        <div class="max-w-6xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
+        <!-- MAIN HEADER ACTION ROW -->
+        <div class="py-3 sm:py-4 px-4 sm:px-12">
+            <div class="max-w-6xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
             <a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0">
                 <div class="w-12 h-12 sm:w-16 sm:h-16 neu-flat-sm flex items-center justify-center text-amber-600 font-black text-base sm:text-xl overflow-hidden p-1 flex-shrink-0">
                     <img src="images/logo-badge.jpg" alt="MIRR Logo" class="w-full h-full object-cover rounded-lg" onerror="this.remove();">
@@ -170,6 +168,7 @@
                     <i class="fa-solid fa-file-pdf"></i>
                     <span class="hidden sm:inline">Print / PDF</span>
                 </button>
+                </div>
             </div>
         </div>
     </header>
