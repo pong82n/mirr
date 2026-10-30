@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initEstimator();
     initPortfolioFilter();
     initBeforeAfterSlider();
+    initPromoVideoPresentation();
     initForms();
 });
 
@@ -738,6 +739,157 @@ window.closeVideoModal = function() {
         }
     }
 };
+
+/* -------------------------------------------------------------
+ * 7.2. PROMOTIONAL VIDEO PRESENTATION ENGINE
+ * ------------------------------------------------------------- */
+const promoClipsData = [
+    {
+        id: 0,
+        title: "MIRR Master Engineering Showcase Reel",
+        badge: "Master Showcase Reel",
+        duration: "0:42",
+        file: "Media/showcase-reel.mp4",
+        caption: "End-to-End Turnkey Civil & Commercial Execution — From Geotechnical Groundbreak to High-Rise Commissioning.",
+        description: "A comprehensive look at MIRR Construction's integrated capabilities: precision structural core casting, autonomous tower crane logistics, high-tolerance MEP reticulation, and certified OSHA VPP safety protocols across 1.5M+ safe man-hours.",
+        specs: [
+            { label: "Scope", value: "Turnkey Commercial & Civil" },
+            { label: "Safety Index", value: "1.5M+ Zero-Incident Hours" },
+            { label: "Standards", value: "ISO 9001:2026 & OSHA VPP" },
+            { label: "Execution", value: "100% On-Schedule Milestone Rate" }
+        ]
+    },
+    {
+        id: 1,
+        title: "Heavy Structural Steel & High-Rise Moment Framing",
+        badge: "Structural Steelwork",
+        duration: "0:05",
+        file: "Media/40d27247-1b06-4f45-b0a1-d331a8b9cc66.mp4",
+        caption: "Precision High-Load Moment Frames, Seismic Splices & Heavy Tower Crane Erection.",
+        description: "Engineered heavy structural framing featuring millimeter-tolerance column splices, high-tensile bolted connections, and seismic lateral load-resisting systems designed to withstand extreme typhoons and seismic loads.",
+        specs: [
+            { label: "Material", value: "High-Tensile Grade 50 Steel" },
+            { label: "Assembly", value: "Moment Connection Splicing" },
+            { label: "Inspection", value: "100% Ultrasonic Weld Testing" },
+            { label: "Logistics", value: "Coordinated Tower Crane Picks" }
+        ]
+    },
+    {
+        id: 2,
+        title: "Reinforced Concrete Slabs & Civil Substructure",
+        badge: "Civil & Concrete",
+        duration: "0:07",
+        file: "Media/2ab353b2-8712-4dff-b570-2ae5e4718c45.mp4",
+        caption: "Monolithic Post-Tensioned Slabs, Rebar Matrices & Embedded MEP Reticulation.",
+        description: "Complex elevated deck engineering featuring dense rebar grids, precision-spaced post-tensioning tendons, integrated MEP electrical conduits, and laser-screeded monolithic pours achieving FF/FL superflat tolerances.",
+        specs: [
+            { label: "System", value: "Post-Tensioned Monolithic Slab" },
+            { label: "Integration", value: "Embedded Conduit Reticulation" },
+            { label: "Tolerance", value: "FF/FL Superflat Specification" },
+            { label: "Testing", value: "Compressive Strength >40 MPa" }
+        ]
+    },
+    {
+        id: 3,
+        title: "Turnkey Architectural Fit-Out & Corporate Interiors",
+        badge: "Architectural Finishes",
+        duration: "0:10",
+        file: "Media/a8da201a-1c76-4aca-89aa-45ce223c6e52.mp4",
+        caption: "Acoustic Glass Partitions, Ambient Illumination & Bespoke Corporate Finishes.",
+        description: "High-end corporate and commercial fit-outs crafted with acoustic glazing, architectural woodwork, seamless drywall partitions, energy-efficient LED luminaires, and tailored spatial ergonomics.",
+        specs: [
+            { label: "Acoustics", value: "STC 50+ Double-Glazed Glass" },
+            { label: "Efficiency", value: "LEED Gold Certified Lighting" },
+            { label: "Craftsmanship", value: "Custom Architectural Joinery" },
+            { label: "Handover", value: "Turnkey Move-In Commissioning" }
+        ]
+    }
+];
+
+let currentPromoClipIndex = 0;
+
+function initPromoVideoPresentation() {
+    const video = document.getElementById('promo-video-player');
+    if (!video) return;
+
+    // Render initial clip and specs
+    renderPromoClip(0, false);
+
+    // Auto-advance sequentially to next clip when current clip ends
+    video.addEventListener('ended', () => {
+        const nextIndex = (currentPromoClipIndex + 1) % promoClipsData.length;
+        window.switchPromoClip(nextIndex, true);
+    });
+}
+
+window.switchPromoClip = function(index, autoPlay = true) {
+    if (index < 0 || index >= promoClipsData.length) return;
+    currentPromoClipIndex = index;
+    renderPromoClip(index, autoPlay);
+};
+
+function renderPromoClip(index, autoPlay) {
+    const clip = promoClipsData[index];
+    const video = document.getElementById('promo-video-player');
+    const source = document.getElementById('promo-video-source');
+    const counter = document.getElementById('promo-clip-counter');
+    const badge = document.getElementById('promo-clip-badge');
+    const title = document.getElementById('promo-clip-title');
+    const duration = document.getElementById('promo-clip-duration');
+    const caption = document.getElementById('promo-clip-caption');
+    const desc = document.getElementById('promo-clip-desc');
+    const specsContainer = document.getElementById('promo-clip-specs');
+    const buttons = document.querySelectorAll('.promo-clip-btn');
+
+    if (counter) counter.innerText = `Clip 0${index + 1} of 0${promoClipsData.length} • ${clip.badge}`;
+    if (badge) badge.innerText = clip.badge;
+    if (title) title.innerText = clip.title;
+    if (duration) duration.innerHTML = `<i class="fa-regular fa-clock text-amber-400 mr-1"></i> ${clip.duration}`;
+    if (caption) caption.innerText = `"${clip.caption}"`;
+    if (desc) desc.innerText = clip.description;
+
+    if (specsContainer && clip.specs) {
+        specsContainer.innerHTML = clip.specs.map(s => `
+            <div class="neu-card p-2 sm:p-2.5 rounded-lg border border-white/5">
+                <span class="text-[9px] uppercase tracking-wider text-slate-400 block font-bold">${s.label}</span>
+                <span class="text-[11px] font-heading font-extrabold text-amber-400 block mt-0.5">${s.value}</span>
+            </div>
+        `).join('');
+    }
+
+    // Update active button state
+    buttons.forEach((btn, idx) => {
+        if (idx === index) {
+            btn.classList.add('active');
+            btn.classList.remove('opacity-70');
+            const num = btn.querySelector('.font-mono');
+            if (num) {
+                num.classList.add('text-amber-400');
+                num.classList.remove('text-slate-400');
+            }
+        } else {
+            btn.classList.remove('active');
+            btn.classList.add('opacity-70');
+            const num = btn.querySelector('.font-mono');
+            if (num) {
+                num.classList.remove('text-amber-400');
+                num.classList.add('text-slate-400');
+            }
+        }
+    });
+
+    if (video && source) {
+        if (source.getAttribute('src') !== clip.file) {
+            source.setAttribute('src', clip.file);
+            video.load();
+            if (autoPlay) {
+                video.play().catch(() => {});
+            }
+        } else if (autoPlay && video.paused) {
+            video.play().catch(() => {});
+        }
+    }
+}
 
 /* -------------------------------------------------------------
  * 8. FORM SUBMISSIONS & TOASTS
