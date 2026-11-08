@@ -1346,11 +1346,11 @@
                 </p>
             </div>
 
-            <!-- Video Player Console (Recommended Standard 16:9 Size - Never Oversized) -->
+            <!-- Video Player Console (Commercial Ad Presentation Studio) -->
             <div class="max-w-4xl mx-auto">
                 <div class="neu-card p-4 sm:p-6 md:p-8 rounded-2xl relative">
                     <!-- Player Header Telemetry Strip -->
-                    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-white/10 text-xs">
+                    <div class="flex flex-wrap items-center justify-between gap-3 pb-3 mb-3 border-b border-white/10 text-xs">
                         <div class="flex items-center gap-2">
                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
                             <span id="promo-clip-counter" class="font-heading font-bold text-slate-200 uppercase tracking-wider text-[11px]">
@@ -1378,11 +1378,51 @@
                         </div>
                     </div>
 
+                    <!-- Commercial Ad Studio Toolbar Controls -->
+                    <div class="flex flex-wrap items-center justify-between gap-2.5 pb-4 mb-4 border-b border-white/10 text-xs">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <!-- Commercial Ad Overlay Toggle -->
+                            <button type="button" id="ad-mode-toggle" onclick="toggleAdOverlay()" class="neu-btn px-3 py-1.5 text-[11px] font-bold text-amber-400 flex items-center gap-1.5" title="Toggle Television & Social Ad Graphics Overlay">
+                                <i class="fa-solid fa-rectangle-ad text-cyan-400"></i>
+                                <span>Commercial Ad Overlay:</span>
+                                <span id="ad-mode-status" class="neu-pill px-2 py-0.5 text-[9px] text-emerald-400 font-extrabold bg-emerald-950/60 border border-emerald-500/40">ON</span>
+                            </button>
+
+                            <!-- Aspect Ratio Switcher (16:9 Landscape vs 9:16 Vertical) -->
+                            <div class="flex items-center gap-1 neu-inset p-1 rounded-xl">
+                                <button type="button" id="aspect-btn-16-9" onclick="setPromoAspect('16:9')" class="neu-btn px-2.5 py-1 text-[11px] font-bold text-cyan-300 active" title="16:9 Landscape (TV / YouTube / Desktop)">
+                                    <i class="fa-solid fa-tv mr-1 text-cyan-400"></i> 16:9
+                                </button>
+                                <button type="button" id="aspect-btn-9-16" onclick="setPromoAspect('9:16')" class="neu-btn px-2.5 py-1 text-[11px] font-bold text-slate-300" title="9:16 Vertical (Reels / Shorts / TikTok)">
+                                    <i class="fa-solid fa-mobile-screen mr-1 text-amber-400"></i> 9:16 Story
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2 flex-wrap justify-end">
+                            <!-- Ad Messaging Preset Selector -->
+                            <div class="flex items-center gap-1.5 neu-inset px-2.5 py-1 rounded-xl text-[11px]">
+                                <span class="text-slate-400 font-semibold text-[10px] hidden sm:inline">Ad Preset:</span>
+                                <select id="ad-campaign-select" onchange="changeAdCampaignPreset(this.value)" class="bg-transparent text-amber-400 font-bold border-0 outline-none cursor-pointer text-[11px]">
+                                    <option value="b2b" class="bg-slate-900 text-white">Landmark Engineering (B2B Commercial)</option>
+                                    <option value="safety" class="bg-slate-900 text-white">1.5M+ Safe Hours & ISO 9001:2026</option>
+                                    <option value="tender" class="bg-slate-900 text-white">Fast-Track Tender & Mobilization</option>
+                                </select>
+                            </div>
+
+                            <!-- Export Video Ad Button -->
+                            <button type="button" id="export-ad-btn" onclick="startExportAdVideo()" class="neu-btn-primary px-3 py-1.5 text-[11px] font-extrabold flex items-center gap-1.5 shadow-md" title="Generate and download customized commercial ad video">
+                                <i class="fa-solid fa-cloud-arrow-down"></i>
+                                <span>Export Ad (.webm)</span>
+                            </button>
+                        </div>
+                    </div>
+
                     <!-- Hidden Background Music Track (Replaces Raw Video Audio) -->
                     <audio id="promo-bg-music" src="Media/motivational-bgm.wav" preload="auto" loop></audio>
 
-                    <!-- Main Video Stage (Strictly Contained Aspect-Video Ratio, Original Sound Removed/Muted) -->
-                    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-inner border border-white/10 group">
+                    <!-- Main Video Stage (Strictly Contained Aspect-Video Ratio with Commercial Ad Broadcast Graphics) -->
+                    <div id="promo-video-stage-wrapper" class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-inner border border-white/10 group">
                         <video id="promo-video-player"
                             class="w-full h-full object-contain bg-black"
                             controls
@@ -1393,10 +1433,92 @@
                             <source id="promo-video-source" src="Media/2ab353b2-8712-4dff-b570-2ae5e4718c45.mp4" type="video/mp4">
                             Your browser does not support HTML5 video streaming.
                         </video>
+
+                        <!-- Commercial Ad Broadcast Overlay Layer -->
+                        <div id="promo-ad-overlay" class="absolute inset-0 flex flex-col justify-between p-3 sm:p-5 pointer-events-none select-none z-20 transition-all duration-300">
+                            <!-- Top Broadcast Telemetry Bar -->
+                            <div class="flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="ad-rec-pill px-2.5 py-1 rounded-full text-white font-mono text-[10px] font-extrabold flex items-center gap-1.5 shadow-md">
+                                        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                                        <span>REC</span>
+                                        <span id="ad-timecode" class="text-slate-100 ml-0.5">00:00:00</span>
+                                    </div>
+                                    <span class="neu-pill px-2 py-0.5 text-[9px] text-cyan-300 font-mono hidden xs:inline-block">BROADCAST 4K</span>
+                                </div>
+                                <div class="ad-brand-pill px-3 py-1 rounded-full flex items-center gap-2">
+                                    <span class="font-heading font-black text-xs tracking-wider text-amber-400">MIRR</span>
+                                    <span class="text-[9px] font-bold text-slate-200 tracking-wider">ISO 9001:2026</span>
+                                </div>
+                            </div>
+
+                            <!-- Center Billboard Hook (Animated Intro Callout) -->
+                            <div id="ad-billboard-hook" class="self-center text-center max-w-md w-full px-4 py-3 rounded-xl ad-billboard-box transition-all duration-500 opacity-95">
+                                <span class="neu-pill px-2.5 py-0.5 text-[9px] text-amber-400 font-extrabold tracking-widest uppercase inline-block mb-1">Commercial Showcase</span>
+                                <h3 id="ad-billboard-title" class="text-xs sm:text-base md:text-lg font-black font-heading text-white leading-tight">
+                                    BUILDING TOMORROW'S LANDMARKS TODAY
+                                </h3>
+                                <p id="ad-billboard-sub" class="text-[9px] sm:text-[11px] text-slate-300 mt-1 line-clamp-1">
+                                    1.5M+ Zero-Incident Hours • Heavy Civil & Turnkey Architecture
+                                </p>
+                            </div>
+
+                            <!-- Bottom Broadcast Lower-Third Graphic Banner -->
+                            <div class="ad-lower-third-banner p-2.5 sm:p-4 text-white">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                    <div class="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+                                        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-amber-400 via-amber-600 to-amber-800 flex items-center justify-center flex-shrink-0 text-slate-950 font-black font-heading text-sm sm:text-base border border-amber-300 shadow-lg">M</div>
+                                        <div class="min-w-0">
+                                            <div class="flex items-center gap-2 mb-0.5">
+                                                <span class="text-[10px] uppercase tracking-wider text-amber-400 font-extrabold">MIRR Construction</span>
+                                                <span class="w-1 h-1 rounded-full bg-slate-400"></span>
+                                                <span id="ad-lower-badge" class="text-[9px] text-cyan-300 font-bold uppercase tracking-wider">ISO 9001:2026 Certified</span>
+                                            </div>
+                                            <h4 id="ad-lower-title" class="text-xs sm:text-sm md:text-base font-black font-heading text-white truncate">
+                                                Turnkey Architectural Fit-Out & Precision Engineering
+                                            </h4>
+                                            <div id="ad-lower-ticker" class="text-[10px] text-slate-300 truncate hidden xs:flex items-center gap-2 mt-0.5">
+                                                <span><i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i> 1.5M+ Safe Hours</span>
+                                                <span>•</span>
+                                                <span><i class="fa-solid fa-map-pin text-amber-400 mr-1"></i> Metro Manila & Calabarzon</span>
+                                                <span>•</span>
+                                                <span><i class="fa-solid fa-award text-cyan-400 mr-1"></i> Triple-A Certified Team</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2 flex-shrink-0 justify-end ad-interactive">
+                                        <a href="tel:+639369580308" class="hidden md:flex items-center gap-1.5 px-3 py-2 neu-inset rounded-lg text-xs font-bold text-amber-400 hover:text-white transition-colors" title="Call Estimator Hotline">
+                                            <i class="fa-solid fa-phone"></i>
+                                            <span>+63 936-958-0308</span>
+                                        </a>
+                                        <a href="#contact" class="neu-btn-primary px-3 sm:px-4 py-2 text-[11px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-xl ad-pulse-glow">
+                                            <span>Request Tender Bid</span>
+                                            <i class="fa-solid fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Active Clip Dynamic Captions Console -->
-                    <div class="neu-inset p-4 sm:p-6 rounded-xl mt-5 border border-white/10">
+                    <!-- Commercial Console Tab Switcher -->
+                    <div class="flex items-center gap-2 mt-5 border-b border-white/10 pb-2.5 overflow-x-auto text-xs">
+                        <button type="button" id="tab-btn-specs" onclick="switchPromoConsoleTab('specs')" class="ad-tab-btn active neu-btn px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 whitespace-nowrap">
+                            <i class="fa-solid fa-gauge-high text-amber-400"></i>
+                            <span>Live Clip Telemetry</span>
+                        </button>
+                        <button type="button" id="tab-btn-storyboard" onclick="switchPromoConsoleTab('storyboard')" class="ad-tab-btn neu-btn px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 whitespace-nowrap">
+                            <i class="fa-solid fa-file-video text-cyan-400"></i>
+                            <span>Commercial Ad Scripts (15s • 30s • 60s)</span>
+                        </button>
+                        <button type="button" id="tab-btn-exporter" onclick="switchPromoConsoleTab('exporter')" class="ad-tab-btn neu-btn px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 whitespace-nowrap">
+                            <i class="fa-solid fa-clapperboard text-emerald-400"></i>
+                            <span>Video Ad Exporter Studio</span>
+                        </button>
+                    </div>
+
+                    <!-- TAB PANE 1: Active Clip Dynamic Captions & Technical Specifications -->
+                    <div id="tab-pane-specs" class="neu-inset p-4 sm:p-6 rounded-xl mt-4 border border-white/10">
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 pb-3 border-b border-white/10">
                             <div>
                                 <span id="promo-clip-badge" class="neu-pill px-2.5 py-0.5 text-[10px] text-amber-400 font-extrabold uppercase tracking-wider inline-block mb-1">
@@ -1429,6 +1551,191 @@
                         <!-- Technical Specification Highlights Grid -->
                         <div id="promo-clip-specs" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-4 pt-3.5 border-t border-white/10">
                             <!-- Populated dynamically by script.js -->
+                        </div>
+                    </div>
+
+                    <!-- TAB PANE 2: Production Ad Scripts & Storyboards (15s • 30s • 60s) -->
+                    <div id="tab-pane-storyboard" class="neu-inset p-4 sm:p-6 rounded-xl mt-4 border border-white/10 hidden">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
+                            <div>
+                                <span class="neu-pill px-2.5 py-0.5 text-[10px] text-cyan-400 font-extrabold uppercase tracking-wider inline-block mb-1">
+                                    Media Production Storyboards
+                                </span>
+                                <h3 class="text-base sm:text-lg font-black font-heading text-white">
+                                    Commercial Ad Broadcast Scripts
+                                </h3>
+                            </div>
+                            <div class="flex items-center gap-1.5 neu-inset p-1 rounded-xl text-xs">
+                                <button type="button" onclick="selectStoryboardLength('15s')" id="sb-btn-15s" class="neu-btn px-2.5 py-1 text-[11px] font-bold text-amber-400 active">15s Social Hook</button>
+                                <button type="button" onclick="selectStoryboardLength('30s')" id="sb-btn-30s" class="neu-btn px-2.5 py-1 text-[11px] font-bold text-slate-300">30s Broadcast</button>
+                                <button type="button" onclick="selectStoryboardLength('60s')" id="sb-btn-60s" class="neu-btn px-2.5 py-1 text-[11px] font-bold text-slate-300">60s Corporate</button>
+                            </div>
+                        </div>
+
+                        <!-- 15s Storyboard Content -->
+                        <div id="sb-content-15s" class="mt-4 space-y-3">
+                            <div class="flex items-center justify-between text-xs text-slate-300 pb-2 border-b border-white/5">
+                                <span><strong>Platform:</strong> Meta Reels, TikTok, YouTube Shorts, LinkedIn</span>
+                                <button type="button" onclick="copyAdScript('15s')" class="neu-btn px-2 py-0.5 text-[10px] font-bold text-amber-400 flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> Copy Script
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                                <div class="neu-card p-3 rounded-xl border border-white/5">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-[10px] font-mono text-amber-400 font-bold">0:00 - 0:04</span>
+                                        <span class="neu-pill px-1.5 py-0.5 text-[9px] text-slate-300">HOOK</span>
+                                    </div>
+                                    <p class="font-bold text-white text-xs mb-1">Visual: Tower Crane Erection</p>
+                                    <p class="text-slate-300 text-[11px] italic">"Looking to build your landmark on time, zero incidents, zero excuses?"</p>
+                                    <div class="mt-2 text-[10px] text-cyan-300 font-mono">OST: BUILDING TOMORROW'S LANDMARKS TODAY</div>
+                                </div>
+                                <div class="neu-card p-3 rounded-xl border border-white/5">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-[10px] font-mono text-amber-400 font-bold">0:04 - 0:10</span>
+                                        <span class="neu-pill px-1.5 py-0.5 text-[9px] text-slate-300">PROOF</span>
+                                    </div>
+                                    <p class="font-bold text-white text-xs mb-1">Visual: Heavy Steel & Slabs</p>
+                                    <p class="text-slate-300 text-[11px] italic">"1.5 million safe man-hours. ISO 9001:2026 certified structural and architectural excellence."</p>
+                                    <div class="mt-2 text-[10px] text-cyan-300 font-mono">OST: 1.5M+ SAFE HOURS • ISO 9001:2026</div>
+                                </div>
+                                <div class="neu-card p-3 rounded-xl border border-white/5">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-[10px] font-mono text-amber-400 font-bold">0:10 - 0:15</span>
+                                        <span class="neu-pill px-1.5 py-0.5 text-[9px] text-emerald-400">CALL TO ACTION</span>
+                                    </div>
+                                    <p class="font-bold text-white text-xs mb-1">Visual: Modern Fit-Out & Logo</p>
+                                    <p class="text-slate-300 text-[11px] italic">"Submit your tender bid now at mirrcon.vercel.app or call +63 936-958-0308."</p>
+                                    <div class="mt-2 text-[10px] text-amber-400 font-mono">OST: REQUEST TENDER BID TODAY</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 30s Storyboard Content -->
+                        <div id="sb-content-30s" class="mt-4 space-y-3 hidden">
+                            <div class="flex items-center justify-between text-xs text-slate-300 pb-2 border-b border-white/5">
+                                <span><strong>Platform:</strong> Television, YouTube Pre-Roll, Corporate Presentations</span>
+                                <button type="button" onclick="copyAdScript('30s')" class="neu-btn px-2 py-0.5 text-[10px] font-bold text-amber-400 flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> Copy Script
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+                                <div class="neu-card p-3 rounded-xl border border-white/5">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-[10px] font-mono text-amber-400 font-bold">0:00 - 0:07</span>
+                                        <span class="neu-pill px-1.5 py-0.5 text-[9px] text-slate-300">SCENE 1</span>
+                                    </div>
+                                    <p class="font-bold text-white text-xs mb-1">Civil Substructure</p>
+                                    <p class="text-slate-300 text-[11px] italic">"Every iconic landmark begins with unwavering precision in the ground."</p>
+                                </div>
+                                <div class="neu-card p-3 rounded-xl border border-white/5">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-[10px] font-mono text-amber-400 font-bold">0:07 - 0:15</span>
+                                        <span class="neu-pill px-1.5 py-0.5 text-[9px] text-slate-300">SCENE 2</span>
+                                    </div>
+                                    <p class="font-bold text-white text-xs mb-1">Moment Framing</p>
+                                    <p class="text-slate-300 text-[11px] italic">"Engineered moment frames and heavy steel erected with millimeter tolerance."</p>
+                                </div>
+                                <div class="neu-card p-3 rounded-xl border border-white/5">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-[10px] font-mono text-amber-400 font-bold">0:15 - 0:23</span>
+                                        <span class="neu-pill px-1.5 py-0.5 text-[9px] text-slate-300">SCENE 3</span>
+                                    </div>
+                                    <p class="font-bold text-white text-xs mb-1">Turnkey Fit-Out</p>
+                                    <p class="text-slate-300 text-[11px] italic">"Seamless architectural fit-outs ready for day-one tenant occupation."</p>
+                                </div>
+                                <div class="neu-card p-3 rounded-xl border border-white/5">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-[10px] font-mono text-amber-400 font-bold">0:23 - 0:30</span>
+                                        <span class="neu-pill px-1.5 py-0.5 text-[9px] text-emerald-400">CTA</span>
+                                    </div>
+                                    <p class="font-bold text-white text-xs mb-1">Closing Brand Bumper</p>
+                                    <p class="text-slate-300 text-[11px] italic">"MIRR Construction. Building tomorrow's landmarks today. Request your tender bid now."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 60s Storyboard Content -->
+                        <div id="sb-content-60s" class="mt-4 space-y-3 hidden">
+                            <div class="flex items-center justify-between text-xs text-slate-300 pb-2 border-b border-white/5">
+                                <span><strong>Platform:</strong> B2B Procurement Committees, Investor Roadshows, Enterprise RFPs</span>
+                                <button type="button" onclick="copyAdScript('60s')" class="neu-btn px-2 py-0.5 text-[10px] font-bold text-amber-400 flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> Copy Script
+                                </button>
+                            </div>
+                            <div class="neu-card p-3.5 rounded-xl border border-white/5 space-y-2 text-xs">
+                                <p class="text-slate-200 leading-relaxed text-[11px]">
+                                    <strong>Comprehensive 60-Second Narrative:</strong> Takes prospective developers through the full project lifecycle: geotechnical excavation, monolithic concrete pours, high-tensile steel framing, MEP reticulation, and luxury corporate finishes. Emphasizes MIRR's 1.5M+ zero-incident track record, ISO 9001:2026 quality assurance system, and executive engineering accountability.
+                                </p>
+                                <div class="text-[11px] text-amber-400 font-mono">
+                                    Closing Hook: "Partner with MIRR Construction Services. Contact our chief estimators at +63 936-958-0308 or submit your complete tender specs at mirrcon.vercel.app."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB PANE 3: Video Ad Exporter Studio -->
+                    <div id="tab-pane-exporter" class="neu-inset p-4 sm:p-6 rounded-xl mt-4 border border-white/10 hidden">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-white/10">
+                            <div>
+                                <span class="neu-pill px-2.5 py-0.5 text-[10px] text-emerald-400 font-extrabold uppercase tracking-wider inline-block mb-1">
+                                    Instant In-Browser Video Generator
+                                </span>
+                                <h3 class="text-base sm:text-lg font-black font-heading text-white">
+                                    Export Promotional Ad Video
+                                </h3>
+                            </div>
+                            <span class="neu-pill px-2.5 py-1 text-slate-300 text-xs font-mono font-bold">
+                                <i class="fa-solid fa-bolt text-amber-400 mr-1"></i> Client-Side HTML5 Canvas & MediaRecorder
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 text-xs">
+                            <div class="neu-card p-3 rounded-xl border border-white/5">
+                                <label class="text-[10px] uppercase font-bold text-slate-400 block mb-1">Export Length</label>
+                                <select id="export-duration-select" class="w-full bg-slate-900 border border-white/10 rounded-lg p-2 text-white font-bold outline-none">
+                                    <option value="7">7 Seconds (Quick Teaser)</option>
+                                    <option value="10" selected>10 Seconds (Standard Ad Spot)</option>
+                                    <option value="15">15 Seconds (Full Social Commercial)</option>
+                                </select>
+                            </div>
+                            <div class="neu-card p-3 rounded-xl border border-white/5">
+                                <label class="text-[10px] uppercase font-bold text-slate-400 block mb-1">Aspect Ratio</label>
+                                <select id="export-aspect-select" class="w-full bg-slate-900 border border-white/10 rounded-lg p-2 text-white font-bold outline-none">
+                                    <option value="16:9" selected>16:9 Landscape (1280×720)</option>
+                                    <option value="9:16">9:16 Vertical Story (720×1280)</option>
+                                </select>
+                            </div>
+                            <div class="neu-card p-3 rounded-xl border border-white/5">
+                                <label class="text-[10px] uppercase font-bold text-slate-400 block mb-1">Audio Track</label>
+                                <select id="export-audio-select" class="w-full bg-slate-900 border border-white/10 rounded-lg p-2 text-white font-bold outline-none">
+                                    <option value="bgm" selected>Motivational BGM (Inspiring Horizon)</option>
+                                    <option value="silent">Silent / No Audio</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar / Status Box -->
+                        <div id="export-progress-box" class="mt-4 p-3 rounded-xl neu-card border border-amber-400/30 hidden">
+                            <div class="flex items-center justify-between text-xs mb-1.5">
+                                <span id="export-status-label" class="font-bold text-amber-400 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-spinner fa-spin"></i> Recording Commercial Ad Video...
+                                </span>
+                                <span id="export-progress-pct" class="font-mono font-bold text-white">0%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+                                <div id="export-progress-bar" class="bg-gradient-to-r from-amber-400 to-cyan-400 h-full rounded-full transition-all duration-200" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+                            <p class="text-[11px] text-slate-300">
+                                Overlays current clip with MIRR broadcast graphics, contact hotline, and synchronized motivational soundtrack.
+                            </p>
+                            <button type="button" onclick="startExportAdVideo()" class="neu-btn-primary px-5 py-2.5 text-xs font-black uppercase tracking-wider flex items-center gap-2 flex-shrink-0 shadow-lg">
+                                <i class="fa-solid fa-play"></i>
+                                <span>Record & Download Now</span>
+                            </button>
                         </div>
                     </div>
 

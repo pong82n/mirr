@@ -837,6 +837,27 @@ function initPromoVideoPresentation() {
         pauseMotivationalBgm();
     });
 
+    // Timecode and dynamic broadcast ad overlay sync
+    video.addEventListener('timeupdate', () => {
+        const timecode = document.getElementById('ad-timecode');
+        const billboard = document.getElementById('ad-billboard-hook');
+        if (timecode) {
+            const cur = Math.floor(video.currentTime || 0);
+            const mins = String(Math.floor(cur / 60)).padStart(2, '0');
+            const secs = String(cur % 60).padStart(2, '0');
+            timecode.innerText = `00:${mins}:${secs}`;
+        }
+        if (billboard) {
+            if (video.currentTime <= 3.5) {
+                billboard.classList.remove('opacity-0', 'scale-95');
+                billboard.classList.add('opacity-95', 'scale-100');
+            } else {
+                billboard.classList.remove('opacity-95', 'scale-100');
+                billboard.classList.add('opacity-0', 'scale-95');
+            }
+        }
+    });
+
     // Auto-advance sequentially to next clip when current clip ends
     video.addEventListener('ended', () => {
         const nextIndex = (currentPromoClipIndex + 1) % promoClipsData.length;
@@ -1037,6 +1058,464 @@ function renderPromoClip(index, autoPlay) {
             video.play().catch(() => {});
         }
     }
+
+    // Sync ad lower third title with current clip if in general B2B campaign mode
+    const adLowerTitle = document.getElementById('ad-lower-title');
+    const adCampaignSelect = document.getElementById('ad-campaign-select');
+    if (adLowerTitle && (!adCampaignSelect || adCampaignSelect.value === 'b2b')) {
+        adLowerTitle.innerText = clip.title;
+    }
+}
+
+/* -------------------------------------------------------------
+ * COMMERCIAL AD PRESENTATION & VIDEO EXPORT SUITE
+ * ------------------------------------------------------------- */
+window.toggleAdOverlay = function() {
+    const overlay = document.getElementById('promo-ad-overlay');
+    const status = document.getElementById('ad-mode-status');
+    if (!overlay) return;
+    const isHidden = overlay.classList.toggle('ad-mode-off');
+    if (status) {
+        if (isHidden) {
+            status.innerText = 'OFF';
+            status.className = 'neu-pill px-2 py-0.5 text-[9px] text-slate-400 font-extrabold bg-slate-800 border border-slate-600/40';
+        } else {
+            status.innerText = 'ON';
+            status.className = 'neu-pill px-2 py-0.5 text-[9px] text-emerald-400 font-extrabold bg-emerald-950/60 border border-emerald-500/40';
+        }
+    }
+};
+
+window.setPromoAspect = function(aspect) {
+    const wrapper = document.getElementById('promo-video-stage-wrapper');
+    const btn169 = document.getElementById('aspect-btn-16-9');
+    const btn916 = document.getElementById('aspect-btn-9-16');
+    if (!wrapper) return;
+
+    if (aspect === '9:16') {
+        wrapper.classList.add('vertical-mode');
+        if (btn916) {
+            btn916.classList.add('text-amber-400', 'active');
+            btn916.classList.remove('text-slate-300');
+        }
+        if (btn169) {
+            btn169.classList.remove('text-cyan-300', 'active');
+            btn169.classList.add('text-slate-400');
+        }
+    } else {
+        wrapper.classList.remove('vertical-mode');
+        if (btn169) {
+            btn169.classList.add('text-cyan-300', 'active');
+            btn169.classList.remove('text-slate-400');
+        }
+        if (btn916) {
+            btn916.classList.remove('text-amber-400', 'active');
+            btn916.classList.add('text-slate-300');
+        }
+    }
+};
+
+const adCampaignPresets = {
+    b2b: {
+        billboard: "BUILDING TOMORROW'S LANDMARKS TODAY",
+        sub: "1.5M+ Zero-Incident Hours • Heavy Civil & Turnkey Architecture",
+        badge: "ISO 9001:2026 Certified",
+        title: "Turnkey Commercial & Civil Infrastructure Execution",
+        ticker: "<span><i class='fa-solid fa-shield-halved text-emerald-400 mr-1'></i> 1.5M+ Safe Hours</span><span>•</span><span><i class='fa-solid fa-map-pin text-amber-400 mr-1'></i> Metro Manila & Calabarzon</span><span>•</span><span><i class='fa-solid fa-award text-cyan-400 mr-1'></i> Triple-A Certified Team</span>"
+    },
+    safety: {
+        billboard: "1.5M+ ZERO-INCIDENT SAFE MAN-HOURS",
+        sub: "OSHA VPP Star Compliant • Uncompromised Safety On Every Tier",
+        badge: "Safety First Excellence",
+        title: "Engineered With Zero Incidents Since Project Day One",
+        ticker: "<span><i class='fa-solid fa-helmet-safety text-emerald-400 mr-1'></i> OSHA VPP Star Standards</span><span>•</span><span><i class='fa-solid fa-circle-check text-cyan-400 mr-1'></i> Daily Tool-Box Audits</span><span>•</span><span><i class='fa-solid fa-medal text-amber-400 mr-1'></i> Certified Safety Officers</span>"
+    },
+    tender: {
+        billboard: "FAST-TRACK TENDER MOBILIZATION",
+        sub: "Guaranteed Milestone Timelines • Itemized Cost Engineering",
+        badge: "Tender Bid RFP Open",
+        title: "Submit Your Project RFP — Instant Estimator Mobilization",
+        ticker: "<span><i class='fa-solid fa-bolt text-amber-400 mr-1'></i> 24-Hour Bid Turnaround</span><span>•</span><span><i class='fa-solid fa-calculator text-cyan-400 mr-1'></i> Value Engineering</span><span>•</span><span><i class='fa-solid fa-file-contract text-emerald-400 mr-1'></i> Fully Bonded & Insured</span>"
+    }
+};
+
+window.changeAdCampaignPreset = function(presetKey) {
+    const preset = adCampaignPresets[presetKey] || adCampaignPresets.b2b;
+    const bTitle = document.getElementById('ad-billboard-title');
+    const bSub = document.getElementById('ad-billboard-sub');
+    const lBadge = document.getElementById('ad-lower-badge');
+    const lTitle = document.getElementById('ad-lower-title');
+    const lTicker = document.getElementById('ad-lower-ticker');
+
+    if (bTitle) bTitle.innerText = preset.billboard;
+    if (bSub) bSub.innerText = preset.sub;
+    if (lBadge) lBadge.innerText = preset.badge;
+    if (lTitle) lTitle.innerText = preset.title;
+    if (lTicker) lTicker.innerHTML = preset.ticker;
+};
+
+window.switchPromoConsoleTab = function(tabName) {
+    const tabSpecs = document.getElementById('tab-pane-specs');
+    const tabStoryboard = document.getElementById('tab-pane-storyboard');
+    const tabExporter = document.getElementById('tab-pane-exporter');
+
+    const btnSpecs = document.getElementById('tab-btn-specs');
+    const btnStoryboard = document.getElementById('tab-btn-storyboard');
+    const btnExporter = document.getElementById('tab-btn-exporter');
+
+    [tabSpecs, tabStoryboard, tabExporter].forEach(p => p && p.classList.add('hidden'));
+    [btnSpecs, btnStoryboard, btnExporter].forEach(b => b && b.classList.remove('active'));
+
+    if (tabName === 'storyboard') {
+        if (tabStoryboard) tabStoryboard.classList.remove('hidden');
+        if (btnStoryboard) btnStoryboard.classList.add('active');
+    } else if (tabName === 'exporter') {
+        if (tabExporter) tabExporter.classList.remove('hidden');
+        if (btnExporter) btnExporter.classList.add('active');
+    } else {
+        if (tabSpecs) tabSpecs.classList.remove('hidden');
+        if (btnSpecs) btnSpecs.classList.add('active');
+    }
+};
+
+window.selectStoryboardLength = function(len) {
+    const c15 = document.getElementById('sb-content-15s');
+    const c30 = document.getElementById('sb-content-30s');
+    const c60 = document.getElementById('sb-content-60s');
+    const b15 = document.getElementById('sb-btn-15s');
+    const b30 = document.getElementById('sb-btn-30s');
+    const b60 = document.getElementById('sb-btn-60s');
+
+    [c15, c30, c60].forEach(c => c && c.classList.add('hidden'));
+    [b15, b30, b60].forEach(b => {
+        if (b) {
+            b.classList.remove('active', 'text-amber-400');
+            b.classList.add('text-slate-300');
+        }
+    });
+
+    if (len === '30s') {
+        if (c30) c30.classList.remove('hidden');
+        if (b30) { b30.classList.add('active', 'text-amber-400'); b30.classList.remove('text-slate-300'); }
+    } else if (len === '60s') {
+        if (c60) c60.classList.remove('hidden');
+        if (b60) { b60.classList.add('active', 'text-amber-400'); b60.classList.remove('text-slate-300'); }
+    } else {
+        if (c15) c15.classList.remove('hidden');
+        if (b15) { b15.classList.add('active', 'text-amber-400'); b15.classList.remove('text-slate-300'); }
+    }
+};
+
+window.copyAdScript = function(len) {
+    const scripts = {
+        '15s': `MIRR CONSTRUCTION SERVICES - 15-SECOND SOCIAL HOOK COMMERCIAL
+[0:00 - 0:04] HOOK: "Looking to build your landmark on time, zero incidents, zero excuses?" (Visual: Tower Crane Erection)
+[0:04 - 0:10] PROOF: "1.5 million safe man-hours. ISO 9001:2026 certified structural and architectural excellence." (Visual: Heavy Steel & Slabs)
+[0:10 - 0:15] CTA: "Submit your tender bid now at mirrcon.vercel.app or call +63 936-958-0308." (Visual: Modern Fit-Out & Brand Bumper)`,
+        '30s': `MIRR CONSTRUCTION SERVICES - 30-SECOND COMMERCIAL SPOT
+[0:00 - 0:07] "Every iconic landmark begins with unwavering precision in the ground."
+[0:07 - 0:15] "Engineered moment frames and heavy steel erected with millimeter tolerance."
+[0:15 - 0:23] "Seamless architectural fit-outs ready for day-one tenant occupation."
+[0:23 - 0:30] "MIRR Construction. Building tomorrow's landmarks today. Call +63 936-958-0308 or request your tender bid now at mirrcon.vercel.app."`,
+        '60s': `MIRR CONSTRUCTION SERVICES - 60-SECOND CORPORATE CAPABILITY SHOWCASE
+"In the modern skylines of Metro Manila and Calabarzon, enduring landmarks demand more than materials — they demand visionary engineering and zero-compromise precision.
+At MIRR Construction, we bring total lifecycle mastery: from geotechnical excavation and laser-screeded monolithic concrete slabs, to heavy structural steel moment frames and turnkey high-tolerance interior fit-outs.
+With over 1.5 million safe man-hours, OSHA VPP compliance, and ISO 9001:2026 certified quality management, we deliver certainty to every project sponsor.
+Building tomorrow's landmarks today. Partner with MIRR Construction Services. Contact our chief estimators at +63 936-958-0308 or submit your complete tender specs at mirrcon.vercel.app."`
+    };
+
+    const text = scripts[len] || scripts['15s'];
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast('Commercial Script Copied', `The ${len} advertisement voiceover script is ready to paste into your campaign manager.`);
+        }).catch(() => {
+            fallbackCopy(text);
+        });
+    } else {
+        fallbackCopy(text);
+    }
+};
+
+function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Commercial Script Copied', 'Advertisement script copied to clipboard.');
+}
+
+/* In-Browser HTML5 Canvas + MediaRecorder Video Ad Exporter */
+window.startExportAdVideo = function() {
+    const video = document.getElementById('promo-video-player');
+    const bgMusic = document.getElementById('promo-bg-music');
+    const durationSelect = document.getElementById('export-duration-select');
+    const aspectSelect = document.getElementById('export-aspect-select');
+    const audioSelect = document.getElementById('export-audio-select');
+    const progressBox = document.getElementById('export-progress-box');
+    const progressBar = document.getElementById('export-progress-bar');
+    const progressPct = document.getElementById('export-progress-pct');
+    const statusLabel = document.getElementById('export-status-label');
+
+    if (!video) return;
+
+    if (typeof MediaRecorder === 'undefined') {
+        showToast('Browser Notice', 'Direct browser video export is not supported in this browser version. You can screen-capture the live commercial mode playback directly.');
+        return;
+    }
+
+    const durationSeconds = durationSelect ? parseInt(durationSelect.value, 10) : 10;
+    const isVertical = aspectSelect ? aspectSelect.value === '9:16' : false;
+    const includeAudio = audioSelect ? audioSelect.value === 'bgm' : true;
+
+    const width = isVertical ? 720 : 1280;
+    const height = isVertical ? 1280 : 720;
+
+    // Switch to exporter tab if not active
+    switchPromoConsoleTab('exporter');
+
+    if (progressBox) progressBox.classList.remove('hidden');
+    if (statusLabel) statusLabel.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Recording Commercial Video Ad (${durationSeconds}s)...`;
+    if (progressBar) progressBar.style.width = '5%';
+    if (progressPct) progressPct.innerText = '5%';
+
+    // Create offscreen canvas
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+
+    // Reset video and audio to beginning
+    video.currentTime = 0;
+    video.muted = true;
+    video.play().catch(() => {});
+
+    if (includeAudio && bgMusic) {
+        bgMusic.currentTime = 0;
+        bgMusic.play().catch(() => {});
+    }
+
+    const canvasStream = canvas.captureStream ? canvas.captureStream(30) : null;
+    if (!canvasStream) {
+        showToast('Notice', 'Canvas streaming not supported in this browser.');
+        if (progressBox) progressBox.classList.add('hidden');
+        return;
+    }
+
+    let audioTrack = null;
+    try {
+        if (includeAudio && bgMusic && (bgMusic.captureStream || bgMusic.mozCaptureStream)) {
+            const aStream = bgMusic.captureStream ? bgMusic.captureStream() : bgMusic.mozCaptureStream();
+            if (aStream && aStream.getAudioTracks().length > 0) {
+                audioTrack = aStream.getAudioTracks()[0];
+            }
+        }
+    } catch (err) {}
+
+    const tracks = [...canvasStream.getVideoTracks()];
+    if (audioTrack) {
+        tracks.push(audioTrack);
+    }
+    const combinedStream = new MediaStream(tracks);
+
+    let recorder;
+    try {
+        recorder = new MediaRecorder(combinedStream, {
+            mimeType: MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9' : 'video/webm'
+        });
+    } catch (e) {
+        try {
+            recorder = new MediaRecorder(combinedStream);
+        } catch (err) {
+            showToast('Export Error', 'Unable to initialize MediaRecorder on this device.');
+            if (progressBox) progressBox.classList.add('hidden');
+            return;
+        }
+    }
+
+    const recordedChunks = [];
+    recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) {
+            recordedChunks.push(e.data);
+        }
+    };
+
+    const startTime = Date.now();
+    const totalMs = durationSeconds * 1000;
+    let renderLoopId;
+
+    function drawFrame() {
+        const elapsed = Date.now() - startTime;
+        const pct = Math.min(100, Math.floor((elapsed / totalMs) * 100));
+
+        if (progressBar) progressBar.style.width = `${pct}%`;
+        if (progressPct) progressPct.innerText = `${pct}%`;
+
+        // 1. Draw base video frame
+        ctx.fillStyle = '#030712';
+        ctx.fillRect(0, 0, width, height);
+
+        if (video.videoWidth > 0) {
+            if (isVertical) {
+                const vRatio = video.videoWidth / video.videoHeight;
+                const cRatio = width / height;
+                let sWidth, sHeight, sx, sy;
+                if (vRatio > cRatio) {
+                    sHeight = video.videoHeight;
+                    sWidth = video.videoHeight * cRatio;
+                    sx = (video.videoWidth - sWidth) / 2;
+                    sy = 0;
+                } else {
+                    sWidth = video.videoWidth;
+                    sHeight = video.videoWidth / cRatio;
+                    sx = 0;
+                    sy = (video.videoHeight - sHeight) / 2;
+                }
+                ctx.drawImage(video, sx, sy, sWidth, sHeight, 0, 0, width, height);
+            } else {
+                ctx.drawImage(video, 0, 0, width, height);
+            }
+        }
+
+        // 2. Draw Top Bar: REC Pill + Watermark
+        ctx.fillStyle = 'rgba(185, 28, 28, 0.9)';
+        drawCanvasRoundRect(ctx, 30, 30, 160, 40, 20, true, false);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 15px monospace';
+        ctx.fillText('● REC', 50, 55);
+        const sec = Math.floor(elapsed / 1000);
+        const timeStr = `00:00:${String(sec).padStart(2, '0')}`;
+        ctx.fillText(timeStr, 110, 55);
+
+        // Watermark Top-Right
+        ctx.fillStyle = 'rgba(6, 14, 38, 0.88)';
+        drawCanvasRoundRect(ctx, width - 260, 30, 230, 40, 20, true, false);
+        ctx.fillStyle = '#F59E0B';
+        ctx.font = '900 18px "Oxanium", sans-serif';
+        ctx.fillText('MIRR', width - 240, 56);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText('ISO 9001:2026', width - 180, 56);
+
+        // 3. Draw Center Billboard in the first 3.5 seconds
+        if (elapsed < 3500) {
+            const bWidth = Math.min(width - 60, 800);
+            const bHeight = 120;
+            const bx = (width - bWidth) / 2;
+            const by = (height - bHeight) / 2;
+
+            ctx.fillStyle = 'rgba(6, 16, 42, 0.94)';
+            drawCanvasRoundRect(ctx, bx, by, bWidth, bHeight, 16, true, false);
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.7)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            ctx.fillStyle = '#F59E0B';
+            ctx.font = 'bold 13px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('COMMERCIAL AD SPOTLIGHT • MIRR CONSTRUCTION SERVICES', width / 2, by + 34);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '900 24px "Oxanium", sans-serif';
+            ctx.fillText("BUILDING TOMORROW'S LANDMARKS TODAY", width / 2, by + 68);
+
+            ctx.fillStyle = '#94A3B8';
+            ctx.font = '13px sans-serif';
+            ctx.fillText('1.5M+ Zero-Incident Hours • Heavy Civil & Turnkey Architecture', width / 2, by + 96);
+            ctx.textAlign = 'left';
+        }
+
+        // 4. Draw Lower-Third Graphic Banner
+        const ltHeight = 110;
+        const lty = height - ltHeight - 30;
+        const ltx = 30;
+        const ltWidth = width - 60;
+
+        ctx.fillStyle = 'rgba(3, 8, 24, 0.95)';
+        drawCanvasRoundRect(ctx, ltx, lty, ltWidth, ltHeight, 16, true, false);
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Metallic Emblem
+        ctx.fillStyle = '#D97706';
+        drawCanvasRoundRect(ctx, ltx + 18, lty + 18, 74, 74, 12, true, false);
+        ctx.fillStyle = '#0F172A';
+        ctx.font = '900 36px "Oxanium", sans-serif';
+        ctx.fillText('M', ltx + 40, lty + 68);
+
+        // Title & Subtitle
+        ctx.fillStyle = '#F59E0B';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText('MIRR CONSTRUCTION SERVICES • ISO 9001:2026 CERTIFIED', ltx + 108, lty + 40);
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '900 20px "Oxanium", sans-serif';
+        const activeClip = promoClipsData[currentPromoClipIndex] || promoClipsData[0];
+        const headline = activeClip.title.length > 40 ? activeClip.title.substring(0, 40) + '...' : activeClip.title;
+        ctx.fillText(headline, ltx + 108, lty + 68);
+
+        ctx.fillStyle = '#93C5FD';
+        ctx.font = '12px sans-serif';
+        ctx.fillText('1.5M+ Safe Hours • Metro Manila & Calabarzon • +63 936-958-0308', ltx + 108, lty + 92);
+
+        // CTA Button on right
+        const ctaWidth = 210;
+        const ctaX = ltx + ltWidth - ctaWidth - 20;
+        ctx.fillStyle = '#F59E0B';
+        drawCanvasRoundRect(ctx, ctaX, lty + 30, ctaWidth, 50, 10, true, false);
+        ctx.fillStyle = '#0F172A';
+        ctx.font = '900 13px sans-serif';
+        ctx.fillText('REQUEST TENDER BID →', ctaX + 24, lty + 61);
+
+        if (elapsed < totalMs) {
+            renderLoopId = requestAnimationFrame(drawFrame);
+        } else {
+            cancelAnimationFrame(renderLoopId);
+            recorder.stop();
+        }
+    }
+
+    recorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `MIRR-Construction-Ad-${durationSeconds}s-${isVertical ? 'vertical-9x16' : 'landscape-16x9'}.webm`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        if (statusLabel) statusLabel.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i> Video Ad Downloaded! (${(blob.size / (1024 * 1024)).toFixed(2)} MB)`;
+        if (progressBar) progressBar.style.width = '100%';
+        if (progressPct) progressPct.innerText = '100%';
+
+        showToast('Commercial Video Exported', `Downloaded ${a.download} (${(blob.size / (1024 * 1024)).toFixed(2)} MB). Ready for marketing distribution!`);
+
+        setTimeout(() => {
+            if (progressBox) progressBox.classList.add('hidden');
+        }, 5000);
+    };
+
+    recorder.start();
+    renderLoopId = requestAnimationFrame(drawFrame);
+};
+
+function drawCanvasRoundRect(ctx, x, y, width, height, radius, fill, stroke) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    if (fill) ctx.fill();
+    if (stroke) ctx.stroke();
 }
 
 /* -------------------------------------------------------------
