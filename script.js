@@ -355,11 +355,11 @@ function initCounters() {
  * 3. TACTILE NEUMORPHIC COST ESTIMATOR
  * ------------------------------------------------------------- */
 let estimatorState = {
-    baseRate: 25000, // PHP ₱ per sq m
-    typeName: 'Commercial Office',
-    area: 1500, // in sq.m
-    multiplier: 1.25,
-    addons: 4200000 // LEED checked initially (₱4.2M)
+    baseRate: 48000, // PHP ₱ per sq m (Basic / Standard Residential benchmark: ₱45,000 - ₱50,000)
+    typeName: 'Basic / Standard Residential',
+    area: 250, // in sq.m (standard residential baseline)
+    multiplier: 1.0, // Standard finishing specification
+    addons: 0 // Optional value-adds unchecked by default for true unit rate reference
 };
 
 function initEstimator() {
@@ -375,15 +375,21 @@ function initEstimator() {
             typeButtons.forEach(b => {
                 b.classList.remove('active');
                 const icon = b.querySelector('i');
-                if (icon) icon.className = icon.className.replace('text-amber-600', 'text-slate-500');
+                if (icon) {
+                    icon.classList.remove('text-amber-400', 'text-amber-600');
+                    icon.classList.add('text-slate-500');
+                }
             });
             btn.classList.add('active');
             const activeIcon = btn.querySelector('i');
-            if (activeIcon) activeIcon.className = activeIcon.className.replace('text-slate-500', 'text-amber-600');
+            if (activeIcon) {
+                activeIcon.classList.remove('text-slate-500');
+                activeIcon.classList.add('text-amber-400');
+            }
 
             estimatorState.baseRate = parseFloat(btn.getAttribute('data-rate'));
             const nameEl = btn.querySelector('.font-bold');
-            if (nameEl) estimatorState.typeName = nameEl.innerText;
+            if (nameEl) estimatorState.typeName = nameEl.innerText.trim();
             recalculateEstimate();
         });
     });
@@ -405,15 +411,15 @@ function initEstimator() {
                 b.classList.remove('active');
                 const heading = b.querySelector('div');
                 if (heading) {
-                    heading.classList.remove('text-amber-600');
-                    heading.classList.add('text-slate-900');
+                    heading.classList.remove('text-amber-400', 'text-amber-600');
+                    heading.classList.add('text-slate-400');
                 }
             });
             btn.classList.add('active');
             const activeHeading = btn.querySelector('div');
             if (activeHeading) {
-                activeHeading.classList.remove('text-slate-900');
-                activeHeading.classList.add('text-amber-600');
+                activeHeading.classList.remove('text-slate-400');
+                activeHeading.classList.add('text-amber-400');
             }
 
             estimatorState.multiplier = parseFloat(btn.getAttribute('data-multiplier'));
@@ -439,6 +445,7 @@ function initEstimator() {
 function recalculateEstimate() {
     const rawBuildCost = estimatorState.area * estimatorState.baseRate * estimatorState.multiplier;
     const total = Math.round(rawBuildCost + estimatorState.addons);
+    const effectiveRate = Math.round(total / (estimatorState.area || 1));
 
     const structural = Math.round(total * 0.45);
     const mep = Math.round(total * 0.25);
@@ -453,6 +460,7 @@ function recalculateEstimate() {
     }
 
     const totalPriceDisplay = document.getElementById('total-price-display');
+    const rateRefDisplay = document.getElementById('rate-reference-display');
     const timelineDisplay = document.getElementById('timeline-display');
     const structDisplay = document.getElementById('breakdown-structural');
     const mepDisplay = document.getElementById('breakdown-mep');
@@ -460,6 +468,16 @@ function recalculateEstimate() {
     const softDisplay = document.getElementById('breakdown-soft');
 
     if (totalPriceDisplay) totalPriceDisplay.innerText = '₱' + total.toLocaleString();
+
+    // Dynamically update rate reference badge & live effective rate per sq.m
+    if (rateRefDisplay) {
+        if (estimatorState.typeName.includes('Basic') || estimatorState.typeName.includes('Standard Residential')) {
+            rateRefDisplay.innerHTML = `₱45,000 - ₱50,000 / sq.m <span class="text-slate-400 font-normal text-[11px]">(Live: ₱${effectiveRate.toLocaleString()}/sq.m)</span>`;
+        } else {
+            rateRefDisplay.innerHTML = `₱${estimatorState.baseRate.toLocaleString()} / sq.m base <span class="text-slate-400 font-normal text-[11px]">(Live: ₱${effectiveRate.toLocaleString()}/sq.m)</span>`;
+        }
+    }
+
     if (timelineDisplay) timelineDisplay.innerText = `${monthsMin} - ${monthsMax} Months`;
     if (structDisplay) structDisplay.innerText = '₱' + structural.toLocaleString();
     if (mepDisplay) mepDisplay.innerText = '₱' + mep.toLocaleString();
@@ -470,9 +488,17 @@ function recalculateEstimate() {
 window.transferEstimateToQuote = function() {
     const messageField = document.getElementById('contact-message');
     const totalPriceDisplay = document.getElementById('total-price-display');
+    const effectiveRate = Math.round((estimatorState.area * estimatorState.baseRate * estimatorState.multiplier + estimatorState.addons) / (estimatorState.area || 1));
 
     if (messageField && totalPriceDisplay) {
-        messageField.value = `[Generated Estimate: ${estimatorState.typeName} | ${estimatorState.area.toLocaleString()} sq.m | Estimated Valuation: ${totalPriceDisplay.innerText}]\n\nWe require an engineering consultation, soil test coordination, and formal schedule of values for this project.`;
+        let rateNote = '';
+        if (estimatorState.typeName.includes('Residential')) {
+            rateNote = ` | Benchmark: ₱45,000 - ₱50,000/sq.m (Effective: ₱${effectiveRate.toLocaleString()}/sq.m)`;
+        } else {
+            rateNote = ` | Effective: ₱${effectiveRate.toLocaleString()}/sq.m`;
+        }
+
+        messageField.value = `[Generated Estimate: ${estimatorState.typeName} | ${estimatorState.area.toLocaleString()} sq.m${rateNote} | Estimated Valuation: ${totalPriceDisplay.innerText}]\n\nWe require an engineering consultation, soil test coordination, and formal schedule of values for this project.`;
     }
 
     const contactSection = document.getElementById('contact');
@@ -480,7 +506,7 @@ window.transferEstimateToQuote = function() {
         contactSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    showToast('Estimate Transferred', 'Your project estimate parameters have been locked into the proposal form below.');
+    showToast('Estimate Transferred', 'Your project estimate parameters (₱45,000 - ₱50,000 / sq.m residential reference) have been locked into the proposal form below.');
 };
 
 /* -------------------------------------------------------------
