@@ -352,49 +352,124 @@ function initCounters() {
 }
 
 /* -------------------------------------------------------------
- * 3. TACTILE NEUMORPHIC COST ESTIMATOR
+ * 3. TACTILE NEUMORPHIC COST ESTIMATOR & RATE REFERENCE ENGINE
  * ------------------------------------------------------------- */
+const DEFAULT_CONSTRUCTION_TYPES = [
+    {
+        id: 'residential-standard',
+        name: 'Basic / Standard Residential',
+        icon: 'fa-house-chimney',
+        baseRate: 48000,
+        rateRange: '₱45,000 - ₱50,000 / sq.m',
+        badge: 'Benchmark',
+        description: 'Single or two-storey reinforced concrete structural frame, standard architectural, tile & sanitary finishes.',
+        isBenchmark: true
+    },
+    {
+        id: 'residential-luxury',
+        name: 'Luxury Residential',
+        icon: 'fa-gem',
+        baseRate: 60000,
+        rateRange: '~₱55,000 - ₱70,000 / sq.m',
+        badge: 'High-End',
+        description: 'Bespoke architectural detailing, high-end imported fixtures, high-performance glazing, smart automation provisions.',
+        isBenchmark: false
+    },
+    {
+        id: 'commercial-office',
+        name: 'Commercial Office',
+        icon: 'fa-city',
+        baseRate: 32000,
+        rateRange: '~₱28,000 - ₱38,000 / sq.m',
+        badge: 'BPO / Retail',
+        description: 'Open structural grid, commercial VRF HVAC readiness, acoustic ceilings, life-safety fire suppression systems.',
+        isBenchmark: false
+    },
+    {
+        id: 'industrial-hub',
+        name: 'Industrial Hub',
+        icon: 'fa-industry',
+        baseRate: 22000,
+        rateRange: '~₱18,000 - ₱25,000 / sq.m',
+        badge: 'Logistics',
+        description: 'Heavy structural steel portal framing, post-tensioned heavy slab-on-grade, loading bay infrastructure.',
+        isBenchmark: false
+    },
+    {
+        id: 'full-renovation',
+        name: 'Full Renovation',
+        icon: 'fa-screwdriver-wrench',
+        baseRate: 25000,
+        rateRange: '~₱20,000 - ₱30,000 / sq.m',
+        badge: 'Retrofit',
+        description: 'Complete interior architectural gut rehab, structural load-bearing reinforcement, MEP rough-in modernization.',
+        isBenchmark: false
+    },
+    {
+        id: 'civil-works',
+        name: 'Civil Works',
+        icon: 'fa-road',
+        baseRate: 28000,
+        rateRange: '~₱25,000 - ₱35,000 / sq.m',
+        badge: 'Civil Infra',
+        description: 'Road paving, stormwater drainage networks, slope stabilization, retaining walls and site development.',
+        isBenchmark: false
+    }
+];
+
 let estimatorState = {
+    typeId: 'residential-standard',
     baseRate: 48000, // PHP ₱ per sq m (Basic / Standard Residential benchmark: ₱45,000 - ₱50,000)
     typeName: 'Basic / Standard Residential',
+    rateRange: '₱45,000 - ₱50,000 / sq.m',
     area: 250, // in sq.m (standard residential baseline)
     multiplier: 1.0, // Standard finishing specification
-    addons: 0 // Optional value-adds unchecked by default for true unit rate reference
+    addons: 0 // Optional value-adds unchecked by default
 };
 
+function getStoredConstructionTypes() {
+    try {
+        const stored = localStorage.getItem('mirr_construction_rates');
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+    } catch (e) {
+        console.error('Error reading stored construction rates:', e);
+    }
+    return JSON.parse(JSON.stringify(DEFAULT_CONSTRUCTION_TYPES));
+}
+
+function saveStoredConstructionTypes(types) {
+    try {
+        localStorage.setItem('mirr_construction_rates', JSON.stringify(types));
+    } catch (e) {
+        console.error('Error saving construction rates:', e);
+    }
+    renderEstimatorTypeButtons();
+    renderRateEditorCards();
+    updateEstimatorStateFromTypes();
+}
+
+function updateEstimatorStateFromTypes() {
+    const types = getStoredConstructionTypes();
+    const current = types.find(t => t.id === estimatorState.typeId) || types[0];
+    if (current) {
+        estimatorState.typeId = current.id;
+        estimatorState.baseRate = current.baseRate;
+        estimatorState.typeName = current.name;
+        estimatorState.rateRange = current.rateRange;
+    }
+    recalculateEstimate();
+}
+
 function initEstimator() {
-    const typeButtons = document.querySelectorAll('.estimator-type-btn');
+    // 1. Render buttons from stored configuration
+    renderEstimatorTypeButtons();
+
+    // 2. Area Range Slider
     const areaSlider = document.getElementById('area-slider');
     const areaDisplay = document.getElementById('area-display');
-    const qualityButtons = document.querySelectorAll('.quality-btn');
-    const addonCheckboxes = document.querySelectorAll('.estimator-addon');
-
-    // Construction Type Selector
-    typeButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            typeButtons.forEach(b => {
-                b.classList.remove('active');
-                const icon = b.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('text-amber-400', 'text-amber-600');
-                    icon.classList.add('text-slate-500');
-                }
-            });
-            btn.classList.add('active');
-            const activeIcon = btn.querySelector('i');
-            if (activeIcon) {
-                activeIcon.classList.remove('text-slate-500');
-                activeIcon.classList.add('text-amber-400');
-            }
-
-            estimatorState.baseRate = parseFloat(btn.getAttribute('data-rate'));
-            const nameEl = btn.querySelector('.font-bold');
-            if (nameEl) estimatorState.typeName = nameEl.innerText.trim();
-            recalculateEstimate();
-        });
-    });
-
-    // Area Range Slider (in Square Meters)
     if (areaSlider && areaDisplay) {
         areaSlider.addEventListener('input', (e) => {
             const sqm = parseInt(e.target.value);
@@ -404,7 +479,8 @@ function initEstimator() {
         });
     }
 
-    // Quality Spec Level
+    // 3. Quality Spec Level
+    const qualityButtons = document.querySelectorAll('.quality-btn');
     qualityButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             qualityButtons.forEach(b => {
@@ -427,7 +503,8 @@ function initEstimator() {
         });
     });
 
-    // Addons
+    // 4. Addons Checkboxes
+    const addonCheckboxes = document.querySelectorAll('.estimator-addon');
     addonCheckboxes.forEach(cb => {
         cb.addEventListener('change', () => {
             let sumAddons = 0;
@@ -439,8 +516,309 @@ function initEstimator() {
         });
     });
 
+    // 5. Initial calculation
     recalculateEstimate();
 }
+
+function renderEstimatorTypeButtons() {
+    const container = document.getElementById('type-selector');
+    if (!container) return;
+
+    const types = getStoredConstructionTypes();
+    
+    // Find currently active type
+    const activeType = types.find(t => t.id === estimatorState.typeId) || types[0];
+    estimatorState.typeId = activeType.id;
+    estimatorState.baseRate = activeType.baseRate;
+    estimatorState.typeName = activeType.name;
+    estimatorState.rateRange = activeType.rateRange;
+
+    // Update top and Step 1 reference badges
+    const resType = types.find(t => t.isBenchmark) || types[0];
+    const topBadge = document.getElementById('estimator-tab-benchmark-badge');
+    const step1Badge = document.getElementById('step1-benchmark-badge');
+    if (topBadge) {
+        topBadge.innerHTML = `<i class="fa-solid fa-house-chimney text-[11px] text-amber-400 mr-1"></i><span>Residential: ${resType.rateRange}</span>`;
+    }
+    if (step1Badge) {
+        step1Badge.innerText = `${resType.name}: ${resType.rateRange}`;
+    }
+
+    container.innerHTML = types.map(t => {
+        const isActive = t.id === estimatorState.typeId;
+        const activeClass = isActive ? 'active border-amber-400/40' : '';
+        const iconColor = isActive ? 'text-amber-400' : 'text-slate-500';
+        const badgeMarkup = t.badge ? `<span class="neu-pill px-1.5 py-0.2 text-[9px] text-amber-400 font-extrabold bg-amber-500/20">${t.badge}</span>` : '';
+
+        return `
+            <button type="button" data-type-id="${t.id}" data-rate="${t.baseRate}"
+                class="estimator-type-btn neu-btn ${activeClass} p-3.5 text-left text-xs transition-all flex flex-col gap-1 relative group">
+                <div class="flex items-center justify-between">
+                    <i class="fa-solid ${t.icon} ${iconColor} text-lg transition-colors"></i>
+                    ${badgeMarkup}
+                </div>
+                <span class="font-bold ${isActive ? 'text-white' : 'text-slate-200'}">${t.name}</span>
+                <span class="text-[10px] ${isActive ? 'text-amber-400 font-bold' : 'text-slate-400'}">${t.rateRange}</span>
+                <span class="text-[9px] text-slate-500 font-mono">₱${Number(t.baseRate).toLocaleString()}/sq.m</span>
+            </button>
+        `;
+    }).join('');
+
+    // Attach click events
+    container.querySelectorAll('.estimator-type-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const typeId = btn.getAttribute('data-type-id');
+            const found = types.find(t => t.id === typeId);
+            if (!found) return;
+
+            container.querySelectorAll('.estimator-type-btn').forEach(b => {
+                b.classList.remove('active', 'border-amber-400/40');
+                const ic = b.querySelector('i');
+                if (ic) {
+                    ic.classList.remove('text-amber-400', 'text-amber-600');
+                    ic.classList.add('text-slate-500');
+                }
+                const nameSpan = b.querySelector('.font-bold');
+                if (nameSpan) {
+                    nameSpan.classList.remove('text-white');
+                    nameSpan.classList.add('text-slate-200');
+                }
+            });
+
+            btn.classList.add('active', 'border-amber-400/40');
+            const activeIcon = btn.querySelector('i');
+            if (activeIcon) {
+                activeIcon.classList.remove('text-slate-500');
+                activeIcon.classList.add('text-amber-400');
+            }
+            const activeName = btn.querySelector('.font-bold');
+            if (activeName) {
+                activeName.classList.remove('text-slate-200');
+                activeName.classList.add('text-white');
+            }
+
+            estimatorState.typeId = found.id;
+            estimatorState.baseRate = found.baseRate;
+            estimatorState.typeName = found.name;
+            estimatorState.rateRange = found.rateRange;
+            recalculateEstimate();
+        });
+    });
+}
+
+window.switchEstimatorTab = function(tab) {
+    const calcView = document.getElementById('estimator-calc-view');
+    const ratesView = document.getElementById('estimator-rates-view');
+    const calcTabBtn = document.getElementById('tab-btn-estimator-calc');
+    const ratesTabBtn = document.getElementById('tab-btn-estimator-rates');
+
+    if (tab === 'rates') {
+        if (calcView) calcView.classList.add('hidden');
+        if (ratesView) ratesView.classList.remove('hidden');
+        if (calcTabBtn) {
+            calcTabBtn.classList.remove('active');
+            calcTabBtn.classList.add('text-slate-300');
+        }
+        if (ratesTabBtn) {
+            ratesTabBtn.classList.add('active');
+            ratesTabBtn.classList.remove('text-slate-300');
+        }
+        renderRateEditorCards();
+    } else {
+        if (ratesView) ratesView.classList.add('hidden');
+        if (calcView) calcView.classList.remove('hidden');
+        if (ratesTabBtn) {
+            ratesTabBtn.classList.remove('active');
+            ratesTabBtn.classList.add('text-slate-300');
+        }
+        if (calcTabBtn) {
+            calcTabBtn.classList.add('active');
+            calcTabBtn.classList.remove('text-slate-300');
+        }
+    }
+};
+
+window.renderRateEditorCards = function() {
+    const grid = document.getElementById('estimator-rates-cards-grid');
+    if (!grid) return;
+
+    const types = getStoredConstructionTypes();
+
+    grid.innerHTML = types.map(t => {
+        const isCurrentActive = t.id === estimatorState.typeId;
+        const borderStyle = isCurrentActive 
+            ? 'border-amber-400/60 shadow-[0_0_20px_rgba(245,158,11,0.2)] bg-slate-900/80' 
+            : (t.isBenchmark ? 'border-amber-400/30 bg-slate-900/60' : 'border-white/10 bg-slate-900/40');
+
+        return `
+            <div class="neu-card p-5 rounded-2xl border ${borderStyle} flex flex-col justify-between transition-all hover:border-cyan-400/50 group" id="editor-card-${t.id}">
+                <div>
+                    <!-- Header -->
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-xl bg-slate-800/90 border border-white/10 flex items-center justify-center text-amber-400 text-lg shadow-inner">
+                                <i class="fa-solid ${t.icon}"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm leading-tight group-hover:text-amber-300 transition-colors">${t.name}</h4>
+                                <span class="text-[10px] text-slate-400 font-mono">Category ID: ${t.id}</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end gap-1">
+                            ${t.badge ? `<span class="neu-pill px-2 py-0.5 text-[9px] font-extrabold ${t.isBenchmark ? 'text-amber-400 bg-amber-500/20 border border-amber-400/30' : 'text-cyan-300 bg-cyan-500/20 border border-cyan-400/30'}">${t.badge}</span>` : ''}
+                            ${isCurrentActive ? `<span class="neu-pill px-1.5 py-0.2 text-[8px] uppercase font-bold text-emerald-400 bg-emerald-500/10">Active In Calc</span>` : ''}
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-slate-300 mb-4 line-clamp-2 leading-relaxed">
+                        ${t.description}
+                    </p>
+
+                    <!-- Editable Fields -->
+                    <div class="space-y-3.5 mb-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <label class="text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                                    Base Rate (₱ / sq.m)
+                                </label>
+                                <span class="text-[11px] font-mono font-bold text-cyan-300" id="rate-tag-${t.id}">
+                                    ₱${Number(t.baseRate).toLocaleString()}/sq.m
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <button type="button" onclick="adjustTypeRate('${t.id}', -1000)"
+                                    class="neu-btn px-2.5 py-1.5 text-xs text-slate-300 hover:text-white rounded-lg font-bold" title="Decrease rate by ₱1,000">
+                                    -1k
+                                </button>
+                                <div class="relative flex-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-mono font-bold">₱</span>
+                                    <input type="number" id="input-rate-${t.id}" value="${t.baseRate}" min="5000" max="300000" step="500"
+                                        oninput="onRateInputChanged('${t.id}')"
+                                        class="neu-input w-full pl-7 pr-3 py-1.5 text-xs font-mono font-bold text-white rounded-lg bg-slate-900/90 border border-white/10 focus:border-amber-400 focus:outline-none">
+                                </div>
+                                <button type="button" onclick="adjustTypeRate('${t.id}', 1000)"
+                                    class="neu-btn px-2.5 py-1.5 text-xs text-slate-300 hover:text-white rounded-lg font-bold" title="Increase rate by ₱1,000">
+                                    +1k
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1.5">
+                                Rate Reference Range Label
+                            </label>
+                            <input type="text" id="input-range-${t.id}" value="${t.rateRange}"
+                                class="neu-input w-full px-3 py-1.5 text-xs font-mono text-cyan-300 rounded-lg bg-slate-900/90 border border-white/10 focus:border-cyan-400 focus:outline-none">
+                            <span class="text-[10px] text-slate-500 mt-1 block">Visible on selector badges and output consoles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Card Quick Action -->
+                <div class="pt-3 border-t border-white/10 flex items-center justify-between">
+                    <button type="button" onclick="selectTypeAndReturn('${t.id}')"
+                        class="text-[11px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1.5 transition-colors">
+                        <i class="fa-solid fa-calculator text-[10px]"></i>
+                        <span>Select In Estimator</span>
+                    </button>
+                    <span class="text-[10px] text-slate-400 font-mono" id="preview-calc-${t.id}">
+                        250m² ≈ ₱${(Number(t.baseRate) * 250).toLocaleString()}
+                    </span>
+                </div>
+            </div>
+        `;
+    }).join('');
+};
+
+window.adjustTypeRate = function(typeId, delta) {
+    const input = document.getElementById(`input-rate-${typeId}`);
+    if (!input) return;
+    let currentVal = parseFloat(input.value) || 0;
+    currentVal = Math.max(5000, currentVal + delta);
+    input.value = currentVal;
+    onRateInputChanged(typeId);
+};
+
+window.onRateInputChanged = function(typeId) {
+    const input = document.getElementById(`input-rate-${typeId}`);
+    const tag = document.getElementById(`rate-tag-${typeId}`);
+    const preview = document.getElementById(`preview-calc-${typeId}`);
+    if (!input) return;
+    const rateVal = parseFloat(input.value) || 0;
+    if (tag) tag.innerText = `₱${rateVal.toLocaleString()}/sq.m`;
+    if (preview) preview.innerText = `250m² ≈ ₱${(rateVal * 250).toLocaleString()}`;
+};
+
+window.saveEstimatorRatesFromEditor = function() {
+    const types = getStoredConstructionTypes();
+
+    types.forEach(t => {
+        const rateInput = document.getElementById(`input-rate-${t.id}`);
+        const rangeInput = document.getElementById(`input-range-${t.id}`);
+        if (rateInput && !isNaN(parseFloat(rateInput.value))) {
+            t.baseRate = Math.round(parseFloat(rateInput.value));
+        }
+        if (rangeInput && rangeInput.value.trim()) {
+            t.rateRange = rangeInput.value.trim();
+        }
+    });
+
+    saveStoredConstructionTypes(types);
+
+    showToast('Reference Rates Saved', 'All customized construction reference rates have been saved and applied to the estimator.');
+    switchEstimatorTab('calc');
+};
+
+window.resetEstimatorRatesToDefault = function() {
+    if (confirm('Restore the standard 2026 Philippine engineering rate references (Standard Residential: ₱45,000 - ₱50,000 / sq.m)? Any custom edits will be replaced.')) {
+        saveStoredConstructionTypes(DEFAULT_CONSTRUCTION_TYPES);
+        showToast('Default Rates Restored', 'Standard 2026 benchmark rates restored.');
+    }
+};
+
+window.applyRatePreset = function(presetKey) {
+    const types = getStoredConstructionTypes();
+
+    if (presetKey === 'default') {
+        saveStoredConstructionTypes(DEFAULT_CONSTRUCTION_TYPES);
+        showToast('2026 Standards Applied', 'Standard baseline rates applied (Residential: ₱45k - ₱50k/sq.m).');
+        return;
+    }
+
+    const multiplier = presetKey === 'metro' ? 1.15 : 0.90;
+    const labelSuffix = presetKey === 'metro' ? 'Metro (+15%)' : 'Provincial (-10%)';
+
+    types.forEach(t => {
+        const originalDefault = DEFAULT_CONSTRUCTION_TYPES.find(d => d.id === t.id) || t;
+        const newRate = Math.round((originalDefault.baseRate * multiplier) / 500) * 500;
+        t.baseRate = newRate;
+
+        // Scale range text if numeric
+        const low = Math.round((newRate * 0.94) / 500) * 500;
+        const high = Math.round((newRate * 1.05) / 500) * 500;
+        t.rateRange = `₱${low.toLocaleString()} - ₱${high.toLocaleString()} / sq.m`;
+    });
+
+    saveStoredConstructionTypes(types);
+    showToast('Preset Applied', `${labelSuffix} reference rates calibrated and applied.`);
+};
+
+window.selectTypeAndReturn = function(typeId) {
+    const types = getStoredConstructionTypes();
+    const selected = types.find(t => t.id === typeId);
+    if (!selected) return;
+
+    estimatorState.typeId = selected.id;
+    estimatorState.baseRate = selected.baseRate;
+    estimatorState.typeName = selected.name;
+    estimatorState.rateRange = selected.rateRange;
+
+    renderEstimatorTypeButtons();
+    recalculateEstimate();
+    switchEstimatorTab('calc');
+
+    showToast('Category Selected', `Now estimating for: ${selected.name} (Rate: ₱${selected.baseRate.toLocaleString()} / sq.m)`);
+};
 
 function recalculateEstimate() {
     const rawBuildCost = estimatorState.area * estimatorState.baseRate * estimatorState.multiplier;
@@ -471,11 +849,8 @@ function recalculateEstimate() {
 
     // Dynamically update rate reference badge & live effective rate per sq.m
     if (rateRefDisplay) {
-        if (estimatorState.typeName.includes('Basic') || estimatorState.typeName.includes('Standard Residential')) {
-            rateRefDisplay.innerHTML = `₱45,000 - ₱50,000 / sq.m <span class="text-slate-400 font-normal text-[11px]">(Live: ₱${effectiveRate.toLocaleString()}/sq.m)</span>`;
-        } else {
-            rateRefDisplay.innerHTML = `₱${estimatorState.baseRate.toLocaleString()} / sq.m base <span class="text-slate-400 font-normal text-[11px]">(Live: ₱${effectiveRate.toLocaleString()}/sq.m)</span>`;
-        }
+        const displayRange = estimatorState.rateRange || (`₱${estimatorState.baseRate.toLocaleString()} / sq.m`);
+        rateRefDisplay.innerHTML = `${displayRange} <span class="text-slate-400 font-normal text-[11px]">(Live: ₱${effectiveRate.toLocaleString()}/sq.m)</span>`;
     }
 
     if (timelineDisplay) timelineDisplay.innerText = `${monthsMin} - ${monthsMax} Months`;
@@ -491,12 +866,7 @@ window.transferEstimateToQuote = function() {
     const effectiveRate = Math.round((estimatorState.area * estimatorState.baseRate * estimatorState.multiplier + estimatorState.addons) / (estimatorState.area || 1));
 
     if (messageField && totalPriceDisplay) {
-        let rateNote = '';
-        if (estimatorState.typeName.includes('Residential')) {
-            rateNote = ` | Benchmark: ₱45,000 - ₱50,000/sq.m (Effective: ₱${effectiveRate.toLocaleString()}/sq.m)`;
-        } else {
-            rateNote = ` | Effective: ₱${effectiveRate.toLocaleString()}/sq.m`;
-        }
+        const rateNote = ` | Benchmark Reference: ${estimatorState.rateRange || ('₱' + estimatorState.baseRate.toLocaleString() + '/sq.m')} (Effective: ₱${effectiveRate.toLocaleString()}/sq.m)`;
 
         messageField.value = `[Generated Estimate: ${estimatorState.typeName} | ${estimatorState.area.toLocaleString()} sq.m${rateNote} | Estimated Valuation: ${totalPriceDisplay.innerText}]\n\nWe require an engineering consultation, soil test coordination, and formal schedule of values for this project.`;
     }
@@ -506,7 +876,7 @@ window.transferEstimateToQuote = function() {
         contactSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    showToast('Estimate Transferred', 'Your project estimate parameters (₱45,000 - ₱50,000 / sq.m residential reference) have been locked into the proposal form below.');
+    showToast('Estimate Transferred', `Your project estimate parameters (${estimatorState.typeName} reference) have been locked into the proposal form below.`);
 };
 
 /* -------------------------------------------------------------
