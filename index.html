@@ -199,6 +199,12 @@
                         MIRR</a>
                     <a href="#testimonials"
                         class="nav-link neu-btn px-3.5 py-2 text-slate-700 hover:text-amber-600">Reviews</a>
+                    <a href="#careers"
+                        class="nav-link neu-btn px-3.5 py-2 text-slate-700 hover:text-amber-600 flex items-center gap-1.5"
+                        title="Workforce & Construction Labor Careers">
+                        <i class="fa-solid fa-helmet-safety text-amber-500"></i> Careers
+                        <span class="neu-pill px-1.5 py-0.2 text-[9px] text-amber-400 font-extrabold bg-amber-500/20">Hiring</span>
+                    </a>
                     <a href="#contact"
                         class="nav-link neu-btn px-3.5 py-2 text-slate-700 hover:text-amber-600">Contact</a>
                 </nav>
@@ -240,6 +246,12 @@
                 </a>
                 <a href="#why-us" class="mobile-nav-link neu-btn px-4 py-2.5 text-slate-800">Why MIRR</a>
                 <a href="#testimonials" class="mobile-nav-link neu-btn px-4 py-2.5 text-slate-800">Reviews</a>
+                <a href="#careers" class="mobile-nav-link neu-btn px-4 py-2.5 text-slate-800 flex items-center justify-between">
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-helmet-safety text-amber-500"></i> Careers & Labor Hiring
+                    </span>
+                    <span class="neu-pill px-2 py-0.5 text-[9px] text-amber-400 font-bold bg-amber-500/20">16 Openings</span>
+                </a>
                 <a href="#promo-video-presentation" class="mobile-nav-link neu-btn px-4 py-2.5 text-slate-800 flex items-center justify-between">
                     Video Presentation <span class="neu-pill px-2 py-0.5 text-[9px] text-amber-400">Reel</span>
                 </a>
@@ -1329,6 +1341,177 @@
         </div>
     </section>
 
+    <!-- CAREERS & WORKFORCE PORTAL (CONSTRUCTION LABOR & SKILLED TRADES) -->
+    <section id="careers" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="neu-pill px-4 py-1.5 text-xs uppercase font-extrabold tracking-widest text-amber-400 inline-flex items-center gap-2">
+                    <i class="fa-solid fa-helmet-safety text-amber-400"></i> Workforce Mobilization • Labor & Skills Hiring
+                </span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-heading mt-4 mb-3">
+                    <span class="text-white">Build Your Career With</span>
+                    <span class="catchphrase-landmark">Precision.</span>
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    Join MIRR Construction's premier field workforce across Metro Manila & Calabarzon. We offer competitive daily & monthly rates, complete DOLE/SSS/PhilHealth/Pag-IBIG benefits, safety hazard allowances, and fast-track advancement for certified skilled tradesmen.
+                </p>
+            </div>
+
+            <!-- Workforce Metrics Bar & Admin Control Access -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-white/10 text-xs">
+                <div class="flex items-center gap-3 flex-wrap">
+                    <span class="neu-pill px-3 py-1 text-slate-200 font-bold flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span id="career-total-count">16 Positions Open</span>
+                    </span>
+                    <span class="text-slate-500 hidden sm:inline">•</span>
+                    <span class="text-slate-300 font-medium">
+                        <i class="fa-solid fa-users-gear text-amber-400 mr-1"></i> <span id="career-vacancies-count">48+ Active Field Slots</span>
+                    </span>
+                    <span class="text-slate-500 hidden md:inline">•</span>
+                    <span class="text-slate-400 hidden md:inline">
+                        <i class="fa-solid fa-location-dot text-cyan-400 mr-1"></i> Metro Manila & Calabarzon Project Sites
+                    </span>
+                </div>
+
+                <!-- Admin Access Toggle Button -->
+                <div class="flex items-center gap-2">
+                    <button type="button" id="career-admin-toggle-btn" onclick="openCareerAdminAuthModal()" class="neu-btn px-3 py-1.5 text-xs font-bold text-amber-400 flex items-center gap-1.5 shadow-sm" title="HR & Administrator Management Console">
+                        <i class="fa-solid fa-lock" id="career-admin-lock-icon"></i>
+                        <span id="career-admin-btn-label">Admin Access</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Admin Mode Active Control Ribbon (Visible Only When Authenticated) -->
+            <div id="career-admin-panel" class="neu-card p-4 sm:p-5 rounded-2xl border border-emerald-500/40 bg-gradient-to-r from-emerald-950/80 via-slate-900/95 to-blue-950/80 mb-8 hidden shadow-2xl">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span class="text-xs font-heading font-black text-emerald-400 uppercase tracking-wider">
+                                Administrator Mode Active • HR & Workforce Management
+                            </span>
+                        </div>
+                        <p class="text-[11px] text-slate-300">
+                            You have authorization to add, edit, or remove construction labor positions, and inspect candidate resumes.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <button type="button" onclick="openPositionEditor()" class="neu-btn px-3.5 py-2 text-xs font-black text-emerald-400 flex items-center gap-1.5 border border-emerald-400/50 shadow-md">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Post New Trade Position</span>
+                        </button>
+                        <button type="button" onclick="openCareerInboxModal()" class="neu-btn px-3.5 py-2 text-xs font-black text-amber-400 flex items-center gap-1.5 shadow-md">
+                            <i class="fa-solid fa-inbox"></i>
+                            <span>Applications Inbox</span>
+                            <span id="career-inbox-badge" class="neu-pill px-2 py-0.5 text-[10px] text-amber-400 font-extrabold bg-amber-500/20">0</span>
+                        </button>
+                        <button type="button" onclick="resetCareerPositions()" class="neu-btn px-2.5 py-2 text-xs text-slate-300 hover:text-white" title="Restore Default Positions Catalog">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </button>
+                        <button type="button" onclick="logoutCareerAdmin()" class="neu-btn px-3 py-2 text-xs font-bold text-red-400 flex items-center gap-1.5">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <span>Exit Admin</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trade Category Filtering & Search Controls -->
+            <div class="neu-card p-4 sm:p-5 rounded-2xl mb-8 border border-white/10">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <!-- Category Tabs -->
+                    <div class="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 text-xs">
+                        <button type="button" onclick="setCareerCategoryFilter('all')" class="career-filter-btn active neu-btn px-3 py-2 rounded-xl font-bold whitespace-nowrap flex items-center gap-1.5" data-category="all">
+                            <i class="fa-solid fa-layer-group text-amber-400"></i>
+                            <span>All Positions</span>
+                            <span id="cat-count-all" class="text-[10px] opacity-75 font-mono">(16)</span>
+                        </button>
+                        <button type="button" onclick="setCareerCategoryFilter('civil')" class="career-filter-btn neu-btn px-3 py-2 rounded-xl font-bold whitespace-nowrap flex items-center gap-1.5 text-slate-300" data-category="civil">
+                            <i class="fa-solid fa-trowel-bricks text-cyan-400"></i>
+                            <span>Civil & Structural</span>
+                            <span id="cat-count-civil" class="text-[10px] opacity-75 font-mono">(5)</span>
+                        </button>
+                        <button type="button" onclick="setCareerCategoryFilter('fitout')" class="career-filter-btn neu-btn px-3 py-2 rounded-xl font-bold whitespace-nowrap flex items-center gap-1.5 text-slate-300" data-category="fitout">
+                            <i class="fa-solid fa-paint-roller text-emerald-400"></i>
+                            <span>Architectural Fit-Out</span>
+                            <span id="cat-count-fitout" class="text-[10px] opacity-75 font-mono">(5)</span>
+                        </button>
+                        <button type="button" onclick="setCareerCategoryFilter('mep')" class="career-filter-btn neu-btn px-3 py-2 rounded-xl font-bold whitespace-nowrap flex items-center gap-1.5 text-slate-300" data-category="mep">
+                            <i class="fa-solid fa-bolt text-yellow-400"></i>
+                            <span>MEP & Electrical</span>
+                            <span id="cat-count-mep" class="text-[10px] opacity-75 font-mono">(3)</span>
+                        </button>
+                        <button type="button" onclick="setCareerCategoryFilter('labor')" class="career-filter-btn neu-btn px-3 py-2 rounded-xl font-bold whitespace-nowrap flex items-center gap-1.5 text-slate-300" data-category="labor">
+                            <i class="fa-solid fa-shield-halved text-rose-400"></i>
+                            <span>General Labor & Safety</span>
+                            <span id="cat-count-labor" class="text-[10px] opacity-75 font-mono">(3)</span>
+                        </button>
+                    </div>
+
+                    <!-- Search Input & Type Filter -->
+                    <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+                        <div class="relative w-full sm:w-64">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                            <input type="text" id="career-search-input" oninput="filterCareerPositions()" placeholder="Search trade or skill..." class="w-full bg-slate-900/90 border border-white/15 rounded-xl pl-8 pr-3 py-2 text-xs text-white placeholder-slate-400 outline-none focus:border-amber-400 transition-colors">
+                        </div>
+                        <select id="career-type-filter" onchange="filterCareerPositions()" class="bg-slate-900/90 border border-white/15 rounded-xl px-3 py-2 text-xs text-slate-200 font-bold outline-none cursor-pointer focus:border-amber-400">
+                            <option value="all">All Employment Types</option>
+                            <option value="Project-Based">Project-Based</option>
+                            <option value="Full-Time">Full-Time Permanent</option>
+                            <option value="Apprenticeship">Apprenticeship</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Positions Grid -->
+            <div id="career-positions-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated by script.js -->
+            </div>
+
+            <!-- Empty State Notice (Hidden by default) -->
+            <div id="career-empty-state" class="neu-card p-12 text-center rounded-2xl border border-white/10 hidden mt-4">
+                <div class="w-16 h-16 neu-inset rounded-2xl flex items-center justify-center mx-auto mb-4 text-amber-400 text-2xl">
+                    <i class="fa-solid fa-clipboard-question"></i>
+                </div>
+                <h3 class="text-lg font-black font-heading text-white mb-2">No Matching Positions Found</h3>
+                <p class="text-xs text-slate-400 max-w-md mx-auto mb-5">
+                    We didn't find any construction trade matching your search filters. Try adjusting your search keywords or submit a general workforce resume drop below.
+                </p>
+                <button type="button" onclick="resetCareerFilters()" class="neu-btn px-4 py-2 text-xs font-bold text-amber-400">
+                    Reset Search Filters
+                </button>
+            </div>
+
+            <!-- General Workforce Resume Drop Banner -->
+            <div class="neu-card p-6 sm:p-8 rounded-2xl mt-10 border border-amber-400/30 bg-gradient-to-r from-blue-950/80 via-slate-950/90 to-blue-950/80">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="space-y-1.5">
+                        <span class="neu-pill px-2.5 py-0.5 text-[10px] text-amber-400 font-extrabold uppercase tracking-wider">
+                            Walk-In & Manpower Pooling
+                        </span>
+                        <h3 class="text-xl sm:text-2xl font-black font-heading text-white">
+                            Don't See Your Exact Construction Specialty?
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                            We mobilize large-scale field teams weekly. Drop your resume, TESDA certificates, or government IDs into our open talent pool, and our site recruiters will contact you upon site mobilization.
+                        </p>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <button type="button" onclick="openApplyModal('General Workforce Application')" class="neu-btn-primary px-6 py-3.5 text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-xl">
+                            <i class="fa-solid fa-file-arrow-up"></i>
+                            <span>Drop General Resume</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- PROMOTIONAL VIDEO PRESENTATION SECTION (NEUMORPHIC) -->
     <section id="promo-video-presentation" class="py-20 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -2135,6 +2318,296 @@
             <div class="font-bold text-sm" id="toast-title">Message Received</div>
             <div class="text-xs text-slate-500" id="toast-msg">Our engineering director will be in touch within 24
                 hours.</div>
+        </div>
+    </div>
+
+    <!-- CAREER APPLICATION & RESUME DROP MODAL -->
+    <div id="career-apply-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="neu-card bg-neu-base max-w-2xl w-full p-6 sm:p-8 text-white relative rounded-2xl border border-white/10 my-8">
+            <button type="button" onclick="closeCareerApplyModal()" class="neu-btn w-8 h-8 flex items-center justify-center absolute top-4 right-4 text-slate-400 hover:text-white" title="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-5">
+                <span class="neu-pill px-2.5 py-0.5 text-[10px] text-amber-400 font-extrabold uppercase tracking-wider inline-block mb-1">
+                    Job Application Portal
+                </span>
+                <h3 class="text-xl sm:text-2xl font-black font-heading text-white">
+                    Submit Construction Application
+                </h3>
+                <p class="text-xs text-slate-300 mt-1">
+                    Complete your candidate profile and drop your resume file for immediate site recruitment review.
+                </p>
+            </div>
+
+            <!-- Position Target Pill Card -->
+            <div class="neu-inset p-3.5 rounded-xl border border-white/10 mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <span class="text-[9px] uppercase tracking-wider text-slate-400 font-bold block">Selected Position</span>
+                    <h4 id="apply-modal-job-title" class="text-sm sm:text-base font-black font-heading text-amber-400">Structural Steel Erector</h4>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span id="apply-modal-job-rate" class="neu-pill px-2.5 py-1 text-cyan-300 font-mono text-xs font-bold">₱950 - ₱1,350 / day</span>
+                    <span id="apply-modal-job-type" class="neu-pill px-2 py-1 text-slate-300 text-[10px] font-bold">Project-Based</span>
+                </div>
+            </div>
+
+            <form id="career-application-form" onsubmit="handleCareerApplicationSubmit(event)" class="space-y-4">
+                <input type="hidden" id="apply-position-id" value="">
+                <input type="hidden" id="apply-position-title" value="">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Full Name *</label>
+                        <input type="text" id="apply-candidate-name" required placeholder="e.g. Juan D. Dela Cruz" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-amber-400">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Mobile Contact Number *</label>
+                        <input type="tel" id="apply-candidate-phone" required placeholder="e.g. 0936 958 0308" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-amber-400">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Email Address</label>
+                        <input type="email" id="apply-candidate-email" placeholder="e.g. candidate@gmail.com" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-amber-400">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Current City / Municipality *</label>
+                        <input type="text" id="apply-candidate-city" required placeholder="e.g. Antipolo City, Rizal" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-amber-400">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Years of Construction Experience *</label>
+                        <select id="apply-candidate-exp" required class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none cursor-pointer focus:border-amber-400">
+                            <option value="Less than 1 Year / Entry Level">Less than 1 Year (Entry Level / Willing to Train)</option>
+                            <option value="1 - 3 Years" selected>1 - 3 Years (Experienced Crew)</option>
+                            <option value="3 - 5 Years">3 - 5 Years (Senior Skilled Specialist)</option>
+                            <option value="5+ Years">5+ Years (Master Craftsman / Lead Foreman)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Government / Trade License</label>
+                        <input type="text" id="apply-candidate-license" placeholder="e.g. TESDA NC II, LTO Code 8, DOLE COSH" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-amber-400">
+                    </div>
+                </div>
+
+                <!-- Interactive Resume Drag and Drop Zone -->
+                <div>
+                    <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
+                        Resume / Bio-Data / Certifications File *
+                    </label>
+                    <div id="resume-drop-zone" onclick="triggerResumeBrowse()" class="resume-drop-zone rounded-xl p-5 text-center cursor-pointer relative group">
+                        <input type="file" id="resume-file-input" onchange="handleResumeFileSelected(event)" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" class="hidden">
+                        
+                        <!-- Empty Drop State -->
+                        <div id="drop-zone-empty" class="space-y-1.5">
+                            <div class="w-10 h-10 rounded-full bg-blue-900/50 flex items-center justify-center mx-auto text-amber-400 text-lg group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <div class="text-xs font-bold text-white">
+                                Drag & Drop Resume File Here or <span class="text-amber-400 underline">Browse</span>
+                            </div>
+                            <div class="text-[10px] text-slate-400">
+                                Supports PDF, Word (.doc, .docx), or Clear Photo ID (.jpg, .png) • Max 10MB
+                            </div>
+                        </div>
+
+                        <!-- File Loaded State -->
+                        <div id="drop-zone-loaded" class="hidden items-center justify-between p-2 neu-inset rounded-lg">
+                            <div class="flex items-center gap-2.5 min-w-0">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-sm flex-shrink-0">
+                                    <i class="fa-solid fa-file-lines" id="resume-file-icon"></i>
+                                </div>
+                                <div class="text-left min-w-0">
+                                    <div id="resume-file-name" class="text-xs font-bold text-white truncate max-w-[240px] sm:max-w-sm">my-resume.pdf</div>
+                                    <div id="resume-file-size" class="text-[10px] text-slate-400 font-mono">1.2 MB</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="neu-pill px-2 py-0.5 text-[9px] text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/30">Ready</span>
+                                <button type="button" onclick="removeResumeFile(event)" class="neu-btn w-7 h-7 flex items-center justify-center text-red-400 hover:text-white" title="Remove file">
+                                    <i class="fa-solid fa-trash text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Specialized Skills / Note (Optional)</label>
+                    <textarea id="apply-candidate-notes" rows="2" placeholder="Mention key projects, machine models handled, or earliest availability date..." class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-amber-400"></textarea>
+                </div>
+
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <span class="text-[10px] text-slate-400 text-center sm:text-left">
+                        <i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i> Data handled with strict recruitment privacy.
+                    </span>
+                    <button type="submit" id="apply-submit-btn" class="neu-btn-primary px-6 py-3 text-xs font-black uppercase tracking-wider w-full sm:w-auto flex items-center justify-center gap-2 shadow-lg">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Submit Application & Resume</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CAREER ADMIN AUTHENTICATION MODAL -->
+    <div id="career-admin-auth-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="neu-card bg-neu-base max-w-md w-full p-6 sm:p-8 text-white relative rounded-2xl border border-amber-400/30">
+            <button type="button" onclick="closeCareerAdminAuthModal()" class="neu-btn w-8 h-8 flex items-center justify-center absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-5">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center mx-auto mb-3 text-amber-400 text-xl">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="text-xl font-black font-heading text-white">Administrator Access</h3>
+                <p class="text-xs text-slate-300 mt-1">
+                    Enter the authorized administrator PIN to create, edit, or manage labor and skill positions.
+                </p>
+            </div>
+
+            <form id="career-admin-auth-form" onsubmit="handleCareerAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Admin Passcode / PIN</label>
+                    <div class="relative">
+                        <input type="password" id="career-admin-pin" required placeholder="Enter PIN..." class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 outline-none focus:border-amber-400 font-mono tracking-widest text-center">
+                        <button type="button" onclick="toggleAdminPinVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs p-1">
+                            <i class="fa-solid fa-eye" id="admin-pin-eye"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between mt-2 text-[10px] text-slate-400">
+                        <span>Default Demo PIN: <strong class="text-amber-400 font-mono">mirr2026</strong></span>
+                        <span class="text-cyan-400">HR Department</span>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="neu-btn-primary w-full py-3 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-unlock"></i>
+                        <span>Unlock Management Console</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CAREER POSITION EDITOR MODAL (ADMIN ONLY) -->
+    <div id="career-position-editor-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="neu-card bg-neu-base max-w-2xl w-full p-6 sm:p-8 text-white relative rounded-2xl border border-emerald-500/40 my-8">
+            <button type="button" onclick="closePositionEditor()" class="neu-btn w-8 h-8 flex items-center justify-center absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-5">
+                <span class="neu-pill px-2.5 py-0.5 text-[10px] text-emerald-400 font-extrabold uppercase tracking-wider inline-block mb-1">
+                    HR Administrator Console
+                </span>
+                <h3 id="position-editor-modal-title" class="text-xl sm:text-2xl font-black font-heading text-white">
+                    Post New Trade Position
+                </h3>
+                <p class="text-xs text-slate-300 mt-1">
+                    Manage field position requirements, compensation, and open slot counts.
+                </p>
+            </div>
+
+            <form id="career-position-form" onsubmit="handleSavePosition(event)" class="space-y-4">
+                <input type="hidden" id="editor-position-id" value="">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Position / Trade Title *</label>
+                        <input type="text" id="editor-title" required placeholder="e.g. Master Structural Steel Welder" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-400">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Trade Category *</label>
+                        <select id="editor-category" required class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none cursor-pointer focus:border-emerald-400">
+                            <option value="civil">Civil & Structural Trades</option>
+                            <option value="fitout">Architectural & Interior Fit-Out</option>
+                            <option value="mep">MEP Engineering (Electrical / Plumbing / HVAC)</option>
+                            <option value="labor">General Construction Labor & Safety</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Employment Type *</label>
+                        <select id="editor-type" required class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none cursor-pointer focus:border-emerald-400">
+                            <option value="Project-Based">Project-Based</option>
+                            <option value="Full-Time">Full-Time Permanent</option>
+                            <option value="Apprenticeship">Apprenticeship</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Daily Rate / Compensation *</label>
+                        <input type="text" id="editor-rate" required placeholder="e.g. ₱950 - ₱1,350 / day + OT" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-400">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Open Slots / Vacancies *</label>
+                        <input type="text" id="editor-vacancies" required placeholder="e.g. 8 Vacancies" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-400">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Deployment Location *</label>
+                        <input type="text" id="editor-location" required placeholder="e.g. Metro Manila & Calabarzon Project Sites" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-400">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Required Certifications (comma-separated)</label>
+                        <input type="text" id="editor-certs" placeholder="e.g. TESDA NC II, SMAW 6G, High-School Grad" class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-400">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">Trade Scope & Requirements Description *</label>
+                    <textarea id="editor-desc" rows="3" required placeholder="Detailed duties, safety requirements, and site responsibilities..." class="w-full bg-slate-900/90 border border-white/15 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-emerald-400"></textarea>
+                </div>
+
+                <div class="pt-3 flex items-center justify-end gap-3">
+                    <button type="button" onclick="closePositionEditor()" class="neu-btn px-4 py-2.5 text-xs font-bold text-slate-300">
+                        Cancel
+                    </button>
+                    <button type="submit" class="neu-btn-primary px-6 py-2.5 text-xs font-black uppercase tracking-wider flex items-center gap-1.5 shadow-lg">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span>Save Position</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CAREER APPLICATIONS INBOX MODAL (ADMIN ONLY) -->
+    <div id="career-inbox-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="neu-card bg-neu-base max-w-4xl w-full p-6 sm:p-8 text-white relative rounded-2xl border border-amber-400/30 my-8">
+            <button type="button" onclick="closeCareerInboxModal()" class="neu-btn w-8 h-8 flex items-center justify-center absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-3 border-b border-white/10">
+                <div>
+                    <span class="neu-pill px-2.5 py-0.5 text-[10px] text-amber-400 font-extrabold uppercase tracking-wider inline-block mb-1">
+                        Recruitment Central
+                    </span>
+                    <h3 class="text-xl sm:text-2xl font-black font-heading text-white">
+                        Applications & Resumes Inbox
+                    </h3>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="exportApplicationsJson()" class="neu-btn px-3 py-1.5 text-xs font-bold text-cyan-300 flex items-center gap-1.5" title="Export Applications Backup">
+                        <i class="fa-solid fa-download"></i> Export Data
+                    </button>
+                    <button type="button" onclick="clearAllApplications()" class="neu-btn px-2.5 py-1.5 text-xs text-red-400 hover:text-white" title="Clear Applications">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Applications List Container -->
+            <div id="career-inbox-list" class="space-y-3 max-h-[60vh] overflow-y-auto pr-1">
+                <!-- Dynamically populated by script.js -->
+            </div>
         </div>
     </div>
 

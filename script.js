@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPortfolioFilter();
     initBeforeAfterSlider();
     initPromoVideoPresentation();
+    initCareersPortal();
     initForms();
 });
 
@@ -1519,6 +1520,1046 @@ function drawCanvasRoundRect(ctx, x, y, width, height, radius, fill, stroke) {
 }
 
 /* -------------------------------------------------------------
+ * CAREERS & WORKFORCE PORTAL (CONSTRUCTION LABOR & SKILLED TRADES)
+ * ------------------------------------------------------------- */
+const DEFAULT_CAREER_POSITIONS = [
+    // Civil & Structural Trades
+    {
+        id: "POS-CIVIL-01",
+        title: "Structural Steel Erector / SMAW-FCAW Welder",
+        category: "civil",
+        categoryLabel: "Civil & Structural",
+        type: "Project-Based",
+        rate: "₱950 - ₱1,350 / day + OT",
+        vacancies: "8 Vacancies",
+        location: "Metro Manila High-Rise Sites",
+        certs: ["TESDA SMAW NC II", "FCAW 6G", "Working at Heights"],
+        desc: "Responsible for erecting heavy structural steel moment frames, column splicing, high-tensile bolt torquing, and full-penetration welding on multi-story commercial and industrial towers."
+    },
+    {
+        id: "POS-CIVIL-02",
+        title: "Heavy Equipment & Tower Crane Operator",
+        category: "civil",
+        categoryLabel: "Civil & Structural",
+        type: "Full-Time",
+        rate: "₱1,200 - ₱1,650 / day + OT",
+        vacancies: "4 Vacancies",
+        location: "Calabarzon & Metro Manila Sites",
+        certs: ["TESDA Crane Operation NC III", "LTO License Code 8", "Rigging Safety"],
+        desc: "Operates 50-ton mobile cranes and top-slewing tower cranes for lifting heavy precast panels, structural steel sections, and concrete bucket pours with zero-blind-spot coordination."
+    },
+    {
+        id: "POS-CIVIL-03",
+        title: "Monolithic Concrete Finisher & Laser-Screed Mason",
+        category: "civil",
+        categoryLabel: "Civil & Structural",
+        type: "Project-Based",
+        rate: "₱800 - ₱1,100 / day + OT",
+        vacancies: "10 Vacancies",
+        location: "Commercial Logistics Parks & Slabs",
+        certs: ["TESDA Masonry NC II", "Power Trowel Operation"],
+        desc: "Specializes in high-tolerance FF/FL floor slab finishing, vibratory screeding, power troweling, monolithic toppings, and structural concrete joint cutting."
+    },
+    {
+        id: "POS-CIVIL-04",
+        title: "Master Rebar Fabricator & Steelfixer",
+        category: "civil",
+        categoryLabel: "Civil & Structural",
+        type: "Project-Based",
+        rate: "₱850 - ₱1,150 / day + OT",
+        vacancies: "8 Vacancies",
+        location: "Bridge & Civil Substructure Projects",
+        certs: ["TESDA Reinforcing Steel NC II", "Blueprint Reading"],
+        desc: "Reads structural engineering rebar schedules, cuts and bends high-tensile Grade 60 rebars, and ties complex foundation footing and column cage matrices."
+    },
+    {
+        id: "POS-CIVIL-05",
+        title: "Civil Earthworks & Shoring Lead Foreman",
+        category: "civil",
+        categoryLabel: "Civil & Structural",
+        type: "Full-Time",
+        rate: "₱32,000 - ₱42,000 / month",
+        vacancies: "2 Vacancies",
+        location: "Basement Excavation Sites",
+        certs: ["TESDA Civil Works Lead", "DOLE COSH", "5+ Yrs Exp"],
+        desc: "Oversees site grading, deep basement excavation, soldier pile shoring, soil nailing, and dewatering pumps in compliance with geotechnical specifications."
+    },
+
+    // Architectural & Interior Fit-Out Trades
+    {
+        id: "POS-FITOUT-01",
+        title: "Master Architectural Joiner & Finish Carpenter",
+        category: "fitout",
+        categoryLabel: "Architectural Fit-Out",
+        type: "Full-Time",
+        rate: "₱900 - ₱1,300 / day + OT",
+        vacancies: "6 Vacancies",
+        location: "Corporate Headquarters & Hotel Fit-Outs",
+        certs: ["TESDA Carpentry NC II", "Millwork Precision"],
+        desc: "Executes luxury corporate woodwork, acoustic wall paneling, bespoke executive reception counters, and precision architectural door framing."
+    },
+    {
+        id: "POS-FITOUT-02",
+        title: "Drywall Partitions & Acoustic Ceiling Specialist",
+        category: "fitout",
+        categoryLabel: "Architectural Fit-Out",
+        type: "Project-Based",
+        rate: "₱850 - ₱1,150 / day + OT",
+        vacancies: "8 Vacancies",
+        location: "Commercial BPO Office Fit-Outs",
+        certs: ["Gypsum Board Specialist", "Laser Leveling Cert"],
+        desc: "Installs galvanized metal stud framing, fire-rated moisture-resistant gypsum boards, acoustic baffle ceilings, and seamless joint taping."
+    },
+    {
+        id: "POS-FITOUT-03",
+        title: "Commercial Tile & Natural Stone Mason",
+        category: "fitout",
+        categoryLabel: "Architectural Fit-Out",
+        type: "Project-Based",
+        rate: "₱850 - ₱1,200 / day + OT",
+        vacancies: "6 Vacancies",
+        location: "Commercial Lobby & Luxury Bath Projects",
+        certs: ["TESDA Tile Setting NC II", "Large-Format Porcelain"],
+        desc: "Lays large-format 1200x600mm porcelain tiles, natural granite cladding, and epoxy grout sealing with leveling clips achieving flawless planar alignment."
+    },
+    {
+        id: "POS-FITOUT-04",
+        title: "Glazing Specialist & Aluminium Curtain-Wall Fabricator",
+        category: "fitout",
+        categoryLabel: "Architectural Fit-Out",
+        type: "Full-Time",
+        rate: "₱900 - ₱1,250 / day + OT",
+        vacancies: "4 Vacancies",
+        location: "Curtain-Wall High-Rise Enclosures",
+        certs: ["Curtain-Wall Installation", "Spider Glazing"],
+        desc: "Fabricates and installs double-glazed unitized curtain wall cassettes, frameless acoustic glass storefronts, and structural silicone weather seals."
+    },
+    {
+        id: "POS-FITOUT-05",
+        title: "Commercial Painter & High-Performance Epoxy Applicator",
+        category: "fitout",
+        categoryLabel: "Architectural Fit-Out",
+        type: "Project-Based",
+        rate: "₱800 - ₱1,100 / day + OT",
+        vacancies: "6 Vacancies",
+        location: "Industrial Floors & Commercial Buildings",
+        certs: ["Airless Spray Cert", "Epoxy Coating Specialist"],
+        desc: "Applies industrial self-leveling floor epoxy, polyurethane anti-skid coatings, airless wall priming, and textured decorative finishes."
+    },
+
+    // MEP Engineering Trades
+    {
+        id: "POS-MEP-01",
+        title: "Licensed Master Electrician & Cable Jointer",
+        category: "mep",
+        categoryLabel: "MEP Engineering",
+        type: "Full-Time",
+        rate: "₱1,100 - ₱1,500 / day + OT",
+        vacancies: "5 Vacancies",
+        location: "Substations & High-Rise Buildings",
+        certs: ["PRC Master Electrician", "TESDA Electrical NC II/III"],
+        desc: "Installs three-phase main distribution boards, busducts, transformer switchgear, emergency generator transfer switches, and conduit routing."
+    },
+    {
+        id: "POS-MEP-02",
+        title: "Certified Master Plumber & High-Pressure Pipefitter",
+        category: "mep",
+        categoryLabel: "MEP Engineering",
+        type: "Full-Time",
+        rate: "₱950 - ₱1,350 / day + OT",
+        vacancies: "5 Vacancies",
+        location: "Commercial Water Supply & Fire Mains",
+        certs: ["TESDA Plumbing NC II", "Electrofusion HDPE Welding"],
+        desc: "Routinely executes PPR sanitary risers, cast iron soil pipes, booster pump skids, and wet standpipe fire protection sprinkler systems."
+    },
+    {
+        id: "POS-MEP-03",
+        title: "HVAC Ducting, VRF & Chiller Technician",
+        category: "mep",
+        categoryLabel: "MEP Engineering",
+        type: "Project-Based",
+        rate: "₱1,000 - ₱1,400 / day + OT",
+        vacancies: "4 Vacancies",
+        location: "Commercial Central HVAC Projects",
+        certs: ["TESDA RAC Servicing NC II", "Brazing Safety"],
+        desc: "Installs galvanized sheet ductwork, VRF copper line sets, chilled water fan coil units, and performs nitrogen pressure leak tests."
+    },
+
+    // General Construction Labor & Site Safety
+    {
+        id: "POS-LABOR-01",
+        title: "Construction General Laborer (Site Logistics & Clearing)",
+        category: "labor",
+        categoryLabel: "General Labor & Safety",
+        type: "Project-Based",
+        rate: "₱650 - ₱850 / day + OT",
+        vacancies: "12 Vacancies",
+        location: "All Active Metro Manila & Rizal Sites",
+        certs: ["Fit-to-Work Medical", "Basic Site Safety Induction"],
+        desc: "Assists with material offloading, staging rebar and cement sacks, manual excavation, concrete mixing support, and 5S site housekeeping."
+    },
+    {
+        id: "POS-LABOR-02",
+        title: "Rigging, Scaffolding & Formwork Crew",
+        category: "labor",
+        categoryLabel: "General Labor & Safety",
+        type: "Project-Based",
+        rate: "₱850 - ₱1,150 / day + OT",
+        vacancies: "8 Vacancies",
+        location: "High-Rise Elevated Deck Works",
+        certs: ["TESDA Scaffolding Erector NC II", "Fall Protection"],
+        desc: "Erects modular ringlock and cuplock scaffolding towers, heavy-duty shoring jacks, and engineered column formwork clamps."
+    },
+    {
+        id: "POS-LABOR-03",
+        title: "DOLE-Accredited Construction Safety Officer (SO2 / SO3)",
+        category: "labor",
+        categoryLabel: "General Labor & Safety",
+        type: "Full-Time",
+        rate: "₱35,000 - ₱48,000 / month",
+        vacancies: "2 Vacancies",
+        location: "Turnkey Commercial Sites",
+        certs: ["DOLE-BWC Accredited", "COSH (40 Hours)", "First Aider"],
+        desc: "Enforces DOLE DO 13 construction safety guidelines, leads daily morning toolbox talks, inspects heavy machinery, and maintains MIRR's 1.5M+ zero-incident record."
+    }
+];
+
+let currentCareerCategory = 'all';
+let careerSearchTerm = '';
+let careerTypeFilter = 'all';
+let currentAttachedResume = null; // { name, size, type, dataUrl }
+const ADMIN_SECRET_PIN = 'mirr2026';
+
+function initCareersPortal() {
+    // 1. Initialize stored positions in localStorage if empty
+    if (!localStorage.getItem('mirr_career_positions')) {
+        localStorage.setItem('mirr_career_positions', JSON.stringify(DEFAULT_CAREER_POSITIONS));
+    }
+
+    // 2. Setup Drag and Drop listeners on Resume Zone
+    setupResumeDropZone();
+
+    // 3. Update Admin Session UI state
+    updateCareerAdminUIState();
+
+    // 4. Render initial positions
+    renderCareerPositions();
+
+    // 5. Update applications inbox count
+    updateInboxBadgeCount();
+}
+
+function getCareerPositions() {
+    try {
+        const stored = localStorage.getItem('mirr_career_positions');
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+    } catch (e) {}
+    return DEFAULT_CAREER_POSITIONS;
+}
+
+function saveCareerPositions(positions) {
+    try {
+        localStorage.setItem('mirr_career_positions', JSON.stringify(positions));
+    } catch (e) {}
+    renderCareerPositions();
+}
+
+function getCareerApplications() {
+    try {
+        const stored = localStorage.getItem('mirr_career_applications');
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed)) return parsed;
+        }
+    } catch (e) {}
+    return [];
+}
+
+function saveCareerApplications(apps) {
+    try {
+        localStorage.setItem('mirr_career_applications', JSON.stringify(apps));
+    } catch (e) {}
+    updateInboxBadgeCount();
+}
+
+function isCareerAdmin() {
+    return sessionStorage.getItem('mirr_career_admin_auth') === 'true' || localStorage.getItem('mirr_career_admin_auth') === 'true';
+}
+
+function updateCareerAdminUIState() {
+    const adminPanel = document.getElementById('career-admin-panel');
+    const toggleBtn = document.getElementById('career-admin-toggle-btn');
+    const label = document.getElementById('career-admin-btn-label');
+    const lockIcon = document.getElementById('career-admin-lock-icon');
+
+    const loggedIn = isCareerAdmin();
+
+    if (adminPanel) {
+        if (loggedIn) {
+            adminPanel.classList.remove('hidden');
+        } else {
+            adminPanel.classList.add('hidden');
+        }
+    }
+
+    if (toggleBtn && label && lockIcon) {
+        if (loggedIn) {
+            label.innerText = 'Admin Active';
+            lockIcon.className = 'fa-solid fa-unlock text-emerald-400';
+            toggleBtn.classList.add('border-emerald-500/50', 'text-emerald-400');
+            toggleBtn.classList.remove('text-amber-400');
+        } else {
+            label.innerText = 'Admin Access';
+            lockIcon.className = 'fa-solid fa-lock text-amber-400';
+            toggleBtn.classList.remove('border-emerald-500/50', 'text-emerald-400');
+            toggleBtn.classList.add('text-amber-400');
+        }
+    }
+}
+
+function updateInboxBadgeCount() {
+    const badge = document.getElementById('career-inbox-badge');
+    if (!badge) return;
+    const apps = getCareerApplications();
+    badge.innerText = apps.length;
+}
+
+function renderCareerPositions() {
+    const grid = document.getElementById('career-positions-grid');
+    const emptyState = document.getElementById('career-empty-state');
+    const totalCountEl = document.getElementById('career-total-count');
+    const vacanciesEl = document.getElementById('career-vacancies-count');
+    if (!grid) return;
+
+    const allPositions = getCareerPositions();
+    const isAdmin = isCareerAdmin();
+
+    // Update Category Counts in Filter Buttons
+    const counts = { all: allPositions.length, civil: 0, fitout: 0, mep: 0, labor: 0 };
+    allPositions.forEach(p => {
+        if (counts[p.category] !== undefined) counts[p.category]++;
+    });
+    const cAll = document.getElementById('cat-count-all');
+    const cCivil = document.getElementById('cat-count-civil');
+    const cFitout = document.getElementById('cat-count-fitout');
+    const cMep = document.getElementById('cat-count-mep');
+    const cLabor = document.getElementById('cat-count-labor');
+    if (cAll) cAll.innerText = `(${counts.all})`;
+    if (cCivil) cCivil.innerText = `(${counts.civil})`;
+    if (cFitout) cFitout.innerText = `(${counts.fitout})`;
+    if (cMep) cMep.innerText = `(${counts.mep})`;
+    if (cLabor) cLabor.innerText = `(${counts.labor})`;
+
+    // Filter positions
+    const filtered = allPositions.filter(p => {
+        // Category check
+        if (currentCareerCategory !== 'all' && p.category !== currentCareerCategory) return false;
+
+        // Type check
+        if (careerTypeFilter !== 'all' && p.type !== careerTypeFilter) return false;
+
+        // Search check
+        if (careerSearchTerm.trim() !== '') {
+            const term = careerSearchTerm.toLowerCase();
+            const matchTitle = (p.title || '').toLowerCase().includes(term);
+            const matchDesc = (p.desc || '').toLowerCase().includes(term);
+            const matchLocation = (p.location || '').toLowerCase().includes(term);
+            const matchCerts = (p.certs || []).some(c => c.toLowerCase().includes(term));
+            if (!matchTitle && !matchDesc && !matchLocation && !matchCerts) return false;
+        }
+
+        return true;
+    });
+
+    if (totalCountEl) totalCountEl.innerText = `${allPositions.length} Trade Positions Open`;
+    if (vacanciesEl) {
+        let totalSlots = 0;
+        allPositions.forEach(p => {
+            const num = parseInt(p.vacancies) || 4;
+            totalSlots += num;
+        });
+        vacanciesEl.innerText = `${totalSlots}+ Active Field Slots`;
+    }
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '';
+        if (emptyState) emptyState.classList.remove('hidden');
+        return;
+    }
+
+    if (emptyState) emptyState.classList.add('hidden');
+
+    const categoryBadges = {
+        civil: { label: "Civil & Structural", color: "text-cyan-400 border-cyan-500/30 bg-cyan-950/40", icon: "fa-trowel-bricks" },
+        fitout: { label: "Architectural Fit-Out", color: "text-emerald-400 border-emerald-500/30 bg-emerald-950/40", icon: "fa-paint-roller" },
+        mep: { label: "MEP Engineering", color: "text-yellow-400 border-yellow-500/30 bg-yellow-950/40", icon: "fa-bolt" },
+        labor: { label: "General Labor & Safety", color: "text-rose-400 border-rose-500/30 bg-rose-950/40", icon: "fa-shield-halved" }
+    };
+
+    grid.innerHTML = filtered.map(p => {
+        const catInfo = categoryBadges[p.category] || categoryBadges.civil;
+        const certTags = (p.certs || []).map(c => `
+            <span class="neu-pill px-2 py-0.5 text-[9px] text-slate-300 font-mono">
+                <i class="fa-solid fa-check text-amber-400 mr-0.5"></i> ${c}
+            </span>
+        `).join('');
+
+        const adminActions = isAdmin ? `
+            <div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between gap-2 text-xs">
+                <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-gear"></i> Admin Controls
+                </span>
+                <div class="flex items-center gap-1.5">
+                    <button type="button" onclick="openPositionEditor('${p.id}')" class="neu-btn px-2.5 py-1 text-[11px] font-bold text-amber-400 hover:text-white flex items-center gap-1" title="Edit Position">
+                        <i class="fa-solid fa-pen-to-square"></i> Edit
+                    </button>
+                    <button type="button" onclick="deleteCareerPosition('${p.id}')" class="neu-btn px-2.5 py-1 text-[11px] font-bold text-red-400 hover:text-white flex items-center gap-1" title="Delete Position">
+                        <i class="fa-solid fa-trash"></i> Delete
+                    </button>
+                </div>
+            </div>
+        ` : '';
+
+        return `
+            <div class="neu-card career-card p-5 rounded-2xl border border-white/10 flex flex-col justify-between relative group">
+                <div>
+                    <!-- Top Telemetry Row -->
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="neu-pill px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${catInfo.color}">
+                            <i class="fa-solid ${catInfo.icon} mr-1"></i> ${p.categoryLabel || catInfo.label}
+                        </span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="neu-pill px-2 py-0.5 text-[10px] text-slate-300 font-bold">${p.type}</span>
+                            <span class="neu-pill px-2 py-0.5 text-[10px] text-emerald-400 font-extrabold bg-emerald-950/60 border border-emerald-500/30">${p.vacancies}</span>
+                        </div>
+                    </div>
+
+                    <!-- Job Title -->
+                    <h3 class="text-base sm:text-lg font-black font-heading text-white group-hover:text-amber-400 transition-colors leading-snug">
+                        ${p.title}
+                    </h3>
+
+                    <!-- Daily Rate & Location Strip -->
+                    <div class="mt-2.5 pb-2.5 border-b border-white/10 flex flex-col gap-1 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="text-slate-400 text-[11px]">Rate:</span>
+                            <span class="font-mono font-bold text-cyan-300 text-xs">${p.rate}</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-slate-300 text-[11px]">
+                            <i class="fa-solid fa-location-dot text-amber-400"></i>
+                            <span class="truncate">${p.location}</span>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-xs text-slate-300 leading-relaxed mt-3 line-clamp-3">
+                        ${p.desc}
+                    </p>
+
+                    <!-- Required Certifications Tags -->
+                    <div class="flex flex-wrap gap-1.5 mt-3">
+                        ${certTags}
+                    </div>
+                </div>
+
+                <!-- Card Action Footer -->
+                <div class="mt-5 pt-3.5 border-t border-white/10">
+                    <button type="button" onclick="openApplyModal('${p.id}')" class="neu-btn-primary w-full py-2.5 px-4 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 shadow-md group-hover:scale-[1.02] transition-transform">
+                        <i class="fa-solid fa-file-arrow-up"></i>
+                        <span>Apply & Drop Resume</span>
+                    </button>
+                    ${adminActions}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+window.setCareerCategoryFilter = function(category) {
+    currentCareerCategory = category;
+    const buttons = document.querySelectorAll('.career-filter-btn');
+    buttons.forEach(btn => {
+        if (btn.getAttribute('data-category') === category) {
+            btn.classList.add('active');
+            btn.classList.remove('text-slate-300');
+        } else {
+            btn.classList.remove('active');
+            btn.classList.add('text-slate-300');
+        }
+    });
+    renderCareerPositions();
+};
+
+window.filterCareerPositions = function() {
+    const searchInput = document.getElementById('career-search-input');
+    const typeSelect = document.getElementById('career-type-filter');
+    careerSearchTerm = searchInput ? searchInput.value : '';
+    careerTypeFilter = typeSelect ? typeSelect.value : 'all';
+    renderCareerPositions();
+};
+
+window.resetCareerFilters = function() {
+    const searchInput = document.getElementById('career-search-input');
+    const typeSelect = document.getElementById('career-type-filter');
+    if (searchInput) searchInput.value = '';
+    if (typeSelect) typeSelect.value = 'all';
+    careerSearchTerm = '';
+    careerTypeFilter = 'all';
+    window.setCareerCategoryFilter('all');
+};
+
+/* Resume File Drag and Drop Engine */
+function setupResumeDropZone() {
+    const zone = document.getElementById('resume-drop-zone');
+    if (!zone) return;
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        zone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            zone.classList.add('drag-active');
+        });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        zone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            zone.classList.remove('drag-active');
+        });
+    });
+
+    zone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files && files.length > 0) {
+            processResumeFile(files[0]);
+        }
+    });
+}
+
+window.triggerResumeBrowse = function() {
+    const input = document.getElementById('resume-file-input');
+    if (input) input.click();
+};
+
+window.handleResumeFileSelected = function(e) {
+    if (e.target.files && e.target.files.length > 0) {
+        processResumeFile(e.target.files[0]);
+    }
+};
+
+function processResumeFile(file) {
+    const emptyState = document.getElementById('drop-zone-empty');
+    const loadedState = document.getElementById('drop-zone-loaded');
+    const nameEl = document.getElementById('resume-file-name');
+    const sizeEl = document.getElementById('resume-file-size');
+    const iconEl = document.getElementById('resume-file-icon');
+
+    if (!file) return;
+
+    // Check size limit (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+        showToast('File Too Large', 'Please upload a resume under 10MB.');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        currentAttachedResume = {
+            name: file.name,
+            size: formatBytes(file.size),
+            type: file.type || 'application/octet-stream',
+            dataUrl: event.target.result
+        };
+
+        if (nameEl) nameEl.innerText = file.name;
+        if (sizeEl) sizeEl.innerText = formatBytes(file.size);
+
+        if (iconEl) {
+            if (file.name.endsWith('.pdf')) {
+                iconEl.className = 'fa-solid fa-file-pdf text-red-400';
+            } else if (file.name.endsWith('.doc') || file.name.endsWith('.docx')) {
+                iconEl.className = 'fa-solid fa-file-word text-blue-400';
+            } else {
+                iconEl.className = 'fa-solid fa-file-image text-emerald-400';
+            }
+        }
+
+        if (emptyState) emptyState.classList.add('hidden');
+        if (loadedState) {
+            loadedState.classList.remove('hidden');
+            loadedState.classList.add('flex');
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+window.removeResumeFile = function(e) {
+    if (e) e.stopPropagation();
+    currentAttachedResume = null;
+    const input = document.getElementById('resume-file-input');
+    const emptyState = document.getElementById('drop-zone-empty');
+    const loadedState = document.getElementById('drop-zone-loaded');
+
+    if (input) input.value = '';
+    if (loadedState) {
+        loadedState.classList.remove('flex');
+        loadedState.classList.add('hidden');
+    }
+    if (emptyState) emptyState.classList.remove('hidden');
+};
+
+function formatBytes(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+}
+
+/* Candidate Application Modal Controls */
+window.openApplyModal = function(posIdOrTitle) {
+    const modal = document.getElementById('career-apply-modal');
+    const titleEl = document.getElementById('apply-modal-job-title');
+    const rateEl = document.getElementById('apply-modal-job-rate');
+    const typeEl = document.getElementById('apply-modal-job-type');
+    const idInput = document.getElementById('apply-position-id');
+    const titleInput = document.getElementById('apply-position-title');
+
+    if (!modal) return;
+
+    let targetTitle = "General Workforce Application";
+    let targetRate = "Prevailing Daily Rate + Benefits";
+    let targetType = "Project-Based / Pool";
+    let targetId = "GENERAL";
+
+    const allPositions = getCareerPositions();
+    const found = allPositions.find(p => p.id === posIdOrTitle || p.title === posIdOrTitle);
+    if (found) {
+        targetTitle = found.title;
+        targetRate = found.rate;
+        targetType = found.type;
+        targetId = found.id;
+    } else if (posIdOrTitle) {
+        targetTitle = posIdOrTitle;
+    }
+
+    if (titleEl) titleEl.innerText = targetTitle;
+    if (rateEl) rateEl.innerText = targetRate;
+    if (typeEl) typeEl.innerText = targetType;
+    if (idInput) idInput.value = targetId;
+    if (titleInput) titleInput.value = targetTitle;
+
+    // Reset resume state
+    removeResumeFile();
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+};
+
+window.closeCareerApplyModal = function() {
+    const modal = document.getElementById('career-apply-modal');
+    if (!modal) return;
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+};
+
+window.handleCareerApplicationSubmit = function(e) {
+    e.preventDefault();
+    const idInput = document.getElementById('apply-position-id');
+    const titleInput = document.getElementById('apply-position-title');
+    const nameInput = document.getElementById('apply-candidate-name');
+    const phoneInput = document.getElementById('apply-candidate-phone');
+    const emailInput = document.getElementById('apply-candidate-email');
+    const cityInput = document.getElementById('apply-candidate-city');
+    const expSelect = document.getElementById('apply-candidate-exp');
+    const licenseInput = document.getElementById('apply-candidate-license');
+    const notesInput = document.getElementById('apply-candidate-notes');
+
+    if (!currentAttachedResume) {
+        showToast('Resume Required', 'Please drop or browse your resume / bio-data file before submitting.');
+        return;
+    }
+
+    const trackingId = 'MIRR-HR-' + Math.floor(100000 + Math.random() * 900000);
+    const newApplication = {
+        id: trackingId,
+        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+        positionId: idInput ? idInput.value : '',
+        positionTitle: titleInput ? titleInput.value : 'General Workforce',
+        name: nameInput ? nameInput.value : '',
+        phone: phoneInput ? phoneInput.value : '',
+        email: emailInput ? emailInput.value : 'N/A',
+        city: cityInput ? cityInput.value : '',
+        experience: expSelect ? expSelect.value : '',
+        license: licenseInput ? licenseInput.value : 'None Stated',
+        notes: notesInput ? notesInput.value : '',
+        resumeName: currentAttachedResume.name,
+        resumeSize: currentAttachedResume.size,
+        resumeType: currentAttachedResume.type,
+        resumeData: currentAttachedResume.dataUrl
+    };
+
+    const apps = getCareerApplications();
+    apps.unshift(newApplication);
+    saveCareerApplications(apps);
+
+    closeCareerApplyModal();
+    e.target.reset();
+    removeResumeFile();
+
+    showToast('Application Received!', `Application ${trackingId} submitted successfully. Our site recruiters will contact you within 24-48 hours.`);
+};
+
+/* Admin Authentication & Position Editor Engine */
+window.openCareerAdminAuthModal = function() {
+    if (isCareerAdmin()) {
+        const adminPanel = document.getElementById('career-admin-panel');
+        if (adminPanel) {
+            adminPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            showToast('Admin Mode Active', 'You are already authenticated as HR administrator.');
+        }
+        return;
+    }
+    const modal = document.getElementById('career-admin-auth-modal');
+    if (!modal) return;
+    const pinInput = document.getElementById('career-admin-pin');
+    if (pinInput) pinInput.value = '';
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+};
+
+window.closeCareerAdminAuthModal = function() {
+    const modal = document.getElementById('career-admin-auth-modal');
+    if (!modal) return;
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+};
+
+window.toggleAdminPinVisibility = function() {
+    const pin = document.getElementById('career-admin-pin');
+    const eye = document.getElementById('admin-pin-eye');
+    if (!pin) return;
+    if (pin.type === 'password') {
+        pin.type = 'text';
+        if (eye) eye.className = 'fa-solid fa-eye-slash';
+    } else {
+        pin.type = 'password';
+        if (eye) eye.className = 'fa-solid fa-eye';
+    }
+};
+
+window.handleCareerAdminLogin = function(e) {
+    e.preventDefault();
+    const pin = document.getElementById('career-admin-pin');
+    if (!pin) return;
+
+    if (pin.value === ADMIN_SECRET_PIN) {
+        sessionStorage.setItem('mirr_career_admin_auth', 'true');
+        closeCareerAdminAuthModal();
+        updateCareerAdminUIState();
+        renderCareerPositions();
+        showToast('Admin Authorized', 'HR management console unlocked. You may now post, edit, or delete positions.');
+        const panel = document.getElementById('career-admin-panel');
+        if (panel) panel.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        showToast('Access Denied', 'Incorrect Administrator PIN code. Please verify credentials.');
+        pin.focus();
+        pin.select();
+    }
+};
+
+window.logoutCareerAdmin = function() {
+    sessionStorage.removeItem('mirr_career_admin_auth');
+    localStorage.removeItem('mirr_career_admin_auth');
+    updateCareerAdminUIState();
+    renderCareerPositions();
+    showToast('Logged Out', 'Exited Administrator Mode. Public candidate view restored.');
+};
+
+/* Position Editor Modal (Create / Update) */
+window.openPositionEditor = function(posId) {
+    if (!isCareerAdmin()) {
+        openCareerAdminAuthModal();
+        return;
+    }
+
+    const modal = document.getElementById('career-position-editor-modal');
+    const modalTitle = document.getElementById('position-editor-modal-title');
+    const idInput = document.getElementById('editor-position-id');
+    const titleInput = document.getElementById('editor-title');
+    const catInput = document.getElementById('editor-category');
+    const typeInput = document.getElementById('editor-type');
+    const rateInput = document.getElementById('editor-rate');
+    const vacanciesInput = document.getElementById('editor-vacancies');
+    const locInput = document.getElementById('editor-location');
+    const certsInput = document.getElementById('editor-certs');
+    const descInput = document.getElementById('editor-desc');
+
+    if (!modal) return;
+
+    if (posId) {
+        const positions = getCareerPositions();
+        const found = positions.find(p => p.id === posId);
+        if (found) {
+            if (modalTitle) modalTitle.innerText = 'Edit Trade Position';
+            if (idInput) idInput.value = found.id;
+            if (titleInput) titleInput.value = found.title;
+            if (catInput) catInput.value = found.category;
+            if (typeInput) typeInput.value = found.type;
+            if (rateInput) rateInput.value = found.rate;
+            if (vacanciesInput) vacanciesInput.value = found.vacancies;
+            if (locInput) locInput.value = found.location;
+            if (certsInput) certsInput.value = (found.certs || []).join(', ');
+            if (descInput) descInput.value = found.desc;
+        }
+    } else {
+        if (modalTitle) modalTitle.innerText = 'Post New Trade Position';
+        if (idInput) idInput.value = '';
+        const form = document.getElementById('career-position-form');
+        if (form) form.reset();
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+};
+
+window.closePositionEditor = function() {
+    const modal = document.getElementById('career-position-editor-modal');
+    if (!modal) return;
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+};
+
+window.handleSavePosition = function(e) {
+    e.preventDefault();
+    if (!isCareerAdmin()) {
+        showToast('Unauthorized', 'Admin authentication required.');
+        return;
+    }
+
+    const idInput = document.getElementById('editor-position-id');
+    const titleInput = document.getElementById('editor-title');
+    const catInput = document.getElementById('editor-category');
+    const typeInput = document.getElementById('editor-type');
+    const rateInput = document.getElementById('editor-rate');
+    const vacanciesInput = document.getElementById('editor-vacancies');
+    const locInput = document.getElementById('editor-location');
+    const certsInput = document.getElementById('editor-certs');
+    const descInput = document.getElementById('editor-desc');
+
+    const positions = getCareerPositions();
+    const existingId = idInput ? idInput.value : '';
+
+    const categoryLabels = {
+        civil: "Civil & Structural",
+        fitout: "Architectural Fit-Out",
+        mep: "MEP Engineering",
+        labor: "General Labor & Safety"
+    };
+
+    const certsArray = certsInput ? certsInput.value.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+    if (existingId) {
+        // Edit existing
+        const idx = positions.findIndex(p => p.id === existingId);
+        if (idx !== -1) {
+            positions[idx] = {
+                ...positions[idx],
+                title: titleInput ? titleInput.value : '',
+                category: catInput ? catInput.value : 'civil',
+                categoryLabel: categoryLabels[catInput.value] || 'Civil & Structural',
+                type: typeInput ? typeInput.value : 'Project-Based',
+                rate: rateInput ? rateInput.value : '',
+                vacancies: vacanciesInput ? vacanciesInput.value : '4 Vacancies',
+                location: locInput ? locInput.value : '',
+                certs: certsArray.length > 0 ? certsArray : ['TESDA / DOLE Recommended'],
+                desc: descInput ? descInput.value : ''
+            };
+            saveCareerPositions(positions);
+            closePositionEditor();
+            showToast('Position Updated', `"${positions[idx].title}" details have been updated successfully.`);
+            return;
+        }
+    }
+
+    // Create new position
+    const newId = 'POS-' + (catInput ? catInput.value.toUpperCase() : 'TRADE') + '-' + Math.floor(10 + Math.random() * 90);
+    const newPos = {
+        id: newId,
+        title: titleInput ? titleInput.value : 'New Trade Position',
+        category: catInput ? catInput.value : 'civil',
+        categoryLabel: categoryLabels[catInput.value] || 'Civil & Structural',
+        type: typeInput ? typeInput.value : 'Project-Based',
+        rate: rateInput ? rateInput.value : '₱900 - ₱1,200 / day',
+        vacancies: vacanciesInput ? vacanciesInput.value : '6 Vacancies',
+        location: locInput ? locInput.value : 'Metro Manila & Calabarzon Sites',
+        certs: certsArray.length > 0 ? certsArray : ['TESDA NC II', 'Site Induction'],
+        desc: descInput ? descInput.value : 'Responsible for field execution in accordance with project safety standards.'
+    };
+
+    positions.unshift(newPos);
+    saveCareerPositions(positions);
+    closePositionEditor();
+    showToast('Position Published', `"${newPos.title}" is now open for applications.`);
+};
+
+window.deleteCareerPosition = function(posId) {
+    if (!isCareerAdmin()) {
+        showToast('Unauthorized', 'Admin privileges required.');
+        return;
+    }
+    const positions = getCareerPositions();
+    const found = positions.find(p => p.id === posId);
+    const title = found ? found.title : 'this position';
+
+    if (confirm(`Are you sure you want to delete "${title}" from open vacancies?`)) {
+        const filtered = positions.filter(p => p.id !== posId);
+        saveCareerPositions(filtered);
+        showToast('Position Deleted', `"${title}" has been removed.`);
+    }
+};
+
+window.resetCareerPositions = function() {
+    if (!isCareerAdmin()) return;
+    if (confirm('Restore the default 16 construction labor & skilled trade positions catalog? Any custom edits will be replaced.')) {
+        saveCareerPositions(DEFAULT_CAREER_POSITIONS);
+        showToast('Defaults Restored', '16 construction trade positions restored.');
+    }
+};
+
+/* Admin Applications & Resumes Inbox */
+window.openCareerInboxModal = function() {
+    if (!isCareerAdmin()) {
+        openCareerAdminAuthModal();
+        return;
+    }
+
+    const modal = document.getElementById('career-inbox-modal');
+    const list = document.getElementById('career-inbox-list');
+    if (!modal || !list) return;
+
+    const apps = getCareerApplications();
+
+    if (apps.length === 0) {
+        list.innerHTML = `
+            <div class="neu-card p-10 text-center rounded-xl border border-white/10">
+                <div class="w-12 h-12 neu-inset rounded-xl flex items-center justify-center mx-auto mb-3 text-slate-400">
+                    <i class="fa-solid fa-inbox text-xl"></i>
+                </div>
+                <h4 class="text-sm font-bold text-white mb-1">No Applications Received Yet</h4>
+                <p class="text-xs text-slate-400">When candidates apply and drop resumes, their records and attached files will appear here.</p>
+            </div>
+        `;
+    } else {
+        list.innerHTML = apps.map(app => `
+            <div class="neu-card p-4 rounded-xl border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                <div class="space-y-1 min-w-0">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="font-bold text-white text-sm">${app.name}</span>
+                        <span class="neu-pill px-2 py-0.5 text-[9px] text-amber-400 font-extrabold uppercase">${app.positionTitle}</span>
+                        <span class="text-[10px] text-slate-400 font-mono">${app.date}</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-slate-300 text-[11px] flex-wrap">
+                        <span><i class="fa-solid fa-phone text-amber-400 mr-1"></i> ${app.phone}</span>
+                        <span><i class="fa-solid fa-envelope text-cyan-400 mr-1"></i> ${app.email}</span>
+                        <span><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i> ${app.city}</span>
+                        <span><i class="fa-solid fa-briefcase text-slate-400 mr-1"></i> ${app.experience}</span>
+                    </div>
+                    ${app.notes ? `<p class="text-[11px] text-slate-300 italic pt-0.5">"${app.notes}"</p>` : ''}
+                    <div class="text-[10px] text-slate-400 font-mono">
+                        Tracking ID: <span class="text-white">${app.id}</span> • Attached: <span class="text-cyan-300">${app.resumeName}</span> (${app.resumeSize})
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 flex-shrink-0">
+                    <button type="button" onclick="downloadCandidateResume('${app.id}')" class="neu-btn-primary px-3 py-1.5 text-[11px] font-bold flex items-center gap-1.5 shadow-sm" title="Download Candidate Resume">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Download Resume</span>
+                    </button>
+                    <button type="button" onclick="deleteCandidateApplication('${app.id}')" class="neu-btn w-8 h-8 flex items-center justify-center text-red-400 hover:text-white" title="Delete record">
+                        <i class="fa-solid fa-trash text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+};
+
+window.closeCareerInboxModal = function() {
+    const modal = document.getElementById('career-inbox-modal');
+    if (!modal) return;
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+};
+
+window.downloadCandidateResume = function(appId) {
+    const apps = getCareerApplications();
+    const app = apps.find(a => a.id === appId);
+    if (!app || !app.resumeData) {
+        showToast('Resume File Missing', 'No downloadable resume file found for this record.');
+        return;
+    }
+
+    const a = document.createElement('a');
+    a.href = app.resumeData;
+    a.download = `${app.name.replace(/\s+/g, '_')}_${app.resumeName}`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    showToast('Download Started', `Downloading resume for ${app.name}.`);
+};
+
+window.deleteCandidateApplication = function(appId) {
+    if (!confirm('Are you sure you want to remove this applicant record?')) return;
+    const apps = getCareerApplications();
+    const filtered = apps.filter(a => a.id !== appId);
+    saveCareerApplications(filtered);
+    openCareerInboxModal();
+    showToast('Application Deleted', 'Candidate record removed.');
+};
+
+window.clearAllApplications = function() {
+    if (!confirm('Delete all submitted candidate applications? This cannot be undone.')) return;
+    saveCareerApplications([]);
+    openCareerInboxModal();
+    showToast('Inbox Cleared', 'All candidate application records have been deleted.');
+};
+
+window.exportApplicationsJson = function() {
+    const apps = getCareerApplications();
+    if (apps.length === 0) {
+        showToast('No Data', 'There are no applications to export.');
+        return;
+    }
+    const blob = new Blob([JSON.stringify(apps, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `MIRR-Career-Applications-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast('Export Complete', 'Exported applications database as JSON.');
+};
+
+/* -------------------------------------------------------------
  * 8. FORM SUBMISSIONS & TOASTS
  * ------------------------------------------------------------- */
 function initForms() {
@@ -1581,13 +2622,26 @@ function showToast(title, message) {
 window.addEventListener('click', (e) => {
     const serviceModal = document.getElementById('service-modal');
     const videoModal = document.getElementById('video-modal');
+    const applyModal = document.getElementById('career-apply-modal');
+    const adminAuthModal = document.getElementById('career-admin-auth-modal');
+    const editorModal = document.getElementById('career-position-editor-modal');
+    const inboxModal = document.getElementById('career-inbox-modal');
+
     if (e.target === serviceModal) closeServiceModal();
     if (e.target === videoModal) closeVideoModal();
+    if (e.target === applyModal) closeCareerApplyModal();
+    if (e.target === adminAuthModal) closeCareerAdminAuthModal();
+    if (e.target === editorModal) closePositionEditor();
+    if (e.target === inboxModal) closeCareerInboxModal();
 });
 
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeServiceModal();
         closeVideoModal();
+        closeCareerApplyModal();
+        closeCareerAdminAuthModal();
+        closePositionEditor();
+        closeCareerInboxModal();
     }
 });
