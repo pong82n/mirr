@@ -131,26 +131,28 @@ function initHeroSlideshow() {
     const playPauseBtn = document.getElementById('hero-slide-playpause');
     const playPauseIcon = document.getElementById('hero-playpause-icon');
     const captionEl = document.getElementById('hero-slide-caption');
+    const badgeDot = document.getElementById('hero-slide-badge-dot');
+    const badgeText = document.getElementById('hero-slide-badge-text');
 
     if (!slides.length) return;
 
     const captions = [
-        '01 / 10 • Night Heavy Structural Concrete Pour & Illuminated Scaffolding',
-        '02 / 10 • Structural Steel Framing & Reinforced Slab Rebar Grid',
-        '03 / 10 • Tower Crane & Multi-Tier Structural Steel Erection',
-        '04 / 10 • High-Rise Commercial Deck Reinforcement & Concrete Topping',
-        '05 / 10 • Site Engineering Oversight & Rigging Safety Protocol',
-        '06 / 10 • Pre-Engineered Steel Girder Framing & Assembly',
-        '07 / 10 • Substructure Foundations & Structural Framing Phase',
-        '08 / 10 • Modern Architectural Finish & Luxury Interior Handover',
-        '09 / 10 • The Horizon Waterfront Cantilevered Structural Architecture',
-        '10 / 10 • Heavy Civil Infrastructure & Multimodal Viaduct'
+        '01 / 11 • Luxury 3-Storey House Walkthrough (Cinematic Video)',
+        '02 / 11 • Night Heavy Structural Concrete Pour & Illuminated Scaffolding',
+        '03 / 11 • Structural Steel Framing & Reinforced Slab Rebar Grid',
+        '04 / 11 • Tower Crane & Multi-Tier Structural Steel Erection',
+        '05 / 11 • High-Rise Commercial Deck Reinforcement & Concrete Topping',
+        '06 / 11 • Site Engineering Oversight & Rigging Safety Protocol',
+        '07 / 11 • Pre-Engineered Steel Girder Framing & Assembly',
+        '08 / 11 • Substructure Foundations & Structural Framing Phase',
+        '09 / 11 • Modern Architectural Finish & Luxury Interior Handover',
+        '10 / 11 • The Horizon Waterfront Cantilevered Structural Architecture',
+        '11 / 11 • Heavy Civil Infrastructure & Multimodal Viaduct'
     ];
 
     let currentIndex = 0;
     let timer = null;
     let isPlaying = true;
-    const intervalTime = 5000;
 
     function showSlide(index, direction = 'next') {
         if (index < 0) {
@@ -163,6 +165,7 @@ function initHeroSlideshow() {
         currentIndex = index;
 
         slides.forEach((slide, i) => {
+            const video = slide.querySelector('video');
             slide.classList.remove('active', 'slide-from-right', 'slide-from-left', 'slide-to-left', 'slide-to-right');
             if (i === currentIndex) {
                 slide.classList.add('active');
@@ -171,11 +174,23 @@ function initHeroSlideshow() {
                 } else if (direction === 'prev') {
                     slide.classList.add('slide-from-left');
                 }
-            } else if (i === prevIndex && direction !== 'none') {
-                if (direction === 'next') {
-                    slide.classList.add('slide-to-left');
-                } else if (direction === 'prev') {
-                    slide.classList.add('slide-to-right');
+                if (video) {
+                    video.currentTime = 0;
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(() => {});
+                    }
+                }
+            } else {
+                if (video) {
+                    video.pause();
+                }
+                if (i === prevIndex && direction !== 'none') {
+                    if (direction === 'next') {
+                        slide.classList.add('slide-to-left');
+                    } else if (direction === 'prev') {
+                        slide.classList.add('slide-to-right');
+                    }
                 }
             }
         });
@@ -188,6 +203,19 @@ function initHeroSlideshow() {
             }
         });
 
+        // Update live badge for video vs image slide
+        const currentSlide = slides[currentIndex];
+        const isVideoSlide = currentSlide && currentSlide.querySelector('video');
+        if (badgeDot && badgeText) {
+            if (isVideoSlide) {
+                badgeDot.className = 'w-2 h-2 rounded-full bg-cyan-400 animate-ping';
+                badgeText.innerHTML = '<span class="text-cyan-300 font-extrabold flex items-center gap-1"><i class="fa-solid fa-video text-[10px]"></i>Video Tour:</span>';
+            } else {
+                badgeDot.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
+                badgeText.innerText = 'Showcase:';
+            }
+        }
+
         if (captionEl && captions[currentIndex]) {
             captionEl.style.opacity = '0';
             setTimeout(() => {
@@ -197,11 +225,22 @@ function initHeroSlideshow() {
         }
     }
 
-    function startTimer() {
-        if (timer) clearInterval(timer);
-        timer = setInterval(() => {
+    function scheduleNextSlide() {
+        if (timer) clearTimeout(timer);
+        if (!isPlaying) return;
+
+        const currentSlide = slides[currentIndex];
+        const isVideoSlide = currentSlide && currentSlide.querySelector('video');
+        // Give walkthrough video 14s of cinematic playback, and image slides 6s
+        const delay = isVideoSlide ? 14000 : 6000;
+
+        timer = setTimeout(() => {
             showSlide(currentIndex + 1, 'next');
-        }, intervalTime);
+            scheduleNextSlide();
+        }, delay);
+    }
+
+    function startTimer() {
         isPlaying = true;
         if (playPauseIcon) {
             playPauseIcon.className = 'fa-solid fa-pause text-[11px]';
@@ -209,11 +248,12 @@ function initHeroSlideshow() {
         if (playPauseBtn) {
             playPauseBtn.setAttribute('title', 'Pause Slideshow');
         }
+        scheduleNextSlide();
     }
 
     function stopTimer() {
         if (timer) {
-            clearInterval(timer);
+            clearTimeout(timer);
             timer = null;
         }
         isPlaying = false;
@@ -223,6 +263,9 @@ function initHeroSlideshow() {
         if (playPauseBtn) {
             playPauseBtn.setAttribute('title', 'Resume Slideshow');
         }
+        const currentSlide = slides[currentIndex];
+        const video = currentSlide ? currentSlide.querySelector('video') : null;
+        if (video) video.pause();
     }
 
     if (prevBtn) {
@@ -244,6 +287,9 @@ function initHeroSlideshow() {
             if (isPlaying) {
                 stopTimer();
             } else {
+                const currentSlide = slides[currentIndex];
+                const video = currentSlide ? currentSlide.querySelector('video') : null;
+                if (video) video.play().catch(() => {});
                 startTimer();
             }
         });

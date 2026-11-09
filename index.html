@@ -98,7 +98,12 @@
 
     <!-- FULL-PAGE FIXED BACKGROUND SLIDESHOW -->
     <div class="fixed-bg-slideshow" id="global-bg-slider" aria-hidden="true">
-        <div class="fixed-bg-slide active" style="background-image: url('images/bg-night-site.jpg');"></div>
+        <div class="fixed-bg-slide active" data-type="video">
+            <video class="fixed-bg-video" autoplay muted loop playsinline preload="auto" poster="images/bg-luxury-interior.jpg">
+                <source src="Media/Luxury_3Storey_House_Walkthrough.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="fixed-bg-slide" style="background-image: url('images/bg-night-site.jpg');"></div>
         <div class="fixed-bg-slide" style="background-image: url('images/before-heavy-structural.jpg');"></div>
         <div class="fixed-bg-slide" style="background-image: url('images/bg-crane-steel.jpg');"></div>
         <div class="fixed-bg-slide" style="background-image: url('images/bg-1.jpg');"></div>
@@ -421,28 +426,29 @@
             <!-- Interactive Slideshow Controller Bar -->
             <div class="mt-8 sm:mt-10 pt-4 sm:pt-5 border-t border-slate-800/100 flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
                 <div class="flex items-center gap-2 sm:gap-3 overflow-hidden min-w-0">
-                    <span class="neu-pill px-2.5 sm:px-3 py-1 text-xs sm:text-[14px] font-bold text-slate-600 flex items-center gap-1.5 flex-shrink-0">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span class="hidden xs:inline">Showcase:</span>
+                    <span class="neu-pill px-2.5 sm:px-3 py-1 text-xs sm:text-[14px] font-bold text-slate-400 flex items-center gap-1.5 flex-shrink-0" id="hero-slide-badge">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping" id="hero-slide-badge-dot"></span>
+                        <span id="hero-slide-badge-text" class="hidden xs:inline text-cyan-300 font-extrabold flex items-center gap-1"><i class="fa-solid fa-video text-[10px]"></i>Video Tour:</span>
                     </span>
                     <span id="hero-slide-caption" class="text-xs sm:text-sm font-black font-heading text-slate-100 truncate">
-                        01 / 10 • Night Heavy Structural Concrete Pour & Illuminated Scaffolding
+                        01 / 11 • Luxury 3-Storey House Walkthrough (Cinematic Video)
                     </span>
                 </div>
 
                 <div class="flex items-center justify-between md:justify-end gap-2 sm:gap-3 w-full md:w-auto">
                     <!-- Slideshow Indicator Dots -->
                     <div class="flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-1" id="hero-slide-dots">
-                        <button class="hero-slide-dot active" data-slide="0" title="Slide 1: Night Structural Concrete Pour"></button>
-                        <button class="hero-slide-dot" data-slide="1" title="Slide 2: Steel Framing & Rebar Slab Grid"></button>
-                        <button class="hero-slide-dot" data-slide="2" title="Slide 3: Tower Crane & Structural Steel"></button>
-                        <button class="hero-slide-dot" data-slide="3" title="Slide 4: High-Rise Deck Concrete Topping"></button>
-                        <button class="hero-slide-dot" data-slide="4" title="Slide 5: Site QA/QC Engineering Oversight"></button>
-                        <button class="hero-slide-dot" data-slide="5" title="Slide 6: Steel Girder Framing & Assembly"></button>
-                        <button class="hero-slide-dot" data-slide="6" title="Slide 7: Foundation Substructure Phase"></button>
-                        <button class="hero-slide-dot" data-slide="7" title="Slide 8: Modern Architectural Finish"></button>
-                        <button class="hero-slide-dot" data-slide="8" title="Slide 9: Modernist Architecture"></button>
-                        <button class="hero-slide-dot" data-slide="9" title="Slide 10: Civil Viaduct Infrastructure"></button>
+                        <button class="hero-slide-dot active is-video" data-slide="0" title="Slide 1: Luxury 3-Storey House Walkthrough (Cinematic Video)"></button>
+                        <button class="hero-slide-dot" data-slide="1" title="Slide 2: Night Heavy Structural Concrete Pour & Illuminated Scaffolding"></button>
+                        <button class="hero-slide-dot" data-slide="2" title="Slide 3: Steel Framing & Rebar Slab Grid"></button>
+                        <button class="hero-slide-dot" data-slide="3" title="Slide 4: Tower Crane & Structural Steel"></button>
+                        <button class="hero-slide-dot" data-slide="4" title="Slide 5: High-Rise Deck Concrete Topping"></button>
+                        <button class="hero-slide-dot" data-slide="5" title="Slide 6: Site QA/QC Engineering Oversight"></button>
+                        <button class="hero-slide-dot" data-slide="6" title="Slide 7: Steel Girder Framing & Assembly"></button>
+                        <button class="hero-slide-dot" data-slide="7" title="Slide 8: Foundation Substructure Phase"></button>
+                        <button class="hero-slide-dot" data-slide="8" title="Slide 9: Modern Architectural Finish"></button>
+                        <button class="hero-slide-dot" data-slide="9" title="Slide 10: Modernist Architecture"></button>
+                        <button class="hero-slide-dot" data-slide="10" title="Slide 11: Civil Viaduct Infrastructure"></button>
                     </div>
 
                     <!-- Slide Controls -->
